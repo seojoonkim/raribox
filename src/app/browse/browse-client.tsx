@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { SearchIcon, SlidersHorizontalIcon, ChevronDownIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -33,10 +34,9 @@ function FilterPanel({
   toggleCondition,
   gradedOnly,
   setGradedOnly,
-  minPrice,
-  setMinPrice,
-  maxPrice,
-  setMaxPrice,
+  priceRange,
+  setPriceRange,
+  priceMax,
 }: {
   selectedFranchises: string[];
   toggleFranchise: (slug: string) => void;
@@ -46,10 +46,9 @@ function FilterPanel({
   toggleCondition: (c: string) => void;
   gradedOnly: boolean;
   setGradedOnly: (v: boolean) => void;
-  minPrice: string;
-  setMinPrice: (v: string) => void;
-  maxPrice: string;
-  setMaxPrice: (v: string) => void;
+  priceRange: [number, number];
+  setPriceRange: (v: [number, number]) => void;
+  priceMax: number;
 }) {
   const [openSections, setOpenSections] = useState<Set<string>>(new Set(['franchise']));
 
@@ -188,22 +187,21 @@ function FilterPanel({
           <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('price') ? 'rotate-180' : ''}`} />
         </button>
         {openSections.has('price') && (
-          <div className="mt-2 flex items-center gap-2">
-            <Input
-              type="number"
-              placeholder="Min"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-              className="h-7 text-xs"
+          <div className="mt-3 px-1">
+            <Slider
+              min={0}
+              max={priceMax}
+              step={10}
+              value={priceRange}
+              onValueChange={(v) => setPriceRange(v as [number, number])}
+              className="mb-3"
             />
-            <span className="text-rari-muted text-xs">—</span>
-            <Input
-              type="number"
-              placeholder="Max"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              className="h-7 text-xs"
-            />
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span className="font-medium text-foreground">{priceRange[0].toLocaleString()} AED</span>
+              <span className="font-medium text-foreground">
+                {priceRange[1] >= priceMax ? 'Max' : `${priceRange[1].toLocaleString()} AED`}
+              </span>
+            </div>
           </div>
         )}
       </div>
@@ -218,8 +216,8 @@ export function BrowseClient({ items }: { items: Item[] }) {
   const [selectedFranchises, setSelectedFranchises] = useState<string[]>([]);
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
   const [gradedOnly, setGradedOnly] = useState(false);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const PRICE_MAX = 5000;
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, PRICE_MAX]);
 
   const toggleCategory = (slug: string) =>
     setSelectedCategories((prev) =>
@@ -254,10 +252,7 @@ export function BrowseClient({ items }: { items: Item[] }) {
       result = result.filter((i) => i.condition && selectedConditions.includes(i.condition));
     if (gradedOnly)
       result = result.filter((i) => i.is_graded);
-    if (minPrice)
-      result = result.filter((i) => i.price >= Number(minPrice));
-    if (maxPrice)
-      result = result.filter((i) => i.price <= Number(maxPrice));
+    result = result.filter((i) => i.price >= priceRange[0] && i.price <= priceRange[1]);
 
     switch (sort) {
       case 'price-asc':
@@ -274,20 +269,19 @@ export function BrowseClient({ items }: { items: Item[] }) {
     }
 
     return result;
-  }, [items, sort, searchQuery, selectedCategories, selectedFranchises, selectedConditions, gradedOnly, minPrice, maxPrice]);
+  }, [items, sort, searchQuery, selectedCategories, selectedFranchises, selectedConditions, gradedOnly, priceRange]);
 
   const clearAll = () => {
     setSelectedCategories([]);
     setSelectedFranchises([]);
     setSelectedConditions([]);
     setGradedOnly(false);
-    setMinPrice('');
-    setMaxPrice('');
+    setPriceRange([0, PRICE_MAX]);
     setSearchQuery('');
   };
 
   const hasFilters = selectedCategories.length > 0 || selectedFranchises.length > 0 ||
-    selectedConditions.length > 0 || gradedOnly || minPrice || maxPrice || searchQuery;
+    selectedConditions.length > 0 || gradedOnly || priceRange[0] > 0 || priceRange[1] < PRICE_MAX || !!searchQuery;
 
   const filterPanel = (
     <FilterPanel
@@ -299,10 +293,9 @@ export function BrowseClient({ items }: { items: Item[] }) {
       toggleCondition={toggleCondition}
       gradedOnly={gradedOnly}
       setGradedOnly={setGradedOnly}
-      minPrice={minPrice}
-      setMinPrice={setMinPrice}
-      maxPrice={maxPrice}
-      setMaxPrice={setMaxPrice}
+      priceRange={priceRange}
+      setPriceRange={setPriceRange}
+      priceMax={PRICE_MAX}
     />
   );
 
