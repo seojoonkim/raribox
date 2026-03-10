@@ -40,7 +40,7 @@ export function Footer() {
               <li><Link href="/vendor-portal/dashboard" className="hover:text-foreground transition-colors">Vendor Portal</Link></li>
               <li><Link href="/auth/register" className="hover:text-foreground transition-colors">Become a Seller</Link></li>
               <li>
-                <a href="https://www.hitgcc.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
                   Grading Service ↗
                 </a>
               </li>
