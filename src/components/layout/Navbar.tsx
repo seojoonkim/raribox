@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
@@ -49,8 +50,8 @@ export function Navbar() {
                 <MenuIcon className="h-5 w-5" />
               </SheetTrigger>
               <SheetContent side="left" className="w-72">
-                <SheetTitle className="text-lg font-bold">
-                  <span className="text-gold">Rari</span>Box
+                <SheetTitle>
+                  <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain dark:invert" />
                 </SheetTitle>
                 <nav className="mt-6 flex flex-col gap-1">
                   {NAV_ITEMS.map((item) =>
@@ -91,10 +92,14 @@ export function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-extrabold tracking-tight">
-                <span className="text-gold">Rari</span>
-                <span>Box</span>
-              </span>
+              <Image
+                src="/logo.webp"
+                alt="RariBox"
+                width={140}
+                height={40}
+                className="h-8 w-auto object-contain dark:invert"
+                priority
+              />
             </Link>
 
             {/* Right side */}
