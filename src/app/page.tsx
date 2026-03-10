@@ -4,15 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FRANCHISES } from '@/lib/constants';
-import { mockItems } from '@/lib/mock-data';
 import { ItemCard } from '@/components/items/ItemCard';
+import { fetchFeaturedItems, fetchNewArrivals, fetchSaleItems } from '@/lib/supabase/queries';
 
-export default function HomePage() {
-  const featuredItems = mockItems.filter((i) => i.is_featured);
-  const saleItems = mockItems.filter((i) => i.is_sale);
-  const newArrivals = [...mockItems].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-  );
+export default async function HomePage() {
+  const [featuredItems, newArrivals, saleItems] = await Promise.all([
+    fetchFeaturedItems(),
+    fetchNewArrivals(),
+    fetchSaleItems(),
+  ]);
 
   return (
     <div>
@@ -71,41 +71,45 @@ export default function HomePage() {
       </section>
 
       {/* Featured Items */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Featured</h2>
-          <Link href="/browse?featured=true" className="text-sm text-gold hover:underline flex items-center gap-1">
-            View All <ArrowRightIcon className="h-3 w-3" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {featuredItems.map((item) => (
-            <ItemCard key={item.id} item={item} />
-          ))}
-        </div>
-      </section>
+      {featuredItems.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">Featured</h2>
+            <Link href="/browse?featured=true" className="text-sm text-gold hover:underline flex items-center gap-1">
+              View All <ArrowRightIcon className="h-3 w-3" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {featuredItems.map((item) => (
+              <ItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* New Arrivals */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">New Arrivals</h2>
-          <Link href="/browse?sort=newest" className="text-sm text-gold hover:underline flex items-center gap-1">
-            View All <ArrowRightIcon className="h-3 w-3" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {newArrivals.slice(0, 8).map((item) => (
-            <ItemCard key={item.id} item={item} />
-          ))}
-        </div>
-      </section>
+      {newArrivals.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">New Arrivals</h2>
+            <Link href="/browse?sort=newest" className="text-sm text-gold hover:underline flex items-center gap-1">
+              View All <ArrowRightIcon className="h-3 w-3" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {newArrivals.slice(0, 8).map((item) => (
+              <ItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Sale Section */}
       {saleItems.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">
-              <span className="text-red-500">Sale</span> 🔥
+              <span className="text-red-500">Sale</span>
             </h2>
             <Link href="/browse?sale=true" className="text-sm text-gold hover:underline flex items-center gap-1">
               View All <ArrowRightIcon className="h-3 w-3" />
