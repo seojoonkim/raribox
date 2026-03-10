@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, XCircle, Eye } from 'lucide-react';
+import { CheckCircle2Icon, XCircleIcon, EyeIcon } from '@/components/ui/icons';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -61,7 +61,7 @@ export default function AdminProducts() {
                     <div className="flex justify-end gap-1">
                       <Link href={`/item/${product.id}`}>
                         <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Eye className="h-4 w-4" />
+                          <EyeIcon className="h-4 w-4" />
                         </Button>
                       </Link>
                       <Button
@@ -71,9 +71,9 @@ export default function AdminProducts() {
                         onClick={() => toggleStatus(product.id)}
                       >
                         {product.status === 'active' ? (
-                          <XCircle className="h-4 w-4" />
+                          <XCircleIcon className="h-4 w-4" />
                         ) : (
-                          <CheckCircle2 className="h-4 w-4" />
+                          <CheckCircle2Icon className="h-4 w-4" />
                         )}
                       </Button>
                     </div>

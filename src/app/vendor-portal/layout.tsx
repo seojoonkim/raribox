@@ -2,23 +2,23 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Package, ShoppingCart, BarChart3, Settings, Store } from 'lucide-react';
+import { LayoutDashboardIcon, PackageIcon, ShoppingCartIcon, BarChart3Icon, SettingsIcon, StoreIcon } from '@/components/ui/icons';
 
 const navItems = [
-  { href: '/vendor-portal/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/vendor-portal/products', label: 'Products', icon: Package },
-  { href: '/vendor-portal/orders', label: 'Orders', icon: ShoppingCart },
-  { href: '/vendor-portal/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/vendor-portal/settings', label: 'Settings', icon: Settings },
+  { href: '/vendor-portal/dashboard', label: 'Dashboard', icon: LayoutDashboardIcon },
+  { href: '/vendor-portal/products', label: 'Products', icon: PackageIcon },
+  { href: '/vendor-portal/orders', label: 'Orders', icon: ShoppingCartIcon },
+  { href: '/vendor-portal/analytics', label: 'Analytics', icon: BarChart3Icon },
+  { href: '/vendor-portal/settings', label: 'Settings', icon: SettingsIcon },
 ];
 
 export default function VendorPortalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Store className="h-6 w-6 text-gold" /> Vendor Portal
+        <StoreIcon className="h-6 w-6 text-gold" /> Vendor Portal
       </h1>
 
       <div className="flex gap-8">

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Layers, Plus, DollarSign } from 'lucide-react';
+import { LayersIcon, PlusIcon, DollarSignIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -60,7 +60,7 @@ export default function CollectionPage() {
           <DialogTrigger
             render={<Button size="sm" className="bg-gold text-black hover:bg-gold/90" />}
           >
-            <Plus className="h-4 w-4 mr-1" /> Add Item
+            <PlusIcon className="h-4 w-4 mr-1" /> Add Item
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -124,7 +124,7 @@ export default function CollectionPage() {
       {/* Total value card */}
       <Card className="mb-6 bg-gold/5 border-gold/20">
         <CardContent className="p-4 flex items-center gap-3">
-          <DollarSign className="h-8 w-8 text-gold" />
+          <DollarSignIcon className="h-8 w-8 text-gold" />
           <div>
             <p className="text-sm text-muted-foreground">Total Estimated Value</p>
             <p className="text-2xl font-bold text-gold">{formatPrice(totalValue)}</p>
@@ -134,7 +134,7 @@ export default function CollectionPage() {
 
       {items.length === 0 ? (
         <div className="text-center py-16">
-          <Layers className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <LayersIcon className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
           <h3 className="text-lg font-semibold">No items in your collection</h3>
           <p className="text-sm text-muted-foreground">Start tracking your collectibles.</p>
         </div>
@@ -144,7 +144,7 @@ export default function CollectionPage() {
             <Card key={item.id}>
               <CardContent className="p-4 flex items-center gap-4">
                 <div className="h-14 w-14 rounded-lg bg-secondary/50 flex items-center justify-center text-xl shrink-0">
-                  <Layers className="h-6 w-6 text-muted-foreground" />
+                  <LayersIcon className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm truncate">{item.title}</p>

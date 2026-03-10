@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Lock, User, Chrome } from 'lucide-react';
+import { MailIcon, LockIcon, UserIcon, ChromeIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -45,7 +45,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="mx-auto max-w-md px-4 py-16">
+    <div className="mx-auto max-w-md px-6 lg:px-12 xl:px-16 py-16">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold">
           <span className="text-gold">Rari</span>Box
@@ -59,7 +59,7 @@ export default function RegisterPage() {
             <div>
               <Label htmlFor="name">Full Name</Label>
               <div className="relative mt-1">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="name"
                   placeholder="John Doe"
@@ -73,7 +73,7 @@ export default function RegisterPage() {
             <div>
               <Label htmlFor="email">Email</Label>
               <div className="relative mt-1">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <MailIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
@@ -88,7 +88,7 @@ export default function RegisterPage() {
             <div>
               <Label htmlFor="password">Password</Label>
               <div className="relative mt-1">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <LockIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type="password"
@@ -119,7 +119,7 @@ export default function RegisterPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <Button variant="outline" onClick={() => handleOAuth('google')}>
-              <Chrome className="mr-2 h-4 w-4" /> Google
+              <ChromeIcon className="mr-2 h-4 w-4" /> Google
             </Button>
             <Button variant="outline" onClick={() => handleOAuth('apple')}>
               Apple

@@ -1,14 +1,14 @@
-import { DollarSign, Users, Store, Package, ShoppingCart, TrendingUp } from 'lucide-react';
+import { DollarSignIcon, UsersIcon, StoreIcon, PackageIcon, ShoppingCartIcon, TrendingUpIcon } from '@/components/ui/icons';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function AdminDashboard() {
   const stats = [
-    { label: 'Total Revenue', value: '$48,250', icon: DollarSign, trend: '+12%' },
-    { label: 'Total Users', value: '1,234', icon: Users, trend: '+8%' },
-    { label: 'Active Vendors', value: '56', icon: Store, trend: '+3' },
-    { label: 'Total Products', value: '892', icon: Package, trend: '+24' },
-    { label: 'Total Orders', value: '2,145', icon: ShoppingCart, trend: '+15%' },
-    { label: 'Pending Approvals', value: '7', icon: TrendingUp, trend: '' },
+    { label: 'Total Revenue', value: '$48,250', icon: DollarSignIcon, trend: '+12%' },
+    { label: 'Total Users', value: '1,234', icon: UsersIcon, trend: '+8%' },
+    { label: 'Active Vendors', value: '56', icon: StoreIcon, trend: '+3' },
+    { label: 'Total Products', value: '892', icon: PackageIcon, trend: '+24' },
+    { label: 'Total Orders', value: '2,145', icon: ShoppingCartIcon, trend: '+15%' },
+    { label: 'Pending Approvals', value: '7', icon: TrendingUpIcon, trend: '' },
   ];
 
   return (

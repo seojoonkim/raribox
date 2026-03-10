@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import {
-  Search, ShoppingCart, User, Menu, X, Sun, Moon,
-  Heart, Package, Bell, ChevronDown
-} from 'lucide-react';
+  SearchIcon, ShoppingCartIcon, UserIcon, MenuIcon, SunIcon, MoonIcon,
+  HeartIcon, PackageIcon, BellIcon, ChevronDownIcon
+} from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -34,7 +34,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16">
         {/* Top bar */}
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Mobile menu */}
@@ -42,7 +42,7 @@ export function Navbar() {
             <SheetTrigger
               render={<Button variant="ghost" size="icon" className="lg:hidden" />}
             >
-              <Menu className="h-5 w-5" />
+              <MenuIcon className="h-5 w-5" />
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <SheetTitle className="text-lg font-bold text-gold">RariBox</SheetTitle>
@@ -82,7 +82,7 @@ export function Navbar() {
           {/* Search bar - desktop */}
           <div className="hidden flex-1 max-w-xl lg:block">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search cards, figures, collectibles..."
                 value={searchQuery}
@@ -101,7 +101,7 @@ export function Navbar() {
               className="lg:hidden"
               onClick={() => setSearchOpen(!searchOpen)}
             >
-              <Search className="h-5 w-5" />
+              <SearchIcon className="h-5 w-5" />
             </Button>
 
             {/* Theme toggle */}
@@ -110,20 +110,20 @@ export function Navbar() {
               size="icon"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             >
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === 'dark' ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
             </Button>
 
             {/* Wishlist */}
             <Link href="/account/wishlist">
               <Button variant="ghost" size="icon">
-                <Heart className="h-5 w-5" />
+                <HeartIcon className="h-5 w-5" />
               </Button>
             </Link>
 
             {/* Cart */}
             <Link href="/cart" className="relative">
               <Button variant="ghost" size="icon">
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingCartIcon className="h-5 w-5" />
                 {itemCount > 0 && (
                   <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px] bg-gold text-black">
                     {itemCount}
@@ -137,7 +137,7 @@ export function Navbar() {
               <DropdownMenuTrigger
                 render={<Button variant="ghost" size="icon" />}
               >
-                <User className="h-5 w-5" />
+                <UserIcon className="h-5 w-5" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem render={<Link href="/auth/login" />}>
@@ -148,16 +148,16 @@ export function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem render={<Link href="/account/orders" />}>
-                  <Package className="mr-2 h-4 w-4" />Orders
+                  <PackageIcon className="mr-2 h-4 w-4" />Orders
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/account/wishlist" />}>
-                  <Heart className="mr-2 h-4 w-4" />Wishlist
+                  <HeartIcon className="mr-2 h-4 w-4" />Wishlist
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/account/collection" />}>
-                  <ChevronDown className="mr-2 h-4 w-4" />Collection
+                  <ChevronDownIcon className="mr-2 h-4 w-4" />Collection
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/account/notifications" />}>
-                  <Bell className="mr-2 h-4 w-4" />Notifications
+                  <BellIcon className="mr-2 h-4 w-4" />Notifications
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem render={<Link href="/vendor-portal/dashboard" />}>
@@ -175,7 +175,7 @@ export function Navbar() {
         {searchOpen && (
           <div className="pb-3 lg:hidden">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search cards, figures, collectibles..."
                 value={searchQuery}

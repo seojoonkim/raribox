@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, XCircle, Ban, Eye } from 'lucide-react';
+import { CheckCircle2Icon, XCircleIcon, BanIcon, EyeIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -81,7 +81,7 @@ export default function AdminVendors() {
                               className="h-8 w-8 text-green-500"
                               onClick={() => updateStatus(vendor.id, 'active')}
                             >
-                              <CheckCircle2 className="h-4 w-4" />
+                              <CheckCircle2Icon className="h-4 w-4" />
                             </Button>
                             <Button
                               variant="ghost"
@@ -89,7 +89,7 @@ export default function AdminVendors() {
                               className="h-8 w-8 text-red-500"
                               onClick={() => updateStatus(vendor.id, 'suspended')}
                             >
-                              <XCircle className="h-4 w-4" />
+                              <XCircleIcon className="h-4 w-4" />
                             </Button>
                           </>
                         )}
@@ -100,7 +100,7 @@ export default function AdminVendors() {
                             className="h-8 w-8 text-red-500"
                             onClick={() => updateStatus(vendor.id, 'suspended')}
                           >
-                            <Ban className="h-4 w-4" />
+                            <BanIcon className="h-4 w-4" />
                           </Button>
                         )}
                         {vendor.status === 'suspended' && (
@@ -110,7 +110,7 @@ export default function AdminVendors() {
                             className="h-8 w-8 text-green-500"
                             onClick={() => updateStatus(vendor.id, 'active')}
                           >
-                            <CheckCircle2 className="h-4 w-4" />
+                            <CheckCircle2Icon className="h-4 w-4" />
                           </Button>
                         )}
                       </div>

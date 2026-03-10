@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import { PlusIcon, EditIcon, Trash2Icon, EyeIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,7 +18,7 @@ export default function VendorProducts() {
         <h2 className="text-lg font-semibold">Products ({products.length})</h2>
         <Link href="/vendor-portal/products/new">
           <Button size="sm" className="bg-gold text-black hover:bg-gold/90">
-            <Plus className="h-4 w-4 mr-1" /> Add Product
+            <PlusIcon className="h-4 w-4 mr-1" /> Add Product
           </Button>
         </Link>
       </div>
@@ -55,14 +55,14 @@ export default function VendorProducts() {
                     <div className="flex justify-end gap-1">
                       <Link href={`/item/${product.id}`}>
                         <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Eye className="h-4 w-4" />
+                          <EyeIcon className="h-4 w-4" />
                         </Button>
                       </Link>
                       <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Edit className="h-4 w-4" />
+                        <EditIcon className="h-4 w-4" />
                       </Button>
                       <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive">
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2Icon className="h-4 w-4" />
                       </Button>
                     </div>
                   </TableCell>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { SlidersHorizontal, Grid3X3, LayoutList } from 'lucide-react';
+import { SlidersHorizontalIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -220,7 +220,7 @@ export default function BrowsePage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold">Browse Collectibles</h1>
@@ -234,7 +234,7 @@ export default function BrowsePage() {
             <SheetTrigger
               render={<Button variant="outline" size="sm" className="lg:hidden" />}
             >
-              <SlidersHorizontal className="h-4 w-4 mr-2" /> Filters
+              <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
             </SheetTrigger>
             <SheetContent side="left" className="w-80 overflow-y-auto">
               <SheetTitle>Filters</SheetTitle>

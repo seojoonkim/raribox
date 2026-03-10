@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Ban, CheckCircle2 } from 'lucide-react';
+import { BanIcon, CheckCircle2Icon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -80,7 +80,7 @@ export default function AdminUsers() {
                         className={`h-8 w-8 ${user.status === 'active' ? 'text-red-500' : 'text-green-500'}`}
                         onClick={() => toggleStatus(user.id)}
                       >
-                        {user.status === 'active' ? <Ban className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
+                        {user.status === 'active' ? <BanIcon className="h-4 w-4" /> : <CheckCircle2Icon className="h-4 w-4" />}
                       </Button>
                     )}
                   </TableCell>

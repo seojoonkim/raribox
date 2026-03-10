@@ -1,4 +1,4 @@
-import { Bell, Package, Tag, Star } from 'lucide-react';
+import { BellIcon, PackageIcon, TagIcon, StarIcon } from '@/components/ui/icons';
 import { Card, CardContent } from '@/components/ui/card';
 
 const mockNotifications = [
@@ -9,7 +9,7 @@ const mockNotifications = [
     body: 'Your order RB-XYZ123-ABCD has been delivered.',
     is_read: false,
     created_at: new Date(Date.now() - 3600000).toISOString(),
-    icon: Package,
+    icon: PackageIcon,
   },
   {
     id: '2',
@@ -18,7 +18,7 @@ const mockNotifications = [
     body: 'Pokemon cards are 20% off for the next 24 hours.',
     is_read: true,
     created_at: new Date(Date.now() - 86400000).toISOString(),
-    icon: Tag,
+    icon: TagIcon,
   },
   {
     id: '3',
@@ -27,7 +27,7 @@ const mockNotifications = [
     body: 'How was your Charizard VMAX? Leave a review!',
     is_read: true,
     created_at: new Date(Date.now() - 86400000 * 3).toISOString(),
-    icon: Star,
+    icon: StarIcon,
   },
 ];
 
@@ -35,7 +35,7 @@ export default function NotificationsPage() {
   if (mockNotifications.length === 0) {
     return (
       <div className="text-center py-16">
-        <Bell className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+        <BellIcon className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
         <h2 className="text-lg font-semibold">No notifications</h2>
         <p className="text-sm text-muted-foreground">You&apos;re all caught up!</p>
       </div>

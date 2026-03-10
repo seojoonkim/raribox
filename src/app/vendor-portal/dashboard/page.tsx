@@ -1,4 +1,4 @@
-import { DollarSign, Package, ShoppingCart, Star, TrendingUp } from 'lucide-react';
+import { DollarSignIcon, PackageIcon, ShoppingCartIcon, StarIcon, TrendingUpIcon } from '@/components/ui/icons';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -15,8 +15,8 @@ export default function VendorDashboard() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
-              <DollarSign className="h-5 w-5 text-gold" />
-              <TrendingUp className="h-4 w-4 text-green-500" />
+              <DollarSignIcon className="h-5 w-5 text-gold" />
+              <TrendingUpIcon className="h-4 w-4 text-green-500" />
             </div>
             <p className="text-2xl font-bold mt-2">$12,450</p>
             <p className="text-xs text-muted-foreground">Total Revenue</p>
@@ -24,21 +24,21 @@ export default function VendorDashboard() {
         </Card>
         <Card>
           <CardContent className="p-4">
-            <ShoppingCart className="h-5 w-5 text-gold" />
+            <ShoppingCartIcon className="h-5 w-5 text-gold" />
             <p className="text-2xl font-bold mt-2">342</p>
             <p className="text-xs text-muted-foreground">Total Orders</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <Package className="h-5 w-5 text-gold" />
+            <PackageIcon className="h-5 w-5 text-gold" />
             <p className="text-2xl font-bold mt-2">24</p>
             <p className="text-xs text-muted-foreground">Active Products</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <Star className="h-5 w-5 text-gold" />
+            <StarIcon className="h-5 w-5 text-gold" />
             <p className="text-2xl font-bold mt-2">4.8</p>
             <p className="text-xs text-muted-foreground">Average Rating</p>
           </CardContent>

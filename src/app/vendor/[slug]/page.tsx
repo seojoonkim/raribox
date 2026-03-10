@@ -2,7 +2,7 @@
 
 import { use } from 'react';
 import { notFound } from 'next/navigation';
-import { Star, MessageCircle, Package, Clock } from 'lucide-react';
+import { StarIcon, MessageCircleIcon, PackageIcon, ClockIcon } from '@/components/ui/icons';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -21,7 +21,7 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
   const tier = getVendorTier(vendor.total_sales);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       {/* Vendor Header */}
       <Card className="overflow-hidden">
         <div className="h-32 md:h-48 bg-gradient-to-r from-gold/20 to-gold/5" />
@@ -45,22 +45,22 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <Star className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <StarIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
               <p className="text-lg font-bold">{vendor.rating_avg}</p>
               <p className="text-xs text-muted-foreground">{vendor.rating_count} ratings</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <Package className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <PackageIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
               <p className="text-lg font-bold">{vendor.total_sales}</p>
               <p className="text-xs text-muted-foreground">Total Sales</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <MessageCircle className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <MessageCircleIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
               <p className="text-lg font-bold">{vendor.response_rate}%</p>
               <p className="text-xs text-muted-foreground">Response Rate</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <Clock className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <ClockIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
               <p className="text-lg font-bold">
                 {new Date(vendor.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
               </p>
@@ -106,7 +106,7 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
                           <p className="text-sm font-medium">{review.user?.name}</p>
                           <div className="flex">
                             {[1, 2, 3, 4, 5].map((s) => (
-                              <Star
+                              <StarIcon
                                 key={s}
                                 className={`h-3 w-3 ${
                                   s <= review.rating ? 'fill-gold text-gold' : 'text-muted-foreground'

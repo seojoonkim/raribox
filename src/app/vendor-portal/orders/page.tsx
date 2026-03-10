@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Package, Truck, CheckCircle2 } from 'lucide-react';
+import { PackageIcon, TruckIcon, CheckCircle2Icon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -68,7 +68,7 @@ export default function VendorOrders() {
                     <DialogTrigger
                       render={<Button size="sm" className="bg-gold text-black hover:bg-gold/90" />}
                     >
-                      <Truck className="h-4 w-4 mr-1" /> Ship
+                      <TruckIcon className="h-4 w-4 mr-1" /> Ship
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
@@ -95,12 +95,12 @@ export default function VendorOrders() {
                 )}
                 {order.status === 'shipped' && (
                   <Badge variant="outline" className="text-blue-500">
-                    <Truck className="h-3 w-3 mr-1" /> In Transit
+                    <TruckIcon className="h-3 w-3 mr-1" /> In Transit
                   </Badge>
                 )}
                 {order.status === 'delivered' && (
                   <Badge variant="outline" className="text-green-500">
-                    <CheckCircle2 className="h-3 w-3 mr-1" /> Delivered
+                    <CheckCircle2Icon className="h-3 w-3 mr-1" /> Delivered
                   </Badge>
                 )}
               </div>

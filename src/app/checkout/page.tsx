@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { CreditCard, Wallet, CheckCircle2 } from 'lucide-react';
+import { CreditCardIcon, WalletIcon, CheckCircle2Icon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -34,7 +34,7 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 text-center">
         <h1 className="text-2xl font-bold">Nothing to checkout</h1>
         <Link href="/browse">
           <Button className="mt-4">Browse Items</Button>
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
     setFormData((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6">Checkout</h1>
 
       <form onSubmit={handleSubmit}>
@@ -122,9 +122,9 @@ export default function CheckoutPage() {
                     paymentMethod === 'card' ? 'border-gold bg-gold/5' : 'border-border'
                   }`}
                 >
-                  <CreditCard className="h-5 w-5" />
+                  <CreditCardIcon className="h-5 w-5" />
                   <span className="font-medium">Credit / Debit Card</span>
-                  {paymentMethod === 'card' && <CheckCircle2 className="h-5 w-5 ml-auto text-gold" />}
+                  {paymentMethod === 'card' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-gold" />}
                 </button>
                 <button
                   type="button"
@@ -133,9 +133,9 @@ export default function CheckoutPage() {
                     paymentMethod === 'wallet' ? 'border-gold bg-gold/5' : 'border-border'
                   }`}
                 >
-                  <Wallet className="h-5 w-5" />
+                  <WalletIcon className="h-5 w-5" />
                   <span className="font-medium">Digital Wallet</span>
-                  {paymentMethod === 'wallet' && <CheckCircle2 className="h-5 w-5 ml-auto text-gold" />}
+                  {paymentMethod === 'wallet' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-gold" />}
                 </button>
                 <p className="text-xs text-muted-foreground mt-2">
                   Payment integration coming soon. Orders will be created with pending payment status.

@@ -2,23 +2,23 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Store, Package, ShoppingCart, Shield } from 'lucide-react';
+import { LayoutDashboardIcon, UsersIcon, StoreIcon, PackageIcon, ShoppingCartIcon, ShieldIcon } from '@/components/ui/icons';
 
 const navItems = [
-  { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/vendors', label: 'Vendors', icon: Store },
-  { href: '/admin/products', label: 'Products', icon: Package },
-  { href: '/admin/orders', label: 'Orders', icon: ShoppingCart },
-  { href: '/admin/users', label: 'Users', icon: Users },
+  { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboardIcon },
+  { href: '/admin/vendors', label: 'Vendors', icon: StoreIcon },
+  { href: '/admin/products', label: 'Products', icon: PackageIcon },
+  { href: '/admin/orders', label: 'Orders', icon: ShoppingCartIcon },
+  { href: '/admin/users', label: 'Users', icon: UsersIcon },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Shield className="h-6 w-6 text-gold" /> Admin Panel
+        <ShieldIcon className="h-6 w-6 text-gold" /> Admin Panel
       </h1>
 
       <div className="flex gap-8">

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, Minus, Plus, ShoppingBag } from 'lucide-react';
+import { Trash2Icon, MinusIcon, PlusIcon, ShoppingBagIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -22,8 +22,8 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center">
-        <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 text-center">
+        <ShoppingBagIcon className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
         <h1 className="text-2xl font-bold">Your cart is empty</h1>
         <p className="text-muted-foreground mt-2">Start shopping to add items to your cart.</p>
         <Link href="/browse">
@@ -38,7 +38,7 @@ export default function CartPage() {
   const grandTotal = subtotal + shippingEstimate;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6">Shopping Cart ({items.length})</h1>
 
       <div className="grid lg:grid-cols-3 gap-8">
@@ -76,7 +76,7 @@ export default function CartPage() {
                               className="h-7 w-7"
                               onClick={() => updateQuantity(ci.item.id, ci.quantity - 1)}
                             >
-                              <Minus className="h-3 w-3" />
+                              <MinusIcon className="h-3 w-3" />
                             </Button>
                             <span className="w-8 text-center text-sm">{ci.quantity}</span>
                             <Button
@@ -85,7 +85,7 @@ export default function CartPage() {
                               className="h-7 w-7"
                               onClick={() => updateQuantity(ci.item.id, ci.quantity + 1)}
                             >
-                              <Plus className="h-3 w-3" />
+                              <PlusIcon className="h-3 w-3" />
                             </Button>
                           </div>
                           <Button
@@ -94,7 +94,7 @@ export default function CartPage() {
                             className="h-7 w-7 text-destructive"
                             onClick={() => removeItem(ci.item.id)}
                           >
-                            <Trash2 className="h-3 w-3" />
+                            <Trash2Icon className="h-3 w-3" />
                           </Button>
                         </div>
                       </div>

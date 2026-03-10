@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import {
-  Heart, ShoppingCart, Star, Shield, ChevronRight, Minus, Plus, Store
-} from 'lucide-react';
+  HeartIcon, ShoppingCartIcon, StarIcon, ShieldIcon, ChevronRightIcon, MinusIcon, PlusIcon, StoreIcon
+} from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,7 +28,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
 
   if (!item) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 text-center">
         <h1 className="text-2xl font-bold">Item not found</h1>
         <p className="text-muted-foreground mt-2">This item may have been removed or is no longer available.</p>
         <Link href="/browse">
@@ -50,13 +50,13 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1 text-sm text-muted-foreground mb-6">
         <Link href="/" className="hover:text-foreground">Home</Link>
-        <ChevronRight className="h-3 w-3" />
+        <ChevronRightIcon className="h-3 w-3" />
         <Link href="/browse" className="hover:text-foreground">Browse</Link>
-        <ChevronRight className="h-3 w-3" />
+        <ChevronRightIcon className="h-3 w-3" />
         <span className="text-foreground truncate">{item.title}</span>
       </nav>
 
@@ -144,7 +144,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 className="h-10 w-10"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
               >
-                <Minus className="h-4 w-4" />
+                <MinusIcon className="h-4 w-4" />
               </Button>
               <span className="w-10 text-center font-medium">{quantity}</span>
               <Button
@@ -153,7 +153,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 className="h-10 w-10"
                 onClick={() => setQuantity(Math.min(item.stock, quantity + 1))}
               >
-                <Plus className="h-4 w-4" />
+                <PlusIcon className="h-4 w-4" />
               </Button>
             </div>
             <Button
@@ -161,11 +161,11 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
               onClick={handleAddToCart}
               disabled={item.stock === 0}
             >
-              <ShoppingCart className="mr-2 h-4 w-4" />
+              <ShoppingCartIcon className="mr-2 h-4 w-4" />
               Add to Cart
             </Button>
             <Button variant="outline" size="icon" className="h-10 w-10">
-              <Heart className="h-4 w-4" />
+              <HeartIcon className="h-4 w-4" />
             </Button>
           </div>
 
@@ -186,7 +186,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-lg">
-                    <Store className="h-5 w-5" />
+                    <StoreIcon className="h-5 w-5" />
                   </div>
                   <div className="flex-1">
                     <Link
@@ -202,7 +202,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                         </span>
                       )}
                       <span className="flex items-center gap-0.5 text-xs text-muted-foreground">
-                        <Star className="h-3 w-3 fill-gold text-gold" />
+                        <StarIcon className="h-3 w-3 fill-gold text-gold" />
                         {vendor.rating_avg} ({vendor.rating_count})
                       </span>
                     </div>
@@ -217,7 +217,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
 
           <div className="mt-4 flex gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
-              <Shield className="h-3 w-3" /> Buyer Protection
+              <ShieldIcon className="h-3 w-3" /> Buyer Protection
             </span>
             <span>Secure Checkout</span>
           </div>
@@ -261,7 +261,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                         </div>
                         <div className="flex mt-1">
                           {[1, 2, 3, 4, 5].map((s) => (
-                            <Star
+                            <StarIcon
                               key={s}
                               className={`h-4 w-4 ${
                                 s <= Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)
@@ -292,7 +292,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                             <p className="text-sm font-medium">{review.user?.name}</p>
                             <div className="flex items-center gap-1">
                               {[1, 2, 3, 4, 5].map((s) => (
-                                <Star
+                                <StarIcon
                                   key={s}
                                   className={`h-3 w-3 ${
                                     s <= review.rating ? 'fill-gold text-gold' : 'text-muted-foreground'
@@ -312,7 +312,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                       <p className="text-sm text-muted-foreground mt-1">{review.content}</p>
                       {review.is_verified && (
                         <Badge variant="outline" className="mt-2 text-[10px]">
-                          <Shield className="h-3 w-3 mr-1" /> Verified Purchase
+                          <ShieldIcon className="h-3 w-3 mr-1" /> Verified Purchase
                         </Badge>
                       )}
                     </CardContent>

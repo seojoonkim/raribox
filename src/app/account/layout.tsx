@@ -2,23 +2,23 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Package, Heart, Layers, Bell, Settings, User } from 'lucide-react';
+import { PackageIcon, HeartIcon, LayersIcon, BellIcon, SettingsIcon, UserIcon } from '@/components/ui/icons';
 
 const navItems = [
-  { href: '/account/orders', label: 'Orders', icon: Package },
-  { href: '/account/wishlist', label: 'Wishlist', icon: Heart },
-  { href: '/account/collection', label: 'Collection', icon: Layers },
-  { href: '/account/notifications', label: 'Notifications', icon: Bell },
-  { href: '/account/settings', label: 'Settings', icon: Settings },
+  { href: '/account/orders', label: 'Orders', icon: PackageIcon },
+  { href: '/account/wishlist', label: 'Wishlist', icon: HeartIcon },
+  { href: '/account/collection', label: 'Collection', icon: LayersIcon },
+  { href: '/account/notifications', label: 'Notifications', icon: BellIcon },
+  { href: '/account/settings', label: 'Settings', icon: SettingsIcon },
 ];
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <User className="h-6 w-6" /> My Account
+        <UserIcon className="h-6 w-6" /> My Account
       </h1>
 
       <div className="flex gap-8">

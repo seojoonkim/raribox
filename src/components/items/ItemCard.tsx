@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart } from 'lucide-react';
+import { HeartIcon } from '@/components/ui/icons';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -46,7 +46,7 @@ export function ItemCard({ item }: ItemCardProps) {
               // TODO: toggle wishlist
             }}
           >
-            <Heart className="h-4 w-4" />
+            <HeartIcon className="h-4 w-4" />
           </Button>
         </div>
       </Link>

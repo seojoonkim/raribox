@@ -16,7 +16,7 @@ export default function FranchisePage({ params }: { params: Promise<{ franchise:
   const items = mockItems.filter((i) => i.franchise?.slug === slug);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-3">
           <span className="text-4xl">{franchise.icon}</span>
