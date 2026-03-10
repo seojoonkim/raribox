@@ -38,16 +38,16 @@ export function Navbar() {
     <div className="sticky top-0 z-50">
       {/* Header */}
       <header className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16">
+        <div className="mx-auto max-w-7xl px-3 lg:px-12 xl:px-16">
           <div className="flex h-16 items-center justify-between">
             {/* Left: hamburger + logo */}
             <div className="flex items-center gap-2">
             {/* Mobile menu */}
             <Sheet>
               <SheetTrigger
-                render={<Button variant="ghost" size="icon" className="md:hidden h-10 w-10 text-muted-foreground hover:text-foreground" />}
+                render={<Button variant="ghost" size="icon" className="md:hidden h-11 w-11 text-muted-foreground hover:text-foreground" />}
               >
-                <MenuIcon className="h-6 w-6" />
+                <MenuIcon className="h-7 w-7" />
               </SheetTrigger>
               <SheetContent side="left" className="w-72 bg-[#0F1320] border-white/[0.06]">
                 <SheetTitle className="px-5 pt-5 pb-0">
