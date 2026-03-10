@@ -67,8 +67,8 @@ export default async function HomePage() {
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-3">
           {FRANCHISES.map((f) => (
             <Link key={f.slug} href={`/browse/${f.slug}`}>
-              <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer">
-                <div className="relative aspect-square">
+              <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
+                <div className="relative aspect-square overflow-hidden">
                   <Image
                     src={f.image}
                     alt={f.name}
@@ -76,8 +76,9 @@ export default async function HomePage() {
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <span className="absolute bottom-1.5 left-0 right-0 text-center text-[10px] md:text-xs font-semibold text-white drop-shadow-md">
+                </div>
+                <div className="py-1.5 text-center">
+                  <span className="text-[10px] md:text-xs font-semibold text-white/80">
                     {f.name}
                   </span>
                 </div>
