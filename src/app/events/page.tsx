@@ -102,16 +102,8 @@ const events: EventData[] = [
   },
 ];
 
-function getTagColor(tag: string) {
-  switch (tag) {
-    case 'Tournament': return 'bg-primary/10 text-indigo-300 border-primary/20';
-    case 'Release': return 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20';
-    case 'Grading': return 'bg-rari-warning/10 text-amber-300 border-rari-warning/20';
-    case 'Auction': return 'bg-red-500/10 text-red-300 border-red-500/20';
-    case 'Workshop': return 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20';
-    case 'Community': return 'bg-pink-500/10 text-pink-300 border-pink-500/20';
-    default: return 'bg-primary/10 text-indigo-300 border-primary/20';
-  }
+function getTagColor(_tag: string) {
+  return 'bg-black/50 text-white/90 border-white/10';
 }
 
 /* ── Event Detail Modal ──────────────────────────────────── */
