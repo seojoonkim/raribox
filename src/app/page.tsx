@@ -32,7 +32,7 @@ export default async function HomePage() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/65" />
         {/* Content */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-24">
+        <div className="relative z-10 w-full px-8 lg:px-16 xl:px-24 py-24">
           <div className="max-w-2xl">
             <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm">
               Trusted by 10,000+ Collectors
