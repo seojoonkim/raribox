@@ -82,25 +82,49 @@ export default function GradingPage() {
               Certificate of Authentication (CUA) verifiable online.
             </p>
           </div>
-          <div>
+          <div className="space-y-6">
+            {/* Official photo */}
+            <div className="overflow-hidden rounded-xl border border-rari-border">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/rashed-official.jpg"
+                alt="Dr. Rashed Al Farooq — Co-Founder & Chairman, Speedy Comics"
+                className="w-full object-cover"
+              />
+            </div>
+
+            {/* Bio card */}
+            <Card className="bg-rari-card border-rari-border">
+              <CardContent className="p-6 space-y-4">
+                <div>
+                  <p className="text-base font-bold">Dr. Rashed Al Farooq</p>
+                  <p className="text-sm text-primary mt-0.5">Co-Founder &amp; Chairman, Speedy Comics Group</p>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Emirati entrepreneur and the driving force behind the UAE&apos;s pop culture revolution.
+                  Dr. Rashed built <span className="text-foreground font-medium">Speedy Comics</span> from
+                  a family stall into the GCC&apos;s largest collectibles and pop-culture retail group —
+                  spanning comics, trading cards, figures, and live events.
+                </p>
+                <div className="pt-2 border-t border-rari-border space-y-1.5">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">About Speedy Comics</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    UAE&apos;s #1 collectibles destination. Flagship store at Times Square Center, Dubai —
+                    home to trading cards, Funko Pops, manga, anime figures, and PopCon ME.
+                    Trusted by collectors across the GCC since 2009.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Quote */}
             <Card className="rounded-xl border-l-4 border-l-primary bg-rari-card">
               <CardContent className="p-6">
-                <p className="text-foreground leading-relaxed italic">
+                <p className="text-foreground leading-relaxed italic text-sm">
                   &ldquo;This marks a pivotal moment for collectors in the Middle East. For the first time,
                   collectors can access world-class grading and certification services within the region —
                   efficiently, transparently, and proudly under Emirati leadership.&rdquo;
                 </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <img
-                    src="/rashed-al-farooq.jpg"
-                    alt="Dr. Rashed Al Farooq"
-                    className="h-10 w-10 rounded-full object-cover object-top border border-primary/20"
-                  />
-                  <div>
-                    <p className="text-sm font-semibold">Dr. Rashed Al Farooq</p>
-                    <p className="text-xs text-muted-foreground">Co-Founder &amp; Chairman, Speedy Comics</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
