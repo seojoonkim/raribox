@@ -81,12 +81,12 @@ export default function GradingPage() {
       <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/hit-logo.svg"
               alt="HiT GCC"
-              width={160}
-              height={50}
-              className="mb-4 brightness-0 invert opacity-80"
+              width={180}
+              className="mb-4"
             />
             <Badge className="bg-rari-elevated text-muted-foreground border border-rari-border mb-4">About HiT GCC</Badge>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
