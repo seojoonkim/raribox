@@ -45,37 +45,15 @@ const gradeScale = [
 export default function GradingPage() {
   return (
     <div>
-      {/* ── 1. Hero ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-rari-bg via-[#1A1040] to-rari-bg border-b border-rari-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-12 relative z-10">
-          <div className="max-w-2xl">
-            <h1 className="text-2xl font-bold">Grading</h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Badge className="bg-primary/10 text-indigo-300 border border-primary/20">Official Partner</Badge>
-              <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">UAE&apos;s First</Badge>
-              <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">AI + Human Grading</Badge>
-              <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">55 AED / card</Badge>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer">
-                <Button size="sm" className="bg-primary hover:bg-indigo-500 text-white font-semibold">
-                  Submit Cards to HiT
-                </Button>
-              </a>
-              <a href="https://hitgrading.com/pages/contact" target="_blank" rel="noopener noreferrer">
-                <Button size="sm" variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
-                  Learn More
-                </Button>
-              </a>
-            </div>
-          </div>
+      {/* ── 1. Header ─────────────────────────────────────── */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold">Grading</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company
+          </p>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/[0.06] blur-[120px]" />
-        <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-indigo-600/[0.04] blur-[80px]" />
-      </section>
+      </div>
 
       {/* ── 2. About HiT GCC ──────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">

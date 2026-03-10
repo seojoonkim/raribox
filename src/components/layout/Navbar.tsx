@@ -17,9 +17,9 @@ import {
 import { useCartStore } from '@/lib/store';
 
 const NAV_ITEMS: { label: string; href: string; external?: boolean }[] = [
-  { label: 'Events', href: '/events' },
   { label: 'Collectibles', href: '/browse' },
   { label: 'Packs', href: '/packs' },
+  { label: 'Events', href: '/events' },
   { label: 'Grading', href: '/grading' },
   { label: 'Leaderboard', href: '/leaderboard' },
   { label: 'Contact', href: '/contact' },
