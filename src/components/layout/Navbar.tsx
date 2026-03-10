@@ -21,7 +21,7 @@ const NAV_ITEMS: { label: string; href: string; external?: boolean }[] = [
   { label: 'Events', href: '/events' },
   { label: 'Browse', href: '/browse' },
   { label: 'Packs', href: '/packs' },
-  { label: 'Grading', href: 'https://hitgrading.com/', external: true },
+  { label: 'Grading', href: '/grading' },
   { label: 'Leaderboard', href: '/leaderboard' },
 ];
 

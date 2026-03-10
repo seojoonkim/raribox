@@ -39,11 +39,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/vendor-portal/dashboard" className="hover:text-foreground transition-colors">Vendor Portal</Link></li>
               <li><Link href="/auth/register" className="hover:text-foreground transition-colors">Become a Seller</Link></li>
-              <li>
-                <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  Grading Service ↗
-                </a>
-              </li>
+              <li><Link href="/grading" className="hover:text-foreground transition-colors">Grading Service</Link></li>
             </ul>
           </div>
         </div>
