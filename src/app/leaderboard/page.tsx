@@ -38,22 +38,8 @@ export default function LeaderboardPage() {
         </p>
       </div>
 
-      {/* Top 3 podium */}
-      <div className="grid gap-4 md:grid-cols-3 mb-8">
-        {leaderboardData.slice(0, 3).map((user) => (
-          <Card key={user.rank} className={`rounded-xl transition-all ${getTopCardStyle(user.rank)}`}>
-            <CardContent className="p-6 text-center">
-              <div className="text-4xl mb-3">{getRankDisplay(user.rank)}</div>
-              <h3 className="font-bold text-lg truncate">{user.name}</h3>
-              <p className="text-2xl font-bold text-primary mt-1">{user.score.toLocaleString()}</p>
-              <p className="text-xs text-muted-foreground mt-1">{user.trades} trades</p>
-              <Badge className="mt-3 bg-primary/10 text-indigo-300 border border-primary/20 text-xs">
-                {user.emoji} {user.badge}
-              </Badge>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {/* (podium removed) */}
+
 
       {/* Full table */}
       <Card className="rounded-xl bg-[#131929] border-white/[0.06]">

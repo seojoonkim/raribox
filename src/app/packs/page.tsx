@@ -111,9 +111,7 @@ export default function PacksPage() {
       <div className="mb-8">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-bold">Packs</h1>
-          <Badge className="bg-primary/20 text-indigo-300 border border-primary/30 text-xs font-semibold px-2.5 py-0.5">
-            Powered by HIT Grading
-          </Badge>
+
         </div>
         <p className="text-sm text-muted-foreground mt-1">
           Booster boxes, sealed packs, and accessories from top TCG franchises

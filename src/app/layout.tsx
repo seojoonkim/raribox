@@ -20,6 +20,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'RariBox - Rare Collectibles Marketplace',
   description: 'The premier marketplace for rare trading cards, figures, and collectibles. Pokemon, One Piece, Sports Cards, and more.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon-512.png', sizes: '512x512' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
