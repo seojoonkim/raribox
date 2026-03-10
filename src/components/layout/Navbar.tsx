@@ -153,7 +153,7 @@ export function Navbar() {
                   </Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button size="sm" className="h-9 px-4 text-sm font-medium bg-primary hover:bg-indigo-500 text-white">
+                  <Button size="sm" className="h-9 px-4 text-sm font-medium bg-amber-500 hover:bg-amber-400 text-black font-semibold">
                     Sign Up
                   </Button>
                 </Link>

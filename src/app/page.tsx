@@ -38,7 +38,7 @@ export default async function HomePage() {
               Trusted by 10,000+ Collectors
             </Badge>
             <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
-              Discover <span className="text-primary">Rare</span> Collectibles
+              Discover <span className="text-amber-400">Rare</span> Collectibles
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-lg">
               The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
@@ -169,7 +169,7 @@ export default async function HomePage() {
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <MapPinIcon className="h-3 w-3 shrink-0" />{ev.location}
                   </div>
-                  <p className="text-xs font-semibold text-primary mt-2">{ev.price}</p>
+                  <p className="text-xs font-semibold text-amber-400 mt-2">{ev.price}</p>
                 </CardContent>
               </Card>
             </Link>

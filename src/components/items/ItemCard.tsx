@@ -45,7 +45,7 @@ export function ItemCard({ item }: ItemCardProps) {
             </Badge>
           )}
           {item.is_graded && (
-            <Badge className="absolute top-2 right-2 bg-primary/20 text-indigo-300 border border-primary/30 backdrop-blur-sm font-bold">
+            <Badge className="absolute top-2 right-2 bg-amber-500/15 text-amber-300 border border-amber-500/30 backdrop-blur-sm font-bold">
               {item.grade_company} {item.grade_score}
             </Badge>
           )}
@@ -80,7 +80,7 @@ export function ItemCard({ item }: ItemCardProps) {
           )}
         </div>
         <div className="mt-2 flex items-baseline gap-2">
-          <span className="font-bold text-base md:text-lg text-primary">{formatPrice(displayPrice)}</span>
+          <span className="font-bold text-base md:text-lg text-amber-400">{formatPrice(displayPrice)}</span>
           {item.is_sale && item.sale_price && (
             <span className="text-xs text-muted-foreground line-through">
               {formatPrice(item.price)}
