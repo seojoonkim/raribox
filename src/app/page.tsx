@@ -44,7 +44,7 @@ export default async function HomePage() {
               The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
               From Pokemon to One Piece, find your next treasure.
             </p>
-            <div className="mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 max-w-xs sm:max-w-none">
+            <div className="mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-3">
               <Link href="/browse" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-6 py-6">
                   Browse Marketplace
