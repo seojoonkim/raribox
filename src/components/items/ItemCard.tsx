@@ -20,7 +20,7 @@ export function ItemCard({ item }: ItemCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <Card className="group overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+    <Card className="group overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 pt-0">
       <Link href={`/item/${item.id}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-[#161B2E]">
           {primaryImage?.url && !imgError ? (
