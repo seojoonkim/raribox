@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/icons';
 
 const whyChoose = [
-  { icon: AwardIcon, title: "UAE's First", description: 'Pioneer grading & authentication service in the GCC region, proudly Emirati-owned.' },
+  { icon: AwardIcon, title: "UAE's First", description: "Pioneer grading & authentication service in the GCC region, proudly Emirati-owned." },
   { icon: ShieldIcon, title: 'AI + Expert Graders', description: 'Hybrid approach combining AI analysis with professional human inspection for consistent results.' },
   { icon: TruckIcon, title: '15-Day Turnaround', description: 'Fast processing without international shipping delays. Drop off and pick up locally.' },
   { icon: StarIcon, title: '55 AED Flat Rate', description: 'Transparent, affordable pricing per card. No hidden fees or surprise charges.' },
@@ -45,32 +45,83 @@ const gradeScale = [
 export default function GradingPage() {
   return (
     <div>
-      {/* ── 1. Header + About HiT GCC ────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-        <div className="mb-10">
-          <h1 className="text-2xl font-bold">Grading</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company
-          </p>
+
+      {/* ── HERO ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0d1030] to-[#0A0D14] border-b border-white/[0.06]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(99,102,241,0.15)_0%,_transparent_65%)]" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center gap-10">
+            <div className="flex-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hit-logo.svg" alt="HiT GCC" className="h-12 mb-6" />
+              <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-3">
+                The GCC&apos;s Own<br />
+                <span className="text-primary">Grading Authority</span>
+              </h1>
+              <p className="text-muted-foreground leading-relaxed max-w-md mb-8">
+                Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company.
+              </p>
+              <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.08] rounded-lg px-4 py-2">
+                  <span className="text-xl font-extrabold text-primary">55</span>
+                  <span className="text-xs text-muted-foreground">AED / card</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.08] rounded-lg px-4 py-2">
+                  <span className="text-xl font-extrabold">15</span>
+                  <span className="text-xs text-muted-foreground">business days</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.08] rounded-lg px-4 py-2">
+                  <span className="text-xl font-extrabold">1–10</span>
+                  <span className="text-xs text-muted-foreground">grade scale</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-primary hover:bg-indigo-500 text-white font-semibold px-6">
+                    Submit Cards to HiT
+                  </Button>
+                </a>
+                <a href="#how-to-submit">
+                  <Button variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
+                    How It Works
+                  </Button>
+                </a>
+              </div>
+            </div>
+            {/* Dr. Rashed hero card */}
+            <div className="md:w-[340px] shrink-0">
+              <div className="rounded-2xl overflow-hidden border border-white/[0.1] shadow-2xl shadow-primary/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/rashed-official.jpg"
+                  alt="Dr. Rashed Al Farooq"
+                  className="w-full object-cover"
+                />
+                <div className="bg-[#0F1320] p-4 border-t border-white/[0.06]">
+                  <p className="font-bold text-sm">Dr. Rashed Al Farooq</p>
+                  <p className="text-xs text-primary mt-0.5">Co-Founder & Chairman, Speedy Comics Group</p>
+                  <p className="text-xs text-muted-foreground mt-2 italic leading-relaxed">
+                    &ldquo;For the first time, collectors can access world-class grading within the region — efficiently, transparently, and proudly under Emirati leadership.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* ── ABOUT HiT GCC ────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hit-logo.svg"
-              alt="HiT GCC"
-              width={180}
-              className="mb-4"
-            />
             <Badge className="bg-rari-elevated text-muted-foreground border border-rari-border mb-4">About HiT GCC</Badge>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              The GCC&apos;s Own Grading Authority
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Holistic Inspection & Tagging</h2>
             <p className="text-muted-foreground leading-relaxed">
-              HiT GCC (Holistic Inspection &amp; Tagging) is the UAE&apos;s first Emirati-owned collectibles grading and authentication company.
-              Launched in May 2025 through a partnership between <span className="text-foreground font-medium">Speedy Comics Group</span> and{' '}
-              <span className="text-foreground font-medium">Middle East Grading Alliance (MEGA)</span>, HiT brings world-class card
-              certification to the GCC — without the delays and costs of overseas shipping.
+              HiT GCC is the UAE&apos;s first Emirati-owned collectibles grading and authentication company.
+              Launched in May 2025 through a partnership between{' '}
+              <span className="text-foreground font-medium">Speedy Comics Group</span> and{' '}
+              <span className="text-foreground font-medium">Middle East Grading Alliance (MEGA)</span>,
+              HiT brings world-class card certification to the GCC — without the delays and costs of overseas shipping.
             </p>
             <p className="text-muted-foreground leading-relaxed mt-4">
               Using a proprietary hybrid approach that combines AI-driven analysis with expert human graders,
@@ -78,52 +129,37 @@ export default function GradingPage() {
               Certificate of Authentication (CUA) verifiable online.
             </p>
           </div>
-          <div className="space-y-6">
-            {/* Official photo */}
-            <div className="overflow-hidden rounded-xl border border-rari-border">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/rashed-official.jpg"
-                alt="Dr. Rashed Al Farooq — Co-Founder & Chairman, Speedy Comics"
-                className="w-full object-cover"
-              />
-            </div>
-
-            {/* Bio card */}
-            <Card className="bg-rari-card border-rari-border">
-              <CardContent className="p-6 space-y-4">
-                <div>
-                  <p className="text-base font-bold">Dr. Rashed Al Farooq</p>
-                  <p className="text-sm text-primary mt-0.5">Co-Founder &amp; Chairman, Speedy Comics Group</p>
+          {/* Speedy Comics bio card */}
+          <Card className="bg-rari-card border-rari-border rounded-xl">
+            <CardContent className="p-6 space-y-4">
+              <div>
+                <p className="text-base font-bold">Speedy Comics Group</p>
+                <p className="text-sm text-primary mt-0.5">GCC&apos;s #1 Collectibles Destination</p>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                From a family stall to the GCC&apos;s largest collectibles and pop-culture retail group —
+                spanning comics, trading cards, figures, and live events.
+              </p>
+              <div className="pt-3 border-t border-rari-border space-y-2">
+                <div className="flex items-start gap-2 text-sm">
+                  <MapPinIcon className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <span className="text-muted-foreground">Flagship store at Times Square Center, Dubai</span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Emirati entrepreneur and the driving force behind the UAE&apos;s pop culture revolution.
-                  Dr. Rashed built <span className="text-foreground font-medium">Speedy Comics</span> from
-                  a family stall into the GCC&apos;s largest collectibles and pop-culture retail group —
-                  spanning comics, trading cards, figures, and live events.
-                </p>
-                <div className="pt-2 border-t border-rari-border space-y-1.5">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">About Speedy Comics</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    UAE&apos;s #1 collectibles destination. Flagship store at Times Square Center, Dubai —
-                    home to trading cards, Funko Pops, manga, anime figures, and PopCon ME.
-                    Trusted by collectors across the GCC since 2009.
-                  </p>
+                <div className="flex items-start gap-2 text-sm">
+                  <StarIcon className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <span className="text-muted-foreground">Home to PopCon ME — GCC&apos;s biggest pop culture event</span>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Quote */}
-            <p className="text-sm italic text-muted-foreground leading-relaxed px-1">
-              &ldquo;This marks a pivotal moment for collectors in the Middle East. For the first time,
-              collectors can access world-class grading and certification services within the region —
-              efficiently, transparently, and proudly under Emirati leadership.&rdquo;
-            </p>
-          </div>
+                <div className="flex items-start gap-2 text-sm">
+                  <AwardIcon className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
+                  <span className="text-muted-foreground">Trusted by collectors across the GCC since 2009</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      {/* ── 3. Why Choose HiT ─────────────────────────────── */}
+      {/* ── WHY CHOOSE HiT ───────────────────────────────── */}
       <section className="bg-rari-elevated border-y border-rari-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
           <div className="text-center mb-12">
@@ -134,7 +170,7 @@ export default function GradingPage() {
             {whyChoose.map((item) => {
               const Icon = item.icon;
               return (
-                <Card key={item.title} className="text-center rounded-xl bg-rari-card border-rari-border hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
+                <Card key={item.title} className="text-center rounded-xl bg-rari-card border-rari-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all">
                   <CardContent className="p-6">
                     <div className="mx-auto mb-4 h-12 w-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                       <Icon className="h-6 w-6 text-primary" />
@@ -149,8 +185,8 @@ export default function GradingPage() {
         </div>
       </section>
 
-      {/* ── 4. How to Submit ──────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
+      {/* ── HOW TO SUBMIT ────────────────────────────────── */}
+      <section id="how-to-submit" className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold">How to Submit</h2>
           <p className="text-muted-foreground mt-2">Three simple steps to get your cards graded locally</p>
@@ -173,7 +209,7 @@ export default function GradingPage() {
         </div>
       </section>
 
-      {/* ── 5. What Gets Graded ───────────────────────────── */}
+      {/* ── WHAT GETS GRADED ─────────────────────────────── */}
       <section className="bg-rari-elevated border-y border-rari-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
           <div className="text-center mb-12">
@@ -184,7 +220,7 @@ export default function GradingPage() {
             {categories.map((cat) => {
               const Icon = cat.icon;
               return (
-                <Card key={cat.name} className={`rounded-xl bg-rari-card border-rari-border transition-all ${cat.comingSoon ? 'opacity-60' : 'hover:border-rari-accent/30'}`}>
+                <Card key={cat.name} className={`rounded-xl bg-rari-card border-rari-border transition-all ${cat.comingSoon ? 'opacity-60' : 'hover:border-primary/30'}`}>
                   <CardContent className="p-5 text-center">
                     <div className="mx-auto mb-3 h-10 w-10 rounded-lg bg-rari-elevated flex items-center justify-center">
                       <Icon className="h-5 w-5 text-muted-foreground" />
@@ -204,7 +240,7 @@ export default function GradingPage() {
         </div>
       </section>
 
-      {/* ── 6. Certificate of Authentication ──────────────── */}
+      {/* ── CERTIFICATE ──────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <Card className="rounded-xl bg-gradient-to-r from-primary/5 to-rari-card border-primary/20">
           <CardContent className="p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
@@ -228,100 +264,72 @@ export default function GradingPage() {
         </Card>
       </section>
 
-      {/* ── 7. Key Stats ──────────────────────────────────── */}
+      {/* ── GRADE SCALE ──────────────────────────────────── */}
       <section className="bg-rari-elevated border-y border-rari-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <p className="text-4xl md:text-5xl font-extrabold text-primary">55</p>
-              <p className="text-sm text-muted-foreground mt-1">AED per card</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl md:text-5xl font-extrabold text-foreground">15</p>
-              <p className="text-sm text-muted-foreground mt-1">Business days</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl md:text-5xl font-extrabold text-foreground">1–10</p>
-              <p className="text-sm text-muted-foreground mt-1">Point grading scale</p>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl md:text-5xl font-extrabold text-foreground">GCC</p>
-              <p className="text-sm text-muted-foreground mt-1">UAE · KSA · Qatar · Bahrain</p>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold">Grade Scale</h2>
+            <p className="text-muted-foreground mt-2">Standard 1–10 grading scale</p>
           </div>
-        </div>
-      </section>
-
-      {/* ── Grade Scale Table ─────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold">Grade Scale</h2>
-          <p className="text-muted-foreground mt-2">Standard 1–10 grading scale</p>
-        </div>
-        <div className="max-w-2xl mx-auto">
-          <Card className="rounded-xl">
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-20">Grade</TableHead>
-                    <TableHead className="w-48">Label</TableHead>
-                    <TableHead>Description</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {gradeScale.map((g) => (
-                    <TableRow key={g.grade}>
-                      <TableCell>
-                        <span className={`font-bold text-lg ${Number(g.grade) >= 9 ? 'text-primary' : Number(g.grade) >= 7 ? 'text-foreground' : 'text-muted-foreground'}`}>
-                          {g.grade}
-                        </span>
-                      </TableCell>
-                      <TableCell className="font-medium">{g.label}</TableCell>
-                      <TableCell className="text-sm text-muted-foreground">{g.description}</TableCell>
+          <div className="max-w-2xl mx-auto">
+            <Card className="rounded-xl">
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-20">Grade</TableHead>
+                      <TableHead className="w-48">Label</TableHead>
+                      <TableHead>Description</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* ── 8. Drop-off Location ──────────────────────────── */}
-      <section className="bg-rari-elevated border-y border-rari-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Drop-off Location</h2>
+                  </TableHeader>
+                  <TableBody>
+                    {gradeScale.map((g) => (
+                      <TableRow key={g.grade}>
+                        <TableCell>
+                          <span className={`font-bold text-lg ${Number(g.grade) >= 9 ? 'text-primary' : Number(g.grade) >= 7 ? 'text-foreground' : 'text-muted-foreground'}`}>
+                            {g.grade}
+                          </span>
+                        </TableCell>
+                        <TableCell className="font-medium">{g.label}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{g.description}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
           </div>
-          <Card className="rounded-xl bg-rari-card border-rari-border max-w-lg mx-auto">
-            <CardContent className="p-6 text-center">
-              <div className="mx-auto mb-4 h-14 w-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <MapPinIcon className="h-7 w-7 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg">Speedy Comics</h3>
-              <p className="text-muted-foreground mt-1">Times Square Center, Dubai, UAE</p>
-              <p className="text-xs text-muted-foreground mt-3">
-                Walk-in submissions welcome. No appointment needed.
-              </p>
-              <a
-                href="https://maps.google.com/?q=Times+Square+Center+Dubai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-4"
-              >
-                <Button variant="outline" className="border-rari-border hover:bg-rari-elevated">
-                  <MapPinIcon className="mr-2 h-4 w-4" />
-                  Open in Google Maps
-                </Button>
-              </a>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
-      {/* ── 9. CTA ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      {/* ── DROP-OFF LOCATION ────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold">Drop-off Location</h2>
+        </div>
+        <Card className="rounded-xl bg-rari-card border-rari-border max-w-lg mx-auto">
+          <CardContent className="p-6 text-center">
+            <div className="mx-auto mb-4 h-14 w-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <MapPinIcon className="h-7 w-7 text-primary" />
+            </div>
+            <h3 className="font-bold text-lg">Speedy Comics</h3>
+            <p className="text-muted-foreground mt-1">Times Square Center, Dubai, UAE</p>
+            <p className="text-xs text-muted-foreground mt-3">
+              Walk-in submissions welcome. No appointment needed.
+            </p>
+            <a href="https://maps.google.com/?q=Times+Square+Center+Dubai" target="_blank" rel="noopener noreferrer" className="inline-block mt-4">
+              <Button variant="outline" className="border-rari-border hover:bg-rari-elevated">
+                <MapPinIcon className="mr-2 h-4 w-4" />
+                Open in Google Maps
+              </Button>
+            </a>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* ── CTA ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0D14] to-[#0d1030] border-t border-white/[0.06]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(99,102,241,0.12)_0%,_transparent_65%)]" />
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 text-center relative z-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Grade Your Cards?</h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
@@ -343,8 +351,8 @@ export default function GradingPage() {
             Powered by <span className="font-medium text-foreground">HiT GCC</span> · Holistic Inspection &amp; Tagging · Est. 2025
           </p>
         </div>
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-primary/[0.04] blur-[100px]" />
       </section>
+
     </div>
   );
 }
