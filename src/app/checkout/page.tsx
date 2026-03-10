@@ -146,7 +146,7 @@ export default function CheckoutPage() {
 
           {/* Summary */}
           <div>
-            <Card className="sticky top-24">
+            <Card className="sticky top-24 rounded-xl">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>

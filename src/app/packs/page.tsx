@@ -153,7 +153,7 @@ export default function PacksPage() {
       {loading && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="rounded-xl bg-secondary/30 animate-pulse aspect-[3/4]" />
+            <div key={i} className="rounded-xl bg-rari-elevated animate-pulse aspect-[3/4]" />
           ))}
         </div>
       )}
@@ -162,8 +162,8 @@ export default function PacksPage() {
       {!loading && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((product) => (
-            <Card key={product.id} className="overflow-hidden group">
-              <div className="relative aspect-square bg-secondary/30">
+            <Card key={product.id} className="overflow-hidden group rounded-xl hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
+              <div className="relative aspect-square bg-rari-elevated">
                 <Image
                   src={product.image}
                   alt={product.name}

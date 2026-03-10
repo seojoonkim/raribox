@@ -46,6 +46,24 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Rari design system colors */
+  --color-rari-bg: #0A0D14;
+  --color-rari-surface: #0F1320;
+  --color-rari-elevated: #161B2E;
+  --color-rari-card: #131929;
+  --color-rari-border: rgba(255, 255, 255, 0.08);
+  --color-rari-border-hover: rgba(255, 255, 255, 0.16);
+  --color-rari-text: #F0F2F8;
+  --color-rari-muted: #8892A4;
+  --color-rari-dim: #4A5568;
+  --color-rari-accent: #6366F1;
+  --color-rari-accent-light: #818CF8;
+  --color-rari-success: #10B981;
+  --color-rari-warning: #F59E0B;
+  --color-rari-danger: #EF4444;
+  --color-rari-glass: rgba(255, 255, 255, 0.04);
+  --color-rari-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 /* Dark-only design — indigo accent */
@@ -130,5 +148,23 @@
   }
   html {
     @apply font-sans scroll-smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.08) #0A0D14;
   }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0D14;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16);
 }

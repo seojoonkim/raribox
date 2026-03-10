@@ -49,9 +49,9 @@ export default function NotificationsPage() {
         {mockNotifications.map((n) => {
           const Icon = n.icon;
           return (
-            <Card key={n.id} className={!n.is_read ? 'border-primary/30 bg-primary/5' : ''}>
+            <Card key={n.id} className={`rounded-xl transition-all ${!n.is_read ? 'border-rari-accent/30 bg-rari-accent/5' : ''}`}>
               <CardContent className="p-4 flex gap-3">
-                <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-full bg-rari-elevated flex items-center justify-center shrink-0">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">

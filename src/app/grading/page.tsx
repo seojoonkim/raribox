@@ -66,7 +66,7 @@ export default function GradingPage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((b) => (
-            <Card key={b.title} className="text-center">
+            <Card key={b.title} className="text-center rounded-xl hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
               <CardContent className="p-6">
                 <div className="text-4xl mb-4">{b.icon}</div>
                 <h3 className="font-semibold mb-2">{b.title}</h3>
@@ -78,7 +78,7 @@ export default function GradingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-secondary/30 border-y border-border">
+      <section className="bg-rari-elevated border-y border-rari-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold">How It Works</h2>

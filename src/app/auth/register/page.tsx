@@ -53,7 +53,7 @@ export default function RegisterPage() {
         <p className="text-muted-foreground mt-2">Create your account</p>
       </div>
 
-      <Card>
+      <Card className="rounded-xl">
         <CardContent className="p-6">
           <form onSubmit={handleRegister} className="space-y-4">
             <div>

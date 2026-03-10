@@ -44,22 +44,22 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <div className="text-center p-3 bg-secondary/50 rounded-lg">
+            <div className="text-center p-3 bg-secondary/50 rounded-xl">
               <StarIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.rating_avg}</p>
               <p className="text-xs text-muted-foreground">{vendor.rating_count} ratings</p>
             </div>
-            <div className="text-center p-3 bg-secondary/50 rounded-lg">
+            <div className="text-center p-3 bg-secondary/50 rounded-xl">
               <PackageIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.total_sales}</p>
               <p className="text-xs text-muted-foreground">Total Sales</p>
             </div>
-            <div className="text-center p-3 bg-secondary/50 rounded-lg">
+            <div className="text-center p-3 bg-secondary/50 rounded-xl">
               <MessageCircleIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.response_rate}%</p>
               <p className="text-xs text-muted-foreground">Response Rate</p>
             </div>
-            <div className="text-center p-3 bg-secondary/50 rounded-lg">
+            <div className="text-center p-3 bg-secondary/50 rounded-xl">
               <ClockIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">
                 {new Date(vendor.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}

@@ -19,7 +19,7 @@ export default function AdminDashboard() {
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <Card key={stat.label}>
+            <Card key={stat.label} className="rounded-xl hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
                   <Icon className="h-5 w-5 text-primary" />

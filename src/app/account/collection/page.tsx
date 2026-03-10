@@ -141,9 +141,9 @@ export default function CollectionPage() {
       ) : (
         <div className="space-y-3">
           {items.map((item) => (
-            <Card key={item.id}>
+            <Card key={item.id} className="rounded-xl hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
               <CardContent className="p-4 flex items-center gap-4">
-                <div className="h-14 w-14 rounded-lg bg-secondary/50 flex items-center justify-center text-xl shrink-0">
+                <div className="h-14 w-14 rounded-lg bg-rari-elevated flex items-center justify-center text-xl shrink-0">
                   <LayersIcon className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">

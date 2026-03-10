@@ -1,3 +1,4 @@
+import { CalendarIcon, TrophyIcon, PackageIcon, SearchIcon } from '@/components/ui/icons';
 import { Card, CardContent } from '@/components/ui/card';
 
 const upcomingEvents = [
@@ -27,6 +28,19 @@ const upcomingEvents = [
   },
 ];
 
+function getTagIcon(tag: string) {
+  switch (tag) {
+    case 'Tournament':
+      return <TrophyIcon className="h-8 w-8 text-rari-accent-light" />;
+    case 'Release':
+      return <PackageIcon className="h-8 w-8 text-rari-accent-light" />;
+    case 'Grading':
+      return <SearchIcon className="h-8 w-8 text-rari-accent-light" />;
+    default:
+      return <CalendarIcon className="h-8 w-8 text-rari-accent-light" />;
+  }
+}
+
 export default function EventsPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
@@ -39,15 +53,13 @@ export default function EventsPage() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {upcomingEvents.map((event) => (
-          <Card key={event.id} className="overflow-hidden">
-            <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-              <span className="text-4xl opacity-60">
-                {event.tag === 'Tournament' ? '🏆' : event.tag === 'Release' ? '📦' : '🔍'}
-              </span>
+          <Card key={event.id} className="overflow-hidden rounded-xl bg-rari-card border-rari-border hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all">
+            <div className="h-40 bg-gradient-to-br from-rari-accent/20 to-rari-accent/5 flex items-center justify-center">
+              {getTagIcon(event.tag)}
             </div>
             <CardContent className="p-5">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-rari-accent/10 text-indigo-300">
                   {event.tag}
                 </span>
                 <span className="text-xs text-muted-foreground">
@@ -56,13 +68,13 @@ export default function EventsPage() {
               </div>
               <h3 className="font-semibold mb-1">{event.title}</h3>
               <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
-              <p className="text-xs text-muted-foreground">{event.location}</p>
+              <p className="text-xs text-rari-muted">{event.location}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="mt-12 text-center py-12 border border-dashed border-border rounded-lg">
+      <div className="mt-12 text-center py-12 border border-dashed border-rari-border rounded-xl">
         <p className="text-muted-foreground text-sm">More events coming soon</p>
       </div>
     </div>

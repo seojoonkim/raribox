@@ -77,7 +77,7 @@ export default function NewProductPage() {
             <CardTitle className="text-base">Images</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
+            <div className="border-2 border-dashed border-border rounded-xl p-8 text-center">
               <UploadIcon className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
               <p className="text-sm text-muted-foreground">
                 Drag & drop images or click to upload
