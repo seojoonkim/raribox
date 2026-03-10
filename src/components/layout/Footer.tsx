@@ -15,12 +15,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3 text-sm">Marketplace</h4>
+            <h4 className="font-semibold mb-3 text-sm">Explore</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/browse" className="hover:text-foreground transition-colors">Browse All</Link></li>
-              <li><Link href="/browse/pokemon" className="hover:text-foreground transition-colors">Pokemon</Link></li>
-              <li><Link href="/browse/one-piece" className="hover:text-foreground transition-colors">One Piece</Link></li>
-              <li><Link href="/browse?sale=true" className="hover:text-foreground transition-colors">Sale</Link></li>
+              <li><Link href="/events" className="hover:text-foreground transition-colors">Events</Link></li>
+              <li><Link href="/packs" className="hover:text-foreground transition-colors">Packs</Link></li>
+              <li><Link href="/leaderboard" className="hover:text-foreground transition-colors">Leaderboard</Link></li>
             </ul>
           </div>
 
@@ -39,6 +39,11 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/vendor-portal/dashboard" className="hover:text-foreground transition-colors">Vendor Portal</Link></li>
               <li><Link href="/auth/register" className="hover:text-foreground transition-colors">Become a Seller</Link></li>
+              <li>
+                <a href="https://www.hitgcc.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  Grading Service ↗
+                </a>
+              </li>
             </ul>
           </div>
         </div>

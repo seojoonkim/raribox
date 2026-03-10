@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { SlidersHorizontalIcon } from '@/components/ui/icons';
+import { SearchIcon, SlidersHorizontalIcon, XIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -12,15 +12,13 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/s
 import { Separator } from '@/components/ui/separator';
 import { ItemCard } from '@/components/items/ItemCard';
 import { mockItems, mockCategories } from '@/lib/mock-data';
-import { CONDITIONS, GRADE_COMPANIES, LANGUAGES, FRANCHISES } from '@/lib/constants';
+import { CONDITIONS, FRANCHISES } from '@/lib/constants';
 
 type SortOption = 'newest' | 'price-asc' | 'price-desc' | 'popular';
 
 function FilterPanel({
   selectedCategories,
   toggleCategory,
-  selectedFranchises,
-  toggleFranchise,
   selectedConditions,
   toggleCondition,
   gradedOnly,
@@ -32,8 +30,6 @@ function FilterPanel({
 }: {
   selectedCategories: string[];
   toggleCategory: (id: string) => void;
-  selectedFranchises: string[];
-  toggleFranchise: (slug: string) => void;
   selectedConditions: string[];
   toggleCondition: (c: string) => void;
   gradedOnly: boolean;
@@ -57,26 +53,6 @@ function FilterPanel({
               />
               <Label htmlFor={`cat-${cat.id}`} className="text-sm cursor-pointer">
                 {cat.name}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <h3 className="font-semibold text-sm mb-3">Franchise</h3>
-        <div className="space-y-2">
-          {FRANCHISES.map((f) => (
-            <div key={f.slug} className="flex items-center gap-2">
-              <Checkbox
-                id={`fran-${f.slug}`}
-                checked={selectedFranchises.includes(f.slug)}
-                onCheckedChange={() => toggleFranchise(f.slug)}
-              />
-              <Label htmlFor={`fran-${f.slug}`} className="text-sm cursor-pointer">
-                {f.icon} {f.name}
               </Label>
             </div>
           ))}
@@ -146,6 +122,7 @@ function FilterPanel({
 
 export default function BrowsePage() {
   const [sort, setSort] = useState<SortOption>('newest');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFranchises, setSelectedFranchises] = useState<string[]>([]);
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
@@ -169,6 +146,15 @@ export default function BrowsePage() {
   const filteredItems = useMemo(() => {
     let items = [...mockItems];
 
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      items = items.filter(
+        (i) =>
+          i.title.toLowerCase().includes(q) ||
+          i.set_name?.toLowerCase().includes(q) ||
+          i.franchise?.name.toLowerCase().includes(q)
+      );
+    }
     if (selectedCategories.length > 0)
       items = items.filter((i) => i.category_id && selectedCategories.includes(i.category_id));
     if (selectedFranchises.length > 0)
@@ -200,14 +186,25 @@ export default function BrowsePage() {
     }
 
     return items;
-  }, [sort, selectedCategories, selectedFranchises, selectedConditions, gradedOnly, minPrice, maxPrice]);
+  }, [sort, searchQuery, selectedCategories, selectedFranchises, selectedConditions, gradedOnly, minPrice, maxPrice]);
+
+  const clearAll = () => {
+    setSelectedCategories([]);
+    setSelectedFranchises([]);
+    setSelectedConditions([]);
+    setGradedOnly(false);
+    setMinPrice('');
+    setMaxPrice('');
+    setSearchQuery('');
+  };
+
+  const hasFilters = selectedCategories.length > 0 || selectedFranchises.length > 0 ||
+    selectedConditions.length > 0 || gradedOnly || minPrice || maxPrice || searchQuery;
 
   const filterPanel = (
     <FilterPanel
       selectedCategories={selectedCategories}
       toggleCategory={toggleCategory}
-      selectedFranchises={selectedFranchises}
-      toggleFranchise={toggleFranchise}
       selectedConditions={selectedConditions}
       toggleCondition={toggleCondition}
       gradedOnly={gradedOnly}
@@ -221,7 +218,8 @@ export default function BrowsePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-      <div className="flex items-center justify-between mb-6">
+      {/* Header + Search */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold">Browse Collectibles</h1>
           <p className="text-sm text-muted-foreground mt-1">
@@ -229,10 +227,19 @@ export default function BrowsePage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <div className="relative flex-1 sm:w-64">
+            <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              placeholder="Search items..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-9"
+            />
+          </div>
           {/* Mobile filter */}
           <Sheet>
             <SheetTrigger
-              render={<Button variant="outline" size="sm" className="lg:hidden" />}
+              render={<Button variant="outline" size="sm" className="lg:hidden h-9" />}
             >
               <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
             </SheetTrigger>
@@ -241,7 +248,6 @@ export default function BrowsePage() {
               <div className="mt-4">{filterPanel}</div>
             </SheetContent>
           </Sheet>
-
           <Select value={sort} onValueChange={(v) => setSort(v as SortOption)}>
             <SelectTrigger className="w-[160px] h-9">
               <SelectValue />
@@ -256,10 +262,39 @@ export default function BrowsePage() {
         </div>
       </div>
 
+      {/* Franchise quick-filter tags */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {FRANCHISES.map((f) => (
+          <button
+            key={f.slug}
+            onClick={() => toggleFranchise(f.slug)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+              selectedFranchises.includes(f.slug)
+                ? 'bg-gold/10 border-gold/30 text-gold'
+                : 'bg-secondary/50 border-border text-muted-foreground hover:text-foreground hover:border-foreground/20'
+            }`}
+          >
+            <span>{f.icon}</span>
+            <span>{f.name}</span>
+            {selectedFranchises.includes(f.slug) && (
+              <XIcon className="h-3 w-3 ml-0.5" />
+            )}
+          </button>
+        ))}
+        {hasFilters && (
+          <button
+            onClick={clearAll}
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
+          >
+            Clear All
+          </button>
+        )}
+      </div>
+
       <div className="flex gap-8">
         {/* Desktop filter sidebar */}
         <aside className="hidden lg:block w-64 shrink-0">
-          <div className="sticky top-24">{filterPanel}</div>
+          <div className="sticky top-32">{filterPanel}</div>
         </aside>
 
         {/* Items grid */}
@@ -273,18 +308,7 @@ export default function BrowsePage() {
           ) : (
             <div className="text-center py-16">
               <p className="text-muted-foreground">No items found matching your filters.</p>
-              <Button
-                variant="outline"
-                className="mt-4"
-                onClick={() => {
-                  setSelectedCategories([]);
-                  setSelectedFranchises([]);
-                  setSelectedConditions([]);
-                  setGradedOnly(false);
-                  setMinPrice('');
-                  setMaxPrice('');
-                }}
-              >
+              <Button variant="outline" className="mt-4" onClick={clearAll}>
                 Clear Filters
               </Button>
             </div>
