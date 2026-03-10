@@ -40,6 +40,8 @@ export function Navbar() {
       <header className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16">
           <div className="flex h-16 items-center justify-between">
+            {/* Left: hamburger + logo */}
+            <div className="flex items-center gap-2">
             {/* Mobile menu */}
             <Sheet>
               <SheetTrigger
@@ -85,6 +87,7 @@ export function Navbar() {
                 priority
               />
             </Link>
+            </div>{/* /Left */}
 
             {/* Right side */}
             <div className="flex items-center gap-1">
