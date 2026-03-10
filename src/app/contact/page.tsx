@@ -39,18 +39,14 @@ export default function ContactPage() {
 
   return (
     <div>
-      {/* Header */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+      {/* Address + Map */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold">Contact</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Visit our store, send us a message, or connect on social media
           </p>
         </div>
-      </div>
-
-      {/* Address + Map */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Left: Contact Info */}
           <div className="space-y-8">

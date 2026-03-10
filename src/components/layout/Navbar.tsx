@@ -55,25 +55,21 @@ export function Navbar() {
                 </SheetTitle>
                 <nav className="mt-6 flex flex-col gap-1 px-2">
                   {NAV_ITEMS.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                        isActive(item.href)
-                          ? 'bg-white/[0.06] text-foreground'
-                          : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'
-                      }`}
-                    >
+                    <SheetClose key={item.href} render={<Link href={item.href} />} className={`rounded-lg px-3 py-3 text-sm font-medium transition-colors min-h-[44px] flex items-center ${
+                      isActive(item.href)
+                        ? 'bg-white/[0.06] text-foreground'
+                        : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'
+                    }`}>
                       {item.label}
-                    </Link>
+                    </SheetClose>
                   ))}
                   <div className="my-3 border-t border-white/[0.06]" />
-                  <Link href="/auth/login" className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-white/[0.04] hover:text-foreground transition-colors">
+                  <SheetClose render={<Link href="/auth/login" />} className="rounded-lg px-3 py-3 min-h-[44px] flex items-center text-sm font-medium text-muted-foreground hover:bg-white/[0.04] hover:text-foreground transition-colors">
                     Sign In
-                  </Link>
-                  <Link href="/auth/register" className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-white/[0.04] hover:text-foreground transition-colors">
+                  </SheetClose>
+                  <SheetClose render={<Link href="/auth/register" />} className="rounded-lg px-3 py-3 min-h-[44px] flex items-center text-sm font-medium text-primary hover:bg-primary/[0.06] transition-colors">
                     Sign Up
-                  </Link>
+                  </SheetClose>
                 </nav>
               </SheetContent>
             </Sheet>

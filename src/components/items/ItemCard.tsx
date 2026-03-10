@@ -67,22 +67,22 @@ export function ItemCard({ item }: ItemCardProps) {
             {item.title}
           </h3>
         </Link>
-        <div className="mt-1.5 flex items-center gap-2">
+        <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
           {item.condition && (
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.06] text-muted-foreground">
+            <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-white/[0.06] text-muted-foreground border border-white/[0.04] leading-none">
               {item.condition}
             </span>
           )}
           {item.set_name && (
-            <span className="text-[10px] text-muted-foreground truncate">
+            <span className="text-[10px] text-muted-foreground truncate max-w-[100px]">
               {item.set_name}
             </span>
           )}
         </div>
         <div className="mt-2 flex items-baseline gap-2">
-          <span className="font-bold text-lg text-primary">{formatPrice(displayPrice)}</span>
+          <span className="font-bold text-base md:text-lg text-primary">{formatPrice(displayPrice)}</span>
           {item.is_sale && item.sale_price && (
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-xs text-muted-foreground line-through">
               {formatPrice(item.price)}
             </span>
           )}

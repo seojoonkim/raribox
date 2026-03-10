@@ -360,13 +360,13 @@ export function BrowseClient({ items }: { items: Item[] }) {
               placeholder="Search items..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-9 w-full"
+              className="pl-10 h-11 w-full"
             />
           </div>
           <div className="flex gap-2">
             <Sheet>
               <SheetTrigger
-                render={<Button variant="outline" size="sm" className="h-9 flex-1" />}
+                render={<Button variant="outline" size="sm" className="h-11 flex-1 text-sm" />}
               >
                 <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
               </SheetTrigger>
@@ -376,7 +376,7 @@ export function BrowseClient({ items }: { items: Item[] }) {
               </SheetContent>
             </Sheet>
             <Select value={sort} onValueChange={(v) => setSort(v as SortOption)}>
-              <SelectTrigger className="flex-1 h-9">
+              <SelectTrigger className="flex-1 h-11">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -410,9 +410,10 @@ export function BrowseClient({ items }: { items: Item[] }) {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
+            <div className="text-center py-20 border border-dashed border-white/[0.08] rounded-xl">
               <p className="text-muted-foreground">No items found matching your filters.</p>
-              <Button variant="outline" className="mt-4" onClick={clearAll}>
+              <p className="text-xs text-muted-foreground/60 mt-1 mb-4">Try adjusting or clearing your filters.</p>
+              <Button variant="outline" className="border-white/[0.1] hover:bg-white/[0.04]" onClick={clearAll}>
                 Clear Filters
               </Button>
             </div>

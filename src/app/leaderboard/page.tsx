@@ -22,6 +22,12 @@ function getRankDisplay(rank: number) {
   return `#${rank}`;
 }
 
+function getTopCardStyle(rank: number) {
+  if (rank === 1) return 'border-primary/40 bg-primary/5 shadow-lg shadow-primary/10';
+  if (rank === 2) return 'border-white/10 bg-[#131929]';
+  return 'border-white/10 bg-[#131929]';
+}
+
 export default function LeaderboardPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
@@ -32,16 +38,16 @@ export default function LeaderboardPage() {
         </p>
       </div>
 
-      {/* Top 3 cards */}
+      {/* Top 3 podium */}
       <div className="grid gap-4 md:grid-cols-3 mb-8">
         {leaderboardData.slice(0, 3).map((user) => (
-          <Card key={user.rank} className={user.rank === 1 ? 'border-primary/30 bg-primary/5' : ''}>
+          <Card key={user.rank} className={`rounded-xl transition-all ${getTopCardStyle(user.rank)}`}>
             <CardContent className="p-6 text-center">
-              <div className="text-3xl mb-2">{getRankDisplay(user.rank)}</div>
-              <h3 className="font-bold text-lg">{user.name}</h3>
+              <div className="text-4xl mb-3">{getRankDisplay(user.rank)}</div>
+              <h3 className="font-bold text-lg truncate">{user.name}</h3>
               <p className="text-2xl font-bold text-primary mt-1">{user.score.toLocaleString()}</p>
               <p className="text-xs text-muted-foreground mt-1">{user.trades} trades</p>
-              <Badge className="mt-3 bg-primary/10 text-primary">
+              <Badge className="mt-3 bg-primary/10 text-indigo-300 border border-primary/20 text-xs">
                 {user.emoji} {user.badge}
               </Badge>
             </CardContent>
@@ -50,30 +56,30 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Full table */}
-      <Card>
+      <Card className="rounded-xl bg-[#131929] border-white/[0.06]">
         <CardContent className="p-0">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead className="w-16">Rank</TableHead>
-                <TableHead>User</TableHead>
-                <TableHead>Tier</TableHead>
-                <TableHead className="text-right">Trades</TableHead>
-                <TableHead className="text-right">Score</TableHead>
+              <TableRow className="border-white/[0.06]">
+                <TableHead className="w-16 text-muted-foreground">Rank</TableHead>
+                <TableHead className="text-muted-foreground">User</TableHead>
+                <TableHead className="text-muted-foreground">Tier</TableHead>
+                <TableHead className="text-right text-muted-foreground">Trades</TableHead>
+                <TableHead className="text-right text-muted-foreground">Score</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {leaderboardData.map((user) => (
-                <TableRow key={user.rank}>
+                <TableRow key={user.rank} className="border-white/[0.04] hover:bg-white/[0.02] transition-colors">
                   <TableCell className="font-medium">{getRankDisplay(user.rank)}</TableCell>
                   <TableCell className="font-medium">{user.name}</TableCell>
                   <TableCell>
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-xs bg-white/[0.06] text-muted-foreground border-0">
                       {user.emoji} {user.badge}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right text-muted-foreground">{user.trades}</TableCell>
-                  <TableCell className="text-right font-bold">{user.score.toLocaleString()}</TableCell>
+                  <TableCell className="text-right font-bold text-foreground">{user.score.toLocaleString()}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

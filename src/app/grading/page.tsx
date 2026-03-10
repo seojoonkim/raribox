@@ -45,18 +45,14 @@ const gradeScale = [
 export default function GradingPage() {
   return (
     <div>
-      {/* ── 1. Header ─────────────────────────────────────── */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-        <div className="mb-8">
+      {/* ── 1. Header + About HiT GCC ────────────────────── */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+        <div className="mb-10">
           <h1 className="text-2xl font-bold">Grading</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company
           </p>
         </div>
-      </div>
-
-      {/* ── 2. About HiT GCC ──────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}

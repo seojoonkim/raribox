@@ -102,8 +102,23 @@ const events: EventData[] = [
   },
 ];
 
-function getTagColor(_tag: string) {
-  return 'bg-black/50 text-white/90 border-white/10';
+function getTagColor(tag: string) {
+  switch (tag) {
+    case 'Tournament':
+      return 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30';
+    case 'Release':
+      return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+    case 'Grading':
+      return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+    case 'Auction':
+      return 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+    case 'Workshop':
+      return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
+    case 'Community':
+      return 'bg-violet-500/20 text-violet-300 border-violet-500/30';
+    default:
+      return 'bg-black/50 text-white/90 border-white/10';
+  }
 }
 
 /* ── Event Detail Modal ──────────────────────────────────── */
@@ -256,8 +271,9 @@ export default function EventsPage() {
         ))}
       </div>
 
-      <div className="mt-12 text-center py-12 border border-dashed border-rari-border rounded-xl">
+      <div className="mt-12 text-center py-12 border border-dashed border-white/[0.08] rounded-xl">
         <p className="text-muted-foreground text-sm">More events coming soon</p>
+        <p className="text-xs text-muted-foreground/60 mt-1">Check back or follow us on Instagram @raribox</p>
       </div>
 
       {/* Modal */}

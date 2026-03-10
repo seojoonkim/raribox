@@ -141,7 +141,14 @@ export default function PacksPage() {
       {loading && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="rounded-xl bg-rari-elevated animate-pulse aspect-[3/4]" />
+            <div key={i} className="rounded-xl bg-[#161B2E] overflow-hidden animate-pulse">
+              <div className="aspect-square" />
+              <div className="p-4 space-y-2">
+                <div className="h-4 bg-white/[0.06] rounded" />
+                <div className="h-4 w-2/3 bg-white/[0.06] rounded" />
+                <div className="h-8 bg-white/[0.04] rounded mt-3" />
+              </div>
+            </div>
           ))}
         </div>
       )}
@@ -161,10 +168,10 @@ export default function PacksPage() {
                 />
                 {product.badge && (
                   <Badge
-                    className={`absolute top-2 right-2 text-xs ${
+                    className={`absolute top-2 right-2 text-xs font-semibold ${
                       product.badge === 'sold-out'
-                        ? 'bg-red-500/90 text-white'
-                        : 'bg-primary/90 text-black'
+                        ? 'bg-red-500/20 text-red-300 border border-red-500/30'
+                        : 'bg-primary/20 text-indigo-300 border border-primary/30'
                     }`}
                   >
                     {product.badge === 'sold-out' ? 'Sold Out' : 'Limited Stock'}
@@ -215,8 +222,9 @@ export default function PacksPage() {
       )}
 
       {!loading && filtered.length === 0 && (
-        <div className="text-center py-20 text-muted-foreground">
-          No products found in this category.
+        <div className="text-center py-20 border border-dashed border-white/[0.08] rounded-xl">
+          <p className="text-muted-foreground text-sm">No products found in this category.</p>
+          <p className="text-xs text-muted-foreground/60 mt-1">Try selecting a different category above.</p>
         </div>
       )}
     </div>
