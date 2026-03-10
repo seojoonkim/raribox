@@ -47,28 +47,26 @@ export default function GradingPage() {
     <div>
       {/* ── 1. Hero ────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-rari-bg via-[#1A1040] to-rari-bg border-b border-rari-border">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 md:py-28 relative z-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-12 relative z-10">
           <div className="max-w-2xl">
-            <div className="flex flex-wrap gap-2 mb-5">
+            <h1 className="text-2xl font-bold">Grading</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              Professional card grading & authentication — powered by HiT GCC, UAE&apos;s first Emirati-owned grading company
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
               <Badge className="bg-primary/10 text-indigo-300 border border-primary/20">Official Partner</Badge>
               <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">UAE&apos;s First</Badge>
               <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">AI + Human Grading</Badge>
               <Badge className="bg-rari-glass text-muted-foreground border border-rari-border">55 AED / card</Badge>
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Get Your Cards <span className="text-primary">Graded</span> in the UAE
-            </h1>
-            <p className="text-lg text-muted-foreground mt-4 leading-relaxed max-w-lg">
-              Powered by <span className="text-foreground font-semibold">HiT GCC</span> — the first Emirati-owned card grading company in the Middle East. Fast, affordable, and trusted.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3">
               <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-8">
+                <Button size="sm" className="bg-primary hover:bg-indigo-500 text-white font-semibold">
                   Submit Cards to HiT
                 </Button>
               </a>
               <a href="https://hitgrading.com/pages/contact" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
+                <Button size="sm" variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
                   Learn More
                 </Button>
               </a>

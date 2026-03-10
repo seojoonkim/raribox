@@ -107,28 +107,16 @@ export default function PacksPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-      {/* Hero Banner */}
-      <div className="rounded-xl bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-8 md:p-12 mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <h1 className="text-3xl md:text-4xl font-extrabold">
-            Open Packs. Find Grails.
-          </h1>
-          <Badge className="bg-primary/90 text-black text-xs font-bold px-3 py-1">
+      {/* Page Header */}
+      <div className="mb-8">
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold">Packs</h1>
+          <Badge className="bg-primary/20 text-indigo-300 border border-primary/30 text-xs font-semibold px-2.5 py-0.5">
             Powered by HIT Grading
           </Badge>
         </div>
-        <p className="text-muted-foreground mt-2 max-w-lg">
-          Browse booster boxes, sealed packs, and accessories from the top TCG franchises.
-          Sourced directly from{' '}
-          <a
-            href="https://hitgrading.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline font-medium"
-          >
-            HIT Grading
-          </a>
-          .
+        <p className="text-sm text-muted-foreground mt-1">
+          Booster boxes, sealed packs, and accessories from top TCG franchises
         </p>
       </div>
 
