@@ -3,25 +3,110 @@
 import { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import {
   HeartIcon, ShoppingCartIcon, StarIcon, ShieldIcon, ChevronRightIcon,
   MinusIcon, PlusIcon, StoreIcon, ShareIcon, TruckIcon, RotateCcwIcon,
-  AwardIcon, CopyIcon, GlobeIcon, MapPinIcon, CheckCircle2Icon,
+  AwardIcon, CheckCircle2Icon,
 } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ItemCard } from '@/components/items/ItemCard';
+import { ItemCard, ItemCardSkeleton } from '@/components/items/ItemCard';
 import { PriceChart } from '@/components/items/PriceChart';
-import { mockItems, mockReviews } from '@/lib/mock-data';
+import { createClient } from '@/lib/supabase/client';
 import { formatPrice, getVendorTier, CONDITIONS } from '@/lib/constants';
 import { useCartStore } from '@/lib/store';
 import { toast } from 'sonner';
+import type { Item, Review } from '@/types';
 
 /* ── helpers ─────────────────────────────────────────────── */
+
+function mapSupabaseItem(row: any): Item {
+  const franchise = row.franchises;
+  const category = row.categories;
+  const vendor = row.vendors;
+  const images = row.item_images;
+
+  return {
+    id: row.id,
+    vendor_id: row.vendor_id,
+    category_id: row.category_id,
+    franchise_id: row.franchise_id,
+    title: row.title,
+    slug: row.slug,
+    description: row.description,
+    price: Number(row.price),
+    compare_price: row.compare_price ? Number(row.compare_price) : null,
+    currency: row.currency,
+    condition: row.condition,
+    year: row.year,
+    rarity: row.rarity,
+    edition: row.edition,
+    set_name: row.set_name,
+    card_number: row.card_number,
+    language: row.language,
+    is_graded: row.is_graded,
+    grade_company: row.grade_company,
+    grade_score: row.grade_score ? Number(row.grade_score) : null,
+    grade_cert_no: row.grade_cert_no,
+    status: row.status,
+    stock: row.stock,
+    is_featured: row.is_featured,
+    is_sale: row.is_sale,
+    sale_price: row.sale_price ? Number(row.sale_price) : null,
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+    images: images?.map((img: any) => ({
+      id: img.id || '',
+      item_id: row.id,
+      url: img.url,
+      alt_text: img.alt_text || null,
+      sort_order: img.sort_order || 0,
+      is_primary: img.is_primary || false,
+      created_at: img.created_at || '',
+    })) || [],
+    vendor: vendor ? {
+      id: vendor.id || row.vendor_id,
+      user_id: vendor.user_id || '',
+      shop_name: vendor.shop_name || '',
+      slug: vendor.slug || '',
+      description: vendor.description || null,
+      logo_url: vendor.logo_url || null,
+      banner_url: vendor.banner_url || null,
+      status: vendor.status || 'active',
+      tier: vendor.tier || 'sprout',
+      rating_avg: Number(vendor.rating_avg || 0),
+      rating_count: vendor.rating_count || 0,
+      total_sales: vendor.total_sales || 0,
+      response_rate: Number(vendor.response_rate || 100),
+      created_at: vendor.created_at || '',
+      updated_at: vendor.updated_at || '',
+    } : undefined,
+    franchise: franchise ? {
+      id: franchise.id || row.franchise_id,
+      name: franchise.name || '',
+      slug: franchise.slug || '',
+      logo_url: franchise.logo_url || null,
+      banner_url: franchise.banner_url || null,
+      sort_order: franchise.sort_order || 0,
+      created_at: franchise.created_at || '',
+    } : undefined,
+    category: category ? {
+      id: category.id || row.category_id,
+      name: category.name || '',
+      slug: category.slug || '',
+      parent_id: category.parent_id || null,
+      icon_url: category.icon_url || null,
+      sort_order: category.sort_order || 0,
+      created_at: category.created_at || '',
+    } : undefined,
+  };
+}
+
+const ITEM_SELECT = '*, item_images(id, url, alt_text, sort_order, is_primary), franchises(id, name, slug, sort_order), categories(id, name, slug), vendors(id, user_id, shop_name, slug, description, logo_url, banner_url, status, tier, rating_avg, rating_count, total_sales, response_rate)';
 
 function getGradeLabel(score: number | null): string {
   if (!score) return '';
@@ -46,44 +131,18 @@ function getStockLabel(stock: number): string {
   return `${stock} in stock`;
 }
 
-/* ── Recently Viewed (localStorage) ──────────────────────── */
-
-function useRecentlyViewed(currentId: string) {
-  const [recentItems, setRecentItems] = useState<typeof mockItems>([]);
-
-  useEffect(() => {
-    const key = 'raribox_recently_viewed';
-    const stored: string[] = JSON.parse(localStorage.getItem(key) || '[]');
-    const updated = [currentId, ...stored.filter((id) => id !== currentId)].slice(0, 10);
-    localStorage.setItem(key, JSON.stringify(updated));
-
-    const items = updated
-      .filter((id) => id !== currentId)
-      .map((id) => mockItems.find((i) => i.id === id))
-      .filter(Boolean) as typeof mockItems;
-    setRecentItems(items.slice(0, 4));
-  }, [currentId]);
-
-  return recentItems;
-}
-
-/* ── Star Rating Component ───────────────────────────────── */
+/* ── Sub-components ──────────────────────────────────────── */
 
 function Stars({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md' }) {
   const cls = size === 'md' ? 'h-4 w-4' : 'h-3 w-3';
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((s) => (
-        <StarIcon
-          key={s}
-          className={`${cls} ${s <= Math.round(rating) ? 'fill-primary text-primary' : 'text-muted-foreground/40'}`}
-        />
+        <StarIcon key={s} className={`${cls} ${s <= Math.round(rating) ? 'fill-primary text-primary' : 'text-muted-foreground/40'}`} />
       ))}
     </div>
   );
 }
-
-/* ── Rating Bar ──────────────────────────────────────────── */
 
 function RatingBar({ star, count, total }: { star: number; count: number; total: number }) {
   const pct = total > 0 ? (count / total) * 100 : 0;
@@ -99,8 +158,6 @@ function RatingBar({ star, count, total }: { star: number; count: number; total:
   );
 }
 
-/* ── Info Tag ────────────────────────────────────────────── */
-
 function InfoTag({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg bg-rari-elevated px-3 py-2">
@@ -110,19 +167,103 @@ function InfoTag({ label, value }: { label: string; value: string }) {
   );
 }
 
+/* ── Loading Skeleton ────────────────────────────────────── */
+
+function ItemDetailSkeleton() {
+  return (
+    <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
+      <div className="h-4 w-48 bg-rari-elevated rounded animate-pulse mb-6" />
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="aspect-square rounded-xl bg-rari-elevated animate-pulse" />
+        <div className="space-y-4">
+          <div className="flex gap-2">
+            <div className="h-6 w-20 bg-rari-elevated rounded-full animate-pulse" />
+            <div className="h-6 w-24 bg-rari-elevated rounded-full animate-pulse" />
+          </div>
+          <div className="h-8 w-3/4 bg-rari-elevated rounded animate-pulse" />
+          <div className="h-6 w-1/2 bg-rari-elevated rounded animate-pulse" />
+          <div className="h-10 w-40 bg-rari-elevated rounded animate-pulse" />
+          <div className="h-4 w-24 bg-rari-elevated rounded animate-pulse" />
+          <div className="h-px bg-rari-border" />
+          <div className="grid grid-cols-3 gap-2">
+            {[1, 2, 3].map((i) => <div key={i} className="h-14 bg-rari-elevated rounded-lg animate-pulse" />)}
+          </div>
+          <div className="h-12 bg-rari-elevated rounded-lg animate-pulse" />
+          <div className="h-20 bg-rari-elevated rounded-xl animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Main Page ───────────────────────────────────────────── */
 
 export default function ItemDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const item = mockItems.find((i) => i.id === id);
+  const [item, setItem] = useState<Item | null>(null);
+  const [relatedItems, setRelatedItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const addItem = useCartStore((s) => s.addItem);
-  const recentlyViewed = useRecentlyViewed(id);
 
-  if (!item) {
+  // Fetch item from Supabase
+  useEffect(() => {
+    async function fetchItem() {
+      setLoading(true);
+      const supabase = createClient();
+
+      const { data, error } = await supabase
+        .from('items')
+        .select(ITEM_SELECT)
+        .eq('id', id)
+        .single();
+
+      if (error || !data) {
+        setNotFound(true);
+        setLoading(false);
+        return;
+      }
+
+      const mapped = mapSupabaseItem(data);
+      setItem(mapped);
+
+      // Fetch related items
+      if (data.franchise_id) {
+        const { data: related } = await supabase
+          .from('items')
+          .select(ITEM_SELECT)
+          .eq('franchise_id', data.franchise_id)
+          .neq('id', id)
+          .eq('status', 'active')
+          .limit(6);
+
+        if (related) {
+          setRelatedItems(related.map(mapSupabaseItem));
+        }
+      }
+
+      setLoading(false);
+    }
+
+    fetchItem();
+  }, [id]);
+
+  // Save to recently viewed
+  useEffect(() => {
+    if (!item) return;
+    const key = 'raribox_recently_viewed';
+    const stored: string[] = JSON.parse(localStorage.getItem(key) || '[]');
+    const updated = [id, ...stored.filter((i) => i !== id)].slice(0, 10);
+    localStorage.setItem(key, JSON.stringify(updated));
+  }, [id, item]);
+
+  if (loading) return <ItemDetailSkeleton />;
+
+  if (notFound || !item) {
     return (
       <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 text-center">
         <h1 className="text-2xl font-bold">Item not found</h1>
@@ -137,15 +278,9 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
   const displayPrice = item.is_sale && item.sale_price ? item.sale_price : item.price;
   const vendor = item.vendor;
   const vendorTier = vendor ? getVendorTier(vendor.total_sales) : null;
-  const reviews = mockReviews.filter((r) => r.item_id === item.id || r.vendor_id === vendor?.id);
-  const relatedItems = mockItems.filter((i) => i.franchise_id === item.franchise_id && i.id !== item.id).slice(0, 6);
-  const avgRating = reviews.length > 0 ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
-
-  // Rating distribution
-  const ratingDist = [5, 4, 3, 2, 1].map((star) => ({
-    star,
-    count: reviews.filter((r) => r.rating === star).length,
-  }));
+  const reviews: Review[] = [];
+  const avgRating = 0;
+  const ratingDist = [5, 4, 3, 2, 1].map((star) => ({ star, count: 0 }));
 
   const handleAddToCart = () => {
     addItem(item, quantity);
@@ -205,6 +340,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
               className={`object-contain p-4 transition-transform duration-200 ${isZoomed ? 'scale-[2]' : ''}`}
               style={isZoomed ? { transformOrigin: `${mousePos.x}% ${mousePos.y}%` } : undefined}
               priority
+              unoptimized
             />
             {item.is_sale && (
               <Badge className="absolute top-3 left-3 bg-red-500/20 text-red-300 border border-red-500/30 backdrop-blur-sm">
@@ -229,7 +365,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                       : 'border-rari-border hover:border-rari-border-hover'
                   }`}
                 >
-                  <Image src={img.url} alt={img.alt_text || ''} fill className="object-cover" />
+                  <Image src={img.url} alt={img.alt_text || ''} fill className="object-cover" unoptimized />
                 </button>
               ))}
             </div>
@@ -271,14 +407,10 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
             <div className="flex items-baseline gap-3">
               <span className="text-3xl font-bold text-primary">{formatPrice(displayPrice)}</span>
               {item.is_sale && item.sale_price && (
-                <span className="text-lg text-muted-foreground line-through">
-                  {formatPrice(item.price)}
-                </span>
+                <span className="text-lg text-muted-foreground line-through">{formatPrice(item.price)}</span>
               )}
               {item.compare_price && !item.is_sale && (
-                <span className="text-sm text-muted-foreground line-through">
-                  {formatPrice(item.compare_price)}
-                </span>
+                <span className="text-sm text-muted-foreground line-through">{formatPrice(item.compare_price)}</span>
               )}
               {item.is_sale && item.sale_price && (
                 <Badge className="bg-red-500/20 text-red-300 border border-red-500/30">
@@ -332,7 +464,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           {/* 6. Purchase Actions */}
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              {/* Quantity */}
               <div className="flex items-center border border-rari-border rounded-lg">
                 <Button variant="ghost" size="icon" className="h-11 w-11" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
                   <MinusIcon className="h-4 w-4" />
@@ -342,8 +473,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                   <PlusIcon className="h-4 w-4" />
                 </Button>
               </div>
-
-              {/* Add to Cart */}
               <Button
                 className="flex-1 bg-primary hover:bg-indigo-500 text-white font-semibold h-11 text-base"
                 onClick={handleAddToCart}
@@ -353,7 +482,6 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 Add to Cart
               </Button>
             </div>
-
             <div className="flex gap-3">
               <Button variant="outline" className="flex-1 h-11 border-rari-border hover:bg-rari-elevated" disabled={item.stock === 0}>
                 Make an Offer
@@ -444,68 +572,29 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
             <TabsTrigger value="shipping" className="rounded-lg">Shipping & Returns</TabsTrigger>
           </TabsList>
 
-          {/* Tab 1: Price History */}
           <TabsContent value="price-history" className="mt-4">
             <PriceChart basePrice={item.price} />
           </TabsContent>
 
-          {/* Tab 2: Card Details */}
           <TabsContent value="details" className="mt-4">
             <div className="grid md:grid-cols-2 gap-4">
-              {/* Common Card Info */}
               <Card className="rounded-xl">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">Card Information</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {item.set_name && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Set</span>
-                        <span className="font-medium">{item.set_name}</span>
-                      </div>
-                    )}
-                    {item.card_number && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Card Number</span>
-                        <span className="font-medium">{item.card_number}</span>
-                      </div>
-                    )}
-                    {item.rarity && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Rarity</span>
-                        <span className="font-medium">{item.rarity}</span>
-                      </div>
-                    )}
-                    {item.edition && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Edition</span>
-                        <span className="font-medium">{item.edition}</span>
-                      </div>
-                    )}
-                    {item.year && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Year</span>
-                        <span className="font-medium">{item.year}</span>
-                      </div>
-                    )}
-                    {item.condition && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Condition</span>
-                        <span className="font-medium">{item.condition} — {getConditionLabel(item.condition)}</span>
-                      </div>
-                    )}
-                    {item.language && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Language</span>
-                        <span className="font-medium">{item.language === 'EN' ? 'English' : item.language === 'JP' ? 'Japanese' : item.language === 'KR' ? 'Korean' : item.language}</span>
-                      </div>
-                    )}
+                    {item.set_name && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Set</span><span className="font-medium">{item.set_name}</span></div>}
+                    {item.card_number && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Card Number</span><span className="font-medium">{item.card_number}</span></div>}
+                    {item.rarity && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Rarity</span><span className="font-medium">{item.rarity}</span></div>}
+                    {item.edition && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Edition</span><span className="font-medium">{item.edition}</span></div>}
+                    {item.year && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Year</span><span className="font-medium">{item.year}</span></div>}
+                    {item.condition && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Condition</span><span className="font-medium">{item.condition} — {getConditionLabel(item.condition)}</span></div>}
+                    {item.language && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Language</span><span className="font-medium">{item.language === 'EN' ? 'English' : item.language === 'JP' ? 'Japanese' : item.language === 'KR' ? 'Korean' : item.language}</span></div>}
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Grading Info (if graded) */}
               {item.is_graded ? (
                 <Card className="rounded-xl">
                   <CardHeader className="pb-2">
@@ -513,29 +602,13 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Grading Company</span>
-                        <span className="font-bold">{item.grade_company}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Grade Score</span>
-                        <span className="font-bold text-primary text-lg">{item.grade_score}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Grade Description</span>
-                        <span className="font-medium">{getGradeLabel(item.grade_score)}</span>
-                      </div>
-                      {item.grade_cert_no && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Cert Number</span>
-                          <span className="font-mono text-sm">{item.grade_cert_no}</span>
-                        </div>
-                      )}
+                      <div className="flex justify-between text-sm"><span className="text-muted-foreground">Grading Company</span><span className="font-bold">{item.grade_company}</span></div>
+                      <div className="flex justify-between text-sm"><span className="text-muted-foreground">Grade Score</span><span className="font-bold text-primary text-lg">{item.grade_score}</span></div>
+                      <div className="flex justify-between text-sm"><span className="text-muted-foreground">Grade Description</span><span className="font-medium">{getGradeLabel(item.grade_score)}</span></div>
+                      {item.grade_cert_no && <div className="flex justify-between text-sm"><span className="text-muted-foreground">Cert Number</span><span className="font-mono text-sm">{item.grade_cert_no}</span></div>}
                       <Separator className="border-rari-border" />
                       <div className="rounded-lg bg-rari-elevated p-3">
-                        <p className="text-xs text-muted-foreground">
-                          {item.grade_company} Grade Scale: 10 = Gem Mint, 9 = Mint, 8 = NM-MT, 7 = NM, 6 = EX-MT, 5 = EX
-                        </p>
+                        <p className="text-xs text-muted-foreground">{item.grade_company} Grade Scale: 10 = Gem Mint, 9 = Mint, 8 = NM-MT, 7 = NM, 6 = EX-MT, 5 = EX</p>
                       </div>
                     </div>
                   </CardContent>
@@ -546,19 +619,15 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                     <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">Description</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {item.description || 'No description provided for this item.'}
-                    </p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description || 'No description provided for this item.'}</p>
                   </CardContent>
                 </Card>
               )}
             </div>
           </TabsContent>
 
-          {/* Tab 3: Reviews */}
           <TabsContent value="reviews" className="mt-4">
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Rating Summary */}
               <Card className="rounded-xl md:col-span-1">
                 <CardContent className="p-6">
                   <div className="text-center mb-4">
@@ -576,54 +645,17 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                   </Button>
                 </CardContent>
               </Card>
-
-              {/* Review List */}
-              <div className="md:col-span-2 space-y-3">
-                {reviews.length > 0 ? (
-                  reviews.map((review) => (
-                    <Card key={review.id} className="rounded-xl">
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-rari-elevated border border-rari-border flex items-center justify-center text-sm font-bold">
-                              {review.user?.name?.[0] || '?'}
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium">{review.user?.name}</p>
-                              <div className="flex items-center gap-2">
-                                <Stars rating={review.rating} />
-                                {review.is_verified && (
-                                  <span className="flex items-center gap-0.5 text-[10px] text-rari-success">
-                                    <CheckCircle2Icon className="h-3 w-3" /> Verified
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(review.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                          </span>
-                        </div>
-                        {review.title && (
-                          <p className="text-sm font-semibold mt-3">{review.title}</p>
-                        )}
-                        <p className="text-sm text-muted-foreground mt-1">{review.content}</p>
-                      </CardContent>
-                    </Card>
-                  ))
-                ) : (
-                  <Card className="rounded-xl">
-                    <CardContent className="p-8 text-center">
-                      <StarIcon className="h-8 w-8 mx-auto text-muted-foreground/30 mb-2" />
-                      <p className="text-muted-foreground">No reviews yet. Be the first to review this item!</p>
-                    </CardContent>
-                  </Card>
-                )}
+              <div className="md:col-span-2">
+                <Card className="rounded-xl">
+                  <CardContent className="p-8 text-center">
+                    <StarIcon className="h-8 w-8 mx-auto text-muted-foreground/30 mb-2" />
+                    <p className="text-muted-foreground">No reviews yet. Be the first to review this item!</p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </TabsContent>
 
-          {/* Tab 4: Shipping & Returns */}
           <TabsContent value="shipping" className="mt-4">
             <div className="grid md:grid-cols-2 gap-4">
               <Card className="rounded-xl">
@@ -634,28 +666,16 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Standard Shipping</span>
-                      <span>3-7 business days</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Express Shipping</span>
-                      <span>1-3 business days</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Free Shipping</span>
-                      <span>Orders over $100</span>
-                    </div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Standard Shipping</span><span>3-7 business days</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Express Shipping</span><span>1-3 business days</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Free Shipping</span><span>Orders over $100</span></div>
                     <Separator className="border-rari-border" />
                     <div className="rounded-lg bg-rari-elevated p-3">
-                      <p className="text-xs text-muted-foreground">
-                        All items are carefully packaged with protective materials. Graded cards are shipped in slab-safe packaging.
-                      </p>
+                      <p className="text-xs text-muted-foreground">All items are carefully packaged with protective materials. Graded cards are shipped in slab-safe packaging.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-
               <Card className="rounded-xl">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground flex items-center gap-2">
@@ -664,25 +684,12 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Return Window</span>
-                      <span>14 days</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Return Shipping</span>
-                      <span>Buyer pays</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Authenticity</span>
-                      <span className="text-rari-success flex items-center gap-1">
-                        <CheckCircle2Icon className="h-3 w-3" /> Guaranteed
-                      </span>
-                    </div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Return Window</span><span>14 days</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Return Shipping</span><span>Buyer pays</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-muted-foreground">Authenticity</span><span className="text-rari-success flex items-center gap-1"><CheckCircle2Icon className="h-3 w-3" /> Guaranteed</span></div>
                     <Separator className="border-rari-border" />
                     <div className="rounded-lg bg-rari-elevated p-3">
-                      <p className="text-xs text-muted-foreground">
-                        Every purchase on RariBox is backed by our Buyer Protection guarantee. Items not as described? Get a full refund.
-                      </p>
+                      <p className="text-xs text-muted-foreground">Every purchase on RariBox is backed by our Buyer Protection guarantee. Items not as described? Get a full refund.</p>
                     </div>
                   </div>
                 </CardContent>
@@ -697,24 +704,10 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
         <section className="mt-12">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold">Related Items</h2>
-            <Link href={`/browse/${item.franchise?.slug || ''}`} className="text-sm text-primary hover:underline">
-              View All
-            </Link>
+            <Link href={`/browse/${item.franchise?.slug || ''}`} className="text-sm text-primary hover:underline">View All</Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {relatedItems.map((ri) => (
-              <ItemCard key={ri.id} item={ri} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ── Recently Viewed ────────────────────────────────── */}
-      {recentlyViewed.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-xl font-bold mb-4">Recently Viewed</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {recentlyViewed.map((ri) => (
               <ItemCard key={ri.id} item={ri} />
             ))}
           </div>
