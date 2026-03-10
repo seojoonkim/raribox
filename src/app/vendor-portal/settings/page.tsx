@@ -62,7 +62,7 @@ export default function VendorSettings() {
             <Label>Banner</Label>
             <Input type="file" accept="image/*" />
           </div>
-          <Button onClick={handleSave} className="bg-gold text-black hover:bg-gold/90">
+          <Button onClick={handleSave} className="bg-primary hover:bg-indigo-500 text-white">
             Save Changes
           </Button>
         </CardContent>
@@ -83,7 +83,7 @@ export default function VendorSettings() {
               <Input type="number" step="0.01" defaultValue="100.00" />
             </div>
           </div>
-          <Button onClick={handleSave} className="bg-gold text-black hover:bg-gold/90">
+          <Button onClick={handleSave} className="bg-primary hover:bg-indigo-500 text-white">
             Save Shipping Settings
           </Button>
         </CardContent>

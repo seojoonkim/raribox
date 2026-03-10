@@ -6,6 +6,7 @@ import { ItemCard } from '@/components/items/ItemCard';
 import { FRANCHISES } from '@/lib/constants';
 import { mockItems } from '@/lib/mock-data';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 export default function FranchisePage({ params }: { params: Promise<{ franchise: string }> }) {
   const { franchise: slug } = use(params);
@@ -19,7 +20,7 @@ export default function FranchisePage({ params }: { params: Promise<{ franchise:
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <div className="mb-8">
         <div className="flex items-center gap-3">
-          <span className="text-4xl">{franchise.icon}</span>
+          <Image src={franchise.image} alt={franchise.name} width={48} height={48} className="rounded-lg" />
           <div>
             <h1 className="text-3xl font-bold">{franchise.name}</h1>
             <p className="text-muted-foreground text-sm mt-1">

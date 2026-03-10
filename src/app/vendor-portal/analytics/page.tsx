@@ -90,7 +90,7 @@ export default function VendorAnalytics() {
                 <span className="text-sm w-32 shrink-0">{cat.name}</span>
                 <div className="flex-1 bg-secondary/50 rounded-full h-3">
                   <div
-                    className="bg-gold h-3 rounded-full transition-all"
+                    className="bg-primary h-3 rounded-full transition-all"
                     style={{ width: `${cat.value}%` }}
                   />
                 </div>

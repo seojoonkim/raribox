@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRightIcon, ShieldIcon, TruckIcon, StarIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,14 +18,14 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-gold/5">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 md:py-24">
-          <div className="max-w-2xl">
-            <Badge className="mb-4 bg-gold/10 text-gold border-gold/20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A0D14] via-[#1A1040] to-[#0A0D14]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 md:py-28">
+          <div className="max-w-2xl relative z-10">
+            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20">
               Trusted by 10,000+ Collectors
             </Badge>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-              Discover <span className="text-gold">Rare</span> Collectibles
+              Discover <span className="text-primary">Rare</span> Collectibles
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-lg">
               The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
@@ -32,21 +33,22 @@ export default async function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/browse">
-                <Button size="lg" className="bg-gold text-black hover:bg-gold/90 font-semibold">
+                <Button size="lg" className="bg-primary hover:bg-indigo-500 text-white font-semibold">
                   Browse Marketplace
                   <ArrowRightIcon className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/auth/register">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
                   Start Selling
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-gold/5 blur-3xl" />
-        <div className="absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-gold/3 blur-2xl" />
+        {/* Glow effects */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/[0.06] blur-[120px]" />
+        <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-indigo-600/[0.04] blur-[80px]" />
       </section>
 
       {/* Franchise Quick Nav */}
@@ -55,15 +57,20 @@ export default async function HomePage() {
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-3">
           {FRANCHISES.map((f) => (
             <Link key={f.slug} href={`/browse/${f.slug}`}>
-              <Card className="hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all text-center group cursor-pointer">
-                <CardContent className="p-3 md:p-4">
-                  <span className="text-2xl md:text-3xl block group-hover:scale-110 transition-transform">
-                    {f.icon}
-                  </span>
-                  <span className="text-[10px] md:text-xs font-medium mt-1 block text-muted-foreground group-hover:text-foreground">
+              <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer">
+                <div className="relative aspect-square">
+                  <Image
+                    src={f.image}
+                    alt={f.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <span className="absolute bottom-1.5 left-0 right-0 text-center text-[10px] md:text-xs font-semibold text-white drop-shadow-md">
                     {f.name}
                   </span>
-                </CardContent>
+                </div>
               </Card>
             </Link>
           ))}
@@ -75,7 +82,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">Featured</h2>
-            <Link href="/browse?featured=true" className="text-sm text-gold hover:underline flex items-center gap-1">
+            <Link href="/browse?featured=true" className="text-sm text-primary hover:underline flex items-center gap-1">
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
@@ -92,7 +99,7 @@ export default async function HomePage() {
         <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">New Arrivals</h2>
-            <Link href="/browse?sort=newest" className="text-sm text-gold hover:underline flex items-center gap-1">
+            <Link href="/browse?sort=newest" className="text-sm text-primary hover:underline flex items-center gap-1">
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
@@ -109,9 +116,9 @@ export default async function HomePage() {
         <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">
-              <span className="text-red-500">Sale</span>
+              <span className="text-red-400">Sale</span>
             </h2>
-            <Link href="/browse?sale=true" className="text-sm text-gold hover:underline flex items-center gap-1">
+            <Link href="/browse?sale=true" className="text-sm text-primary hover:underline flex items-center gap-1">
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
@@ -126,27 +133,27 @@ export default async function HomePage() {
       {/* Trust Badges */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center">
+          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
             <CardContent className="p-6">
-              <ShieldIcon className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <ShieldIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Buyer Protection</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 Every purchase is backed by our buyer protection guarantee.
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center">
+          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
             <CardContent className="p-6">
-              <TruckIcon className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <TruckIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Worldwide Shipping</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 Secure shipping to 100+ countries with tracking.
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center">
+          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
             <CardContent className="p-6">
-              <StarIcon className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <StarIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Verified Sellers</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 All vendors are verified and rated by the community.

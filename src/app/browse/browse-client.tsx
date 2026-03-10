@@ -55,7 +55,7 @@ function FilterPanel({
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="font-semibold text-sm mb-3">Franchise</h3>
+        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Franchise</h3>
         <div className="space-y-2">
           {FRANCHISES.map((f) => (
             <div key={f.slug} className="flex items-center gap-2">
@@ -65,7 +65,7 @@ function FilterPanel({
                 onCheckedChange={() => toggleFranchise(f.slug)}
               />
               <Label htmlFor={`fran-${f.slug}`} className="text-sm cursor-pointer">
-                {f.icon} {f.name}
+                {f.name}
               </Label>
             </div>
           ))}
@@ -75,7 +75,7 @@ function FilterPanel({
       <Separator />
 
       <div>
-        <h3 className="font-semibold text-sm mb-3">Category</h3>
+        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Category</h3>
         <div className="space-y-2">
           {CATEGORIES.map((cat) => (
             <div key={cat.id} className="flex items-center gap-2">
@@ -95,7 +95,7 @@ function FilterPanel({
       <Separator />
 
       <div>
-        <h3 className="font-semibold text-sm mb-3">Condition</h3>
+        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Condition</h3>
         <div className="space-y-2">
           {CONDITIONS.map((c) => (
             <div key={c.value} className="flex items-center gap-2">
@@ -130,7 +130,7 @@ function FilterPanel({
       <Separator />
 
       <div>
-        <h3 className="font-semibold text-sm mb-3">Price Range</h3>
+        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Price Range</h3>
         <div className="flex items-center gap-2">
           <Input
             type="number"

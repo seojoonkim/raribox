@@ -58,7 +58,7 @@ export default function CollectionPage() {
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger
-            render={<Button size="sm" className="bg-gold text-black hover:bg-gold/90" />}
+            render={<Button size="sm" className="bg-primary hover:bg-indigo-500 text-white" />}
           >
             <PlusIcon className="h-4 w-4 mr-1" /> Add Item
           </DialogTrigger>
@@ -113,7 +113,7 @@ export default function CollectionPage() {
                   placeholder="Any notes about this item"
                 />
               </div>
-              <Button onClick={handleAdd} className="w-full bg-gold text-black hover:bg-gold/90">
+              <Button onClick={handleAdd} className="w-full bg-primary hover:bg-indigo-500 text-white">
                 Add to Collection
               </Button>
             </div>
@@ -122,12 +122,12 @@ export default function CollectionPage() {
       </div>
 
       {/* Total value card */}
-      <Card className="mb-6 bg-gold/5 border-gold/20">
+      <Card className="mb-6 bg-primary/5 border-primary/20">
         <CardContent className="p-4 flex items-center gap-3">
-          <DollarSignIcon className="h-8 w-8 text-gold" />
+          <DollarSignIcon className="h-8 w-8 text-primary" />
           <div>
             <p className="text-sm text-muted-foreground">Total Estimated Value</p>
-            <p className="text-2xl font-bold text-gold">{formatPrice(totalValue)}</p>
+            <p className="text-2xl font-bold text-primary">{formatPrice(totalValue)}</p>
           </div>
         </CardContent>
       </Card>
@@ -150,7 +150,7 @@ export default function CollectionPage() {
                   <p className="font-medium text-sm truncate">{item.title}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <Badge variant="outline" className="text-[10px]">{item.condition}</Badge>
-                    {item.gradeScore && <Badge className="bg-gold text-black text-[10px] border-none">{item.gradeScore}</Badge>}
+                    {item.gradeScore && <Badge className="bg-primary text-white text-[10px] border-none">{item.gradeScore}</Badge>}
                   </div>
                   {item.note && <p className="text-xs text-muted-foreground mt-1">{item.note}</p>}
                 </div>

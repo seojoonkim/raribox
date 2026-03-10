@@ -27,7 +27,7 @@ export default function CartPage() {
         <h1 className="text-2xl font-bold">Your cart is empty</h1>
         <p className="text-muted-foreground mt-2">Start shopping to add items to your cart.</p>
         <Link href="/browse">
-          <Button className="mt-6 bg-gold text-black hover:bg-gold/90">Browse Marketplace</Button>
+          <Button className="mt-6 bg-primary hover:bg-indigo-500 text-white">Browse Marketplace</Button>
         </Link>
       </div>
     );
@@ -64,7 +64,7 @@ export default function CartPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <Link href={`/item/${ci.item.id}`} className="text-sm font-medium hover:text-gold line-clamp-2">
+                        <Link href={`/item/${ci.item.id}`} className="text-sm font-medium hover:text-primary line-clamp-2">
                           {ci.item.title}
                         </Link>
                         <p className="text-sm font-bold mt-1">{formatPrice(price)}</p>
@@ -129,10 +129,10 @@ export default function CartPage() {
               <Separator />
               <div className="flex justify-between font-bold text-lg">
                 <span>Total</span>
-                <span className="text-gold">{formatPrice(grandTotal)}</span>
+                <span className="text-primary">{formatPrice(grandTotal)}</span>
               </div>
               <Link href="/checkout" className="block">
-                <Button className="w-full bg-gold text-black hover:bg-gold/90 font-semibold mt-2">
+                <Button className="w-full bg-primary hover:bg-indigo-500 text-white font-semibold mt-2">
                   Proceed to Checkout
                 </Button>
               </Link>

@@ -24,7 +24,7 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       {/* Vendor Header */}
       <Card className="overflow-hidden">
-        <div className="h-32 md:h-48 bg-gradient-to-r from-gold/20 to-gold/5" />
+        <div className="h-32 md:h-48 bg-gradient-to-r from-primary/20 to-primary/5" />
         <CardContent className="p-6 -mt-12">
           <div className="flex items-end gap-4">
             <div className="h-24 w-24 rounded-xl bg-card border-4 border-background flex items-center justify-center text-3xl shadow-lg">
@@ -33,7 +33,7 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
             <div className="flex-1 pb-1">
               <div className="flex items-center gap-2 flex-wrap">
                 <h1 className="text-2xl font-bold">{vendor.shop_name}</h1>
-                <Badge className="bg-gold/10 text-gold border-gold/20">
+                <Badge className="bg-primary/10 text-primary border-primary/20">
                   {tier.icon} {tier.label}
                 </Badge>
               </div>
@@ -45,22 +45,22 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <StarIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <StarIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.rating_avg}</p>
               <p className="text-xs text-muted-foreground">{vendor.rating_count} ratings</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <PackageIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <PackageIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.total_sales}</p>
               <p className="text-xs text-muted-foreground">Total Sales</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <MessageCircleIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <MessageCircleIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">{vendor.response_rate}%</p>
               <p className="text-xs text-muted-foreground">Response Rate</p>
             </div>
             <div className="text-center p-3 bg-secondary/50 rounded-lg">
-              <ClockIcon className="h-5 w-5 mx-auto mb-1 text-gold" />
+              <ClockIcon className="h-5 w-5 mx-auto mb-1 text-primary" />
               <p className="text-lg font-bold">
                 {new Date(vendor.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
               </p>
@@ -109,7 +109,7 @@ export default function VendorPage({ params }: { params: Promise<{ slug: string 
                               <StarIcon
                                 key={s}
                                 className={`h-3 w-3 ${
-                                  s <= review.rating ? 'fill-gold text-gold' : 'text-muted-foreground'
+                                  s <= review.rating ? 'fill-primary text-primary' : 'text-muted-foreground'
                                 }`}
                               />
                             ))}

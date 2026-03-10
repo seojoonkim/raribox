@@ -4,7 +4,7 @@ export default function HomeLoading() {
   return (
     <div>
       {/* Hero skeleton */}
-      <section className="bg-gradient-to-br from-background via-background to-gold/5">
+      <section className="bg-gradient-to-br from-background via-background to-primary/5">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 md:py-24">
           <div className="max-w-2xl space-y-4">
             <div className="h-6 w-48 bg-secondary/50 rounded animate-pulse" />

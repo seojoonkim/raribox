@@ -22,7 +22,7 @@ export default function AdminDashboard() {
             <Card key={stat.label}>
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <Icon className="h-5 w-5 text-gold" />
+                  <Icon className="h-5 w-5 text-primary" />
                   {stat.trend && (
                     <span className="text-xs text-green-500 font-medium">{stat.trend}</span>
                   )}

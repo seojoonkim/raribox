@@ -17,7 +17,7 @@ export default function VendorProducts() {
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Products ({products.length})</h2>
         <Link href="/vendor-portal/products/new">
-          <Button size="sm" className="bg-gold text-black hover:bg-gold/90">
+          <Button size="sm" className="bg-primary hover:bg-indigo-500 text-white">
             <PlusIcon className="h-4 w-4 mr-1" /> Add Product
           </Button>
         </Link>

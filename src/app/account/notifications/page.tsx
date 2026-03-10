@@ -49,10 +49,10 @@ export default function NotificationsPage() {
         {mockNotifications.map((n) => {
           const Icon = n.icon;
           return (
-            <Card key={n.id} className={!n.is_read ? 'border-gold/30 bg-gold/5' : ''}>
+            <Card key={n.id} className={!n.is_read ? 'border-primary/30 bg-primary/5' : ''}>
               <CardContent className="p-4 flex gap-3">
                 <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                  <Icon className="h-5 w-5 text-gold" />
+                  <Icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{n.title}</p>
@@ -62,7 +62,7 @@ export default function NotificationsPage() {
                   </p>
                 </div>
                 {!n.is_read && (
-                  <div className="h-2 w-2 rounded-full bg-gold mt-2 shrink-0" />
+                  <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
                 )}
               </CardContent>
             </Card>

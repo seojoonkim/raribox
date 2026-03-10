@@ -62,7 +62,7 @@ export default function NewProductPage() {
                   <SelectTrigger><SelectValue placeholder="Select..." /></SelectTrigger>
                   <SelectContent>
                     {FRANCHISES.map((f) => (
-                      <SelectItem key={f.slug} value={f.slug}>{f.icon} {f.name}</SelectItem>
+                      <SelectItem key={f.slug} value={f.slug}>{f.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -220,7 +220,7 @@ export default function NewProductPage() {
         </Card>
 
         <div className="flex gap-3">
-          <Button type="submit" className="bg-gold text-black hover:bg-gold/90 font-semibold">
+          <Button type="submit" className="bg-primary hover:bg-indigo-500 text-white font-semibold">
             Publish Product
           </Button>
           <Button type="button" variant="outline" onClick={() => router.back()}>

@@ -1,14 +1,14 @@
 export const FRANCHISES = [
-  { name: 'Pokemon', slug: 'pokemon', icon: '⚡' },
-  { name: 'One Piece', slug: 'one-piece', icon: '🏴‍☠️' },
-  { name: 'Sports', slug: 'sports-cards', icon: '⚽' },
-  { name: 'Funko', slug: 'funko', icon: '🎭' },
-  { name: 'Gundam', slug: 'gundam', icon: '🤖' },
-  { name: 'Marvel', slug: 'marvel', icon: '🦸' },
-  { name: 'Dragon Ball', slug: 'dragon-ball', icon: '🐉' },
-  { name: 'Star Wars', slug: 'star-wars', icon: '⭐' },
-  { name: 'MTG', slug: 'mtg', icon: '🧙' },
-  { name: 'Weiss Schwarz', slug: 'weiss-schwarz', icon: '🃏' },
+  { name: 'Pokemon', slug: 'pokemon', image: 'https://placehold.co/200x200/FFCB05/1A1A2E?text=Pokemon' },
+  { name: 'One Piece', slug: 'one-piece', image: 'https://placehold.co/200x200/CC0000/FFFFFF?text=One+Piece' },
+  { name: 'Sports', slug: 'sports-cards', image: 'https://placehold.co/200x200/1B3A5C/FFFFFF?text=Sports' },
+  { name: 'Funko', slug: 'funko', image: 'https://placehold.co/200x200/00B4D8/FFFFFF?text=Funko' },
+  { name: 'Gundam', slug: 'gundam', image: 'https://placehold.co/200x200/2D3436/FFFFFF?text=Gundam' },
+  { name: 'Marvel', slug: 'marvel', image: 'https://placehold.co/200x200/EC1D24/FFFFFF?text=Marvel' },
+  { name: 'Dragon Ball', slug: 'dragon-ball', image: 'https://placehold.co/200x200/FF6B00/FFFFFF?text=Dragon+Ball' },
+  { name: 'Star Wars', slug: 'star-wars', image: 'https://placehold.co/200x200/1A1A2E/FFE81F?text=Star+Wars' },
+  { name: 'MTG', slug: 'mtg', image: 'https://placehold.co/200x200/7B2D8B/FFFFFF?text=MTG' },
+  { name: 'Weiss Schwarz', slug: 'weiss-schwarz', image: 'https://placehold.co/200x200/FF69B4/FFFFFF?text=Weiss' },
 ] as const;
 
 export const CONDITIONS = [

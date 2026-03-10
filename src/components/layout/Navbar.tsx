@@ -3,10 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 import {
-  MenuIcon, XIcon, UserIcon, ShoppingCartIcon, HeartIcon,
-  PackageIcon, BellIcon, ChevronDownIcon, SunIcon, MoonIcon,
+  MenuIcon, UserIcon, ShoppingCartIcon, HeartIcon,
+  PackageIcon, BellIcon,
 } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +14,6 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useTheme } from '@/components/theme-provider';
 import { useCartStore } from '@/lib/store';
 
 const NAV_ITEMS: { label: string; href: string; external?: boolean }[] = [
@@ -28,7 +26,6 @@ const NAV_ITEMS: { label: string; href: string; external?: boolean }[] = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   const itemCount = useCartStore((s) => s.itemCount());
 
   const isActive = (href: string) => {
@@ -39,51 +36,39 @@ export function Navbar() {
   return (
     <div className="sticky top-0 z-50">
       {/* Header */}
-      <header className="border-b border-border bg-background">
+      <header className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16">
           <div className="flex h-16 items-center justify-between">
             {/* Mobile menu */}
             <Sheet>
               <SheetTrigger
-                render={<Button variant="ghost" size="icon" className="md:hidden" />}
+                render={<Button variant="ghost" size="icon" className="md:hidden text-muted-foreground hover:text-foreground" />}
               >
                 <MenuIcon className="h-5 w-5" />
               </SheetTrigger>
-              <SheetContent side="left" className="w-72">
+              <SheetContent side="left" className="w-72 bg-[#0F1320] border-white/[0.06]">
                 <SheetTitle>
-                  <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain dark:invert" />
+                  <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain invert" />
                 </SheetTitle>
                 <nav className="mt-6 flex flex-col gap-1">
-                  {NAV_ITEMS.map((item) =>
-                    item.external ? (
-                      <a
-                        key={item.href}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors"
-                      >
-                        {item.label} ↗
-                      </a>
-                    ) : (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                          isActive(item.href)
-                            ? 'bg-accent text-foreground'
-                            : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    )
-                  )}
-                  <div className="my-3 border-t border-border" />
-                  <Link href="/auth/login" className="rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">
+                  {NAV_ITEMS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                        isActive(item.href)
+                          ? 'bg-white/[0.06] text-foreground'
+                          : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <div className="my-3 border-t border-white/[0.06]" />
+                  <Link href="/auth/login" className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-white/[0.04] hover:text-foreground transition-colors">
                     Sign In
                   </Link>
-                  <Link href="/auth/register" className="rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-accent transition-colors">
+                  <Link href="/auth/register" className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-white/[0.04] hover:text-foreground transition-colors">
                     Sign Up
                   </Link>
                 </nav>
@@ -97,36 +82,26 @@ export function Navbar() {
                 alt="RariBox"
                 width={140}
                 height={40}
-                className="h-8 w-auto object-contain dark:invert"
+                className="h-8 w-auto object-contain invert"
                 priority
               />
             </Link>
 
             {/* Right side */}
-            <div className="flex items-center gap-1.5">
-              {/* Theme toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="h-9 w-9"
-              >
-                {theme === 'dark' ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
-              </Button>
-
+            <div className="flex items-center gap-1">
               {/* Wishlist */}
               <Link href="/account/wishlist">
-                <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground">
                   <HeartIcon className="h-4 w-4" />
                 </Button>
               </Link>
 
               {/* Cart */}
               <Link href="/cart" className="relative">
-                <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground">
                   <ShoppingCartIcon className="h-4 w-4" />
                   {itemCount > 0 && (
-                    <Badge className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[9px] bg-gold text-black">
+                    <Badge className="absolute -top-1 -right-1 h-4 w-4 rounded-full p-0 flex items-center justify-center text-[9px] bg-primary text-white">
                       {itemCount}
                     </Badge>
                   )}
@@ -136,11 +111,11 @@ export function Navbar() {
               {/* User dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger
-                  render={<Button variant="ghost" size="icon" className="h-9 w-9" />}
+                  render={<Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground hover:text-foreground" />}
                 >
                   <UserIcon className="h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuContent align="end" className="w-48 bg-[#131929] border-white/[0.08]">
                   <DropdownMenuItem render={<Link href="/auth/login" />}>
                     Sign In
                   </DropdownMenuItem>
@@ -170,12 +145,12 @@ export function Navbar() {
               {/* Sign In / Sign Up buttons - desktop */}
               <div className="hidden md:flex items-center gap-2 ml-2">
                 <Link href="/auth/login">
-                  <Button variant="outline" size="sm" className="h-9 px-4 text-sm font-medium">
+                  <Button variant="outline" size="sm" className="h-9 px-4 text-sm font-medium border-white/[0.1] text-foreground hover:bg-white/[0.04]">
                     Sign In
                   </Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button size="sm" className="h-9 px-4 text-sm font-medium bg-gold text-black hover:bg-gold/90">
+                  <Button size="sm" className="h-9 px-4 text-sm font-medium bg-primary hover:bg-indigo-500 text-white">
                     Sign Up
                   </Button>
                 </Link>
@@ -186,34 +161,22 @@ export function Navbar() {
       </header>
 
       {/* Sub-navigation */}
-      <nav className="border-b border-border bg-background">
+      <nav className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16">
-          <div className="hidden md:flex items-center gap-1 h-12">
-            {NAV_ITEMS.map((item) =>
-              item.external ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative px-4 py-3 text-sm font-medium transition-colors ${
-                    isActive(item.href)
-                      ? 'text-foreground after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-gold after:rounded-full'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+          <div className="hidden md:flex items-center gap-1 h-11">
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative px-4 py-2.5 text-sm font-medium transition-colors ${
+                  isActive(item.href)
+                    ? 'text-foreground after:absolute after:bottom-0 after:left-4 after:right-4 after:h-0.5 after:bg-primary after:rounded-full'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>

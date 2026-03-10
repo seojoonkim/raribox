@@ -84,7 +84,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                   key={img.id}
                   onClick={() => setSelectedImage(idx)}
                   className={`relative h-20 w-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                    idx === selectedImage ? 'border-gold' : 'border-border'
+                    idx === selectedImage ? 'border-primary' : 'border-border'
                   }`}
                 >
                   <Image src={img.url} alt={img.alt_text || ''} fill className="object-cover" />
@@ -99,7 +99,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           <div className="flex flex-wrap gap-2 mb-2">
             {item.condition && <Badge variant="outline">{item.condition}</Badge>}
             {item.is_graded && (
-              <Badge className="bg-gold text-black border-none font-bold">
+              <Badge className="bg-primary text-white border-none font-bold">
                 {item.grade_company} {item.grade_score}
               </Badge>
             )}
@@ -116,7 +116,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
           )}
 
           <div className="mt-4 flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-gold">{formatPrice(displayPrice)}</span>
+            <span className="text-3xl font-bold text-primary">{formatPrice(displayPrice)}</span>
             {item.is_sale && item.sale_price && (
               <span className="text-lg text-muted-foreground line-through">
                 {formatPrice(item.price)}
@@ -157,7 +157,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
               </Button>
             </div>
             <Button
-              className="flex-1 bg-gold text-black hover:bg-gold/90 font-semibold h-10"
+              className="flex-1 bg-primary hover:bg-indigo-500 text-white font-semibold h-10"
               onClick={handleAddToCart}
               disabled={item.stock === 0}
             >
@@ -191,7 +191,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                   <div className="flex-1">
                     <Link
                       href={`/vendor/${vendor.slug}`}
-                      className="font-semibold hover:text-gold transition-colors"
+                      className="font-semibold hover:text-primary transition-colors"
                     >
                       {vendor.shop_name}
                     </Link>
@@ -202,7 +202,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                         </span>
                       )}
                       <span className="flex items-center gap-0.5 text-xs text-muted-foreground">
-                        <StarIcon className="h-3 w-3 fill-gold text-gold" />
+                        <StarIcon className="h-3 w-3 fill-primary text-primary" />
                         {vendor.rating_avg} ({vendor.rating_count})
                       </span>
                     </div>
@@ -265,7 +265,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                               key={s}
                               className={`h-4 w-4 ${
                                 s <= Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length)
-                                  ? 'fill-gold text-gold'
+                                  ? 'fill-primary text-primary'
                                   : 'text-muted-foreground'
                               }`}
                             />
@@ -295,7 +295,7 @@ export default function ItemDetailPage({ params }: { params: Promise<{ id: strin
                                 <StarIcon
                                   key={s}
                                   className={`h-3 w-3 ${
-                                    s <= review.rating ? 'fill-gold text-gold' : 'text-muted-foreground'
+                                    s <= review.rating ? 'fill-primary text-primary' : 'text-muted-foreground'
                                   }`}
                                 />
                               ))}

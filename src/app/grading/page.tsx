@@ -33,10 +33,10 @@ export default function GradingPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-background via-background to-gold/5 border-b border-border">
+      <section className="bg-gradient-to-br from-background via-background to-primary/5 border-b border-border">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 md:py-24">
           <div className="max-w-2xl">
-            <Badge className="bg-gold/10 text-gold border-gold/20 mb-4">Official Partner</Badge>
+            <Badge className="bg-primary/10 text-primary border-primary/20 mb-4">Official Partner</Badge>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
               Get Your Cards Graded
             </h1>
@@ -47,7 +47,7 @@ export default function GradingPage() {
             </p>
             <div className="mt-8">
               <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-gold text-black hover:bg-gold/90 font-semibold text-base px-8">
+                <Button size="lg" className="bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-8">
                   Submit Cards to HIT Grading →
                 </Button>
               </a>
@@ -88,7 +88,7 @@ export default function GradingPage() {
             {steps.map((s) => (
               <div key={s.step} className="relative">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="flex items-center justify-center h-10 w-10 rounded-full bg-gold text-black font-bold text-lg shrink-0">
+                  <span className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold text-lg shrink-0">
                     {s.step}
                   </span>
                   <h3 className="font-semibold text-lg">{s.title}</h3>
@@ -121,7 +121,7 @@ export default function GradingPage() {
                   {gradeScale.map((g) => (
                     <TableRow key={g.grade}>
                       <TableCell>
-                        <span className={`font-bold ${Number(g.grade) >= 9 ? 'text-gold' : Number(g.grade) >= 7 ? 'text-foreground' : 'text-muted-foreground'}`}>
+                        <span className={`font-bold ${Number(g.grade) >= 9 ? 'text-primary' : Number(g.grade) >= 7 ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {g.grade}
                         </span>
                       </TableCell>
@@ -137,14 +137,14 @@ export default function GradingPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border bg-gradient-to-br from-gold/5 to-transparent">
+      <section className="border-t border-border bg-gradient-to-br from-primary/5 to-transparent">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Grade Your Cards?</h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
             Submit your cards through HIT Grading and increase their value with a professional, certified grade.
           </p>
           <a href="https://hitgrading.com/" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-gold text-black hover:bg-gold/90 font-semibold text-base px-8">
+            <Button size="lg" className="bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-8">
               Submit Cards to HIT Grading →
             </Button>
           </a>

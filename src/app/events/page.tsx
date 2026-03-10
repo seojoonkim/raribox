@@ -40,14 +40,14 @@ export default function EventsPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {upcomingEvents.map((event) => (
           <Card key={event.id} className="overflow-hidden">
-            <div className="h-40 bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center">
+            <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
               <span className="text-4xl opacity-60">
                 {event.tag === 'Tournament' ? '🏆' : event.tag === 'Release' ? '📦' : '🔍'}
               </span>
             </div>
             <CardContent className="p-5">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-gold/10 text-gold">
+                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                   {event.tag}
                 </span>
                 <span className="text-xs text-muted-foreground">

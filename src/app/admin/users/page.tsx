@@ -35,7 +35,7 @@ export default function AdminUsers() {
 
   const roleBadge = (role: string) => {
     const colors: Record<string, string> = {
-      admin: 'bg-gold/10 text-gold',
+      admin: 'bg-primary/10 text-primary',
       vendor: 'bg-blue-500/10 text-blue-500',
       buyer: 'bg-secondary text-muted-foreground',
     };

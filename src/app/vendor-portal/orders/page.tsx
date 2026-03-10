@@ -66,7 +66,7 @@ export default function VendorOrders() {
                 {order.status === 'pending' && (
                   <Dialog>
                     <DialogTrigger
-                      render={<Button size="sm" className="bg-gold text-black hover:bg-gold/90" />}
+                      render={<Button size="sm" className="bg-primary hover:bg-indigo-500 text-white" />}
                     >
                       <TruckIcon className="h-4 w-4 mr-1" /> Ship
                     </DialogTrigger>
@@ -84,7 +84,7 @@ export default function VendorOrders() {
                           <Input placeholder="e.g. Aramex, DHL" />
                         </div>
                         <Button
-                          className="w-full bg-gold text-black hover:bg-gold/90"
+                          className="w-full bg-primary hover:bg-indigo-500 text-white"
                           onClick={() => handleShip(order.id)}
                         >
                           Confirm Shipment

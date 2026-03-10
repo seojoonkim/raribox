@@ -34,7 +34,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                   href={item.href}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                     active
-                      ? 'bg-gold/10 text-gold font-medium'
+                      ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                   }`}
                 >
@@ -57,7 +57,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                   key={item.href}
                   href={item.href}
                   className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-sm ${
-                    active ? 'bg-gold/10 text-gold font-medium' : 'text-muted-foreground'
+                    active ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground'
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />

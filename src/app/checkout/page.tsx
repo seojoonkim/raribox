@@ -119,23 +119,23 @@ export default function CheckoutPage() {
                   type="button"
                   onClick={() => setPaymentMethod('card')}
                   className={`w-full flex items-center gap-3 p-4 rounded-lg border transition-colors ${
-                    paymentMethod === 'card' ? 'border-gold bg-gold/5' : 'border-border'
+                    paymentMethod === 'card' ? 'border-primary bg-primary/5' : 'border-border'
                   }`}
                 >
                   <CreditCardIcon className="h-5 w-5" />
                   <span className="font-medium">Credit / Debit Card</span>
-                  {paymentMethod === 'card' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-gold" />}
+                  {paymentMethod === 'card' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-primary" />}
                 </button>
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('wallet')}
                   className={`w-full flex items-center gap-3 p-4 rounded-lg border transition-colors ${
-                    paymentMethod === 'wallet' ? 'border-gold bg-gold/5' : 'border-border'
+                    paymentMethod === 'wallet' ? 'border-primary bg-primary/5' : 'border-border'
                   }`}
                 >
                   <WalletIcon className="h-5 w-5" />
                   <span className="font-medium">Digital Wallet</span>
-                  {paymentMethod === 'wallet' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-gold" />}
+                  {paymentMethod === 'wallet' && <CheckCircle2Icon className="h-5 w-5 ml-auto text-primary" />}
                 </button>
                 <p className="text-xs text-muted-foreground mt-2">
                   Payment integration coming soon. Orders will be created with pending payment status.
@@ -171,11 +171,11 @@ export default function CheckoutPage() {
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-gold">{formatPrice(grandTotal)}</span>
+                  <span className="text-primary">{formatPrice(grandTotal)}</span>
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-gold text-black hover:bg-gold/90 font-semibold mt-4"
+                  className="w-full bg-primary hover:bg-indigo-500 text-white font-semibold mt-4"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Processing...' : 'Place Order'}

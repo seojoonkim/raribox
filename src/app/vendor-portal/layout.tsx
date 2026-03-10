@@ -18,7 +18,7 @@ export default function VendorPortalLayout({ children }: { children: React.React
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <StoreIcon className="h-6 w-6 text-gold" /> Vendor Portal
+        <StoreIcon className="h-6 w-6 text-primary" /> Vendor Portal
       </h1>
 
       <div className="flex gap-8">
@@ -33,7 +33,7 @@ export default function VendorPortalLayout({ children }: { children: React.React
                   href={item.href}
                   className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                     active
-                      ? 'bg-gold/10 text-gold font-medium'
+                      ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:text-foreground hover:bg-accent'
                   }`}
                 >
@@ -56,7 +56,7 @@ export default function VendorPortalLayout({ children }: { children: React.React
                   key={item.href}
                   href={item.href}
                   className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-sm ${
-                    active ? 'bg-gold/10 text-gold font-medium' : 'text-muted-foreground'
+                    active ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground'
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />

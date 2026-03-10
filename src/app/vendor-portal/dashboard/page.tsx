@@ -7,7 +7,7 @@ export default function VendorDashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Dashboard</h2>
-        <Badge className="bg-gold/10 text-gold border-gold/20">🥇 Gold Seller</Badge>
+        <Badge className="bg-primary/10 text-primary border-primary/20">🥇 Gold Seller</Badge>
       </div>
 
       {/* Stats */}
@@ -15,7 +15,7 @@ export default function VendorDashboard() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
-              <DollarSignIcon className="h-5 w-5 text-gold" />
+              <DollarSignIcon className="h-5 w-5 text-primary" />
               <TrendingUpIcon className="h-4 w-4 text-green-500" />
             </div>
             <p className="text-2xl font-bold mt-2">$12,450</p>
@@ -24,21 +24,21 @@ export default function VendorDashboard() {
         </Card>
         <Card>
           <CardContent className="p-4">
-            <ShoppingCartIcon className="h-5 w-5 text-gold" />
+            <ShoppingCartIcon className="h-5 w-5 text-primary" />
             <p className="text-2xl font-bold mt-2">342</p>
             <p className="text-xs text-muted-foreground">Total Orders</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <PackageIcon className="h-5 w-5 text-gold" />
+            <PackageIcon className="h-5 w-5 text-primary" />
             <p className="text-2xl font-bold mt-2">24</p>
             <p className="text-xs text-muted-foreground">Active Products</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <StarIcon className="h-5 w-5 text-gold" />
+            <StarIcon className="h-5 w-5 text-primary" />
             <p className="text-2xl font-bold mt-2">4.8</p>
             <p className="text-xs text-muted-foreground">Average Rating</p>
           </CardContent>

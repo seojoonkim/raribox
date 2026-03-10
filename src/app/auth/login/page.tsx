@@ -44,7 +44,7 @@ export default function LoginPage() {
     <div className="mx-auto max-w-md px-6 lg:px-12 xl:px-16 py-16">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold">
-          <span className="text-gold">Rari</span>Box
+          <span className="text-primary">Rari</span>Box
         </h1>
         <p className="text-muted-foreground mt-2">Sign in to your account</p>
       </div>
@@ -84,7 +84,7 @@ export default function LoginPage() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-gold text-black hover:bg-gold/90 font-semibold"
+              className="w-full bg-primary hover:bg-indigo-500 text-white font-semibold"
               disabled={loading}
             >
               {loading ? 'Signing in...' : 'Sign In'}
@@ -109,7 +109,7 @@ export default function LoginPage() {
 
           <p className="text-center text-sm text-muted-foreground mt-6">
             Don&apos;t have an account?{' '}
-            <Link href="/auth/register" className="text-gold hover:underline font-medium">
+            <Link href="/auth/register" className="text-primary hover:underline font-medium">
               Sign Up
             </Link>
           </p>

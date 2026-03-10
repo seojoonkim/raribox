@@ -35,13 +35,13 @@ export default function LeaderboardPage() {
       {/* Top 3 cards */}
       <div className="grid gap-4 md:grid-cols-3 mb-8">
         {leaderboardData.slice(0, 3).map((user) => (
-          <Card key={user.rank} className={user.rank === 1 ? 'border-gold/30 bg-gold/5' : ''}>
+          <Card key={user.rank} className={user.rank === 1 ? 'border-primary/30 bg-primary/5' : ''}>
             <CardContent className="p-6 text-center">
               <div className="text-3xl mb-2">{getRankDisplay(user.rank)}</div>
               <h3 className="font-bold text-lg">{user.name}</h3>
-              <p className="text-2xl font-bold text-gold mt-1">{user.score.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-primary mt-1">{user.score.toLocaleString()}</p>
               <p className="text-xs text-muted-foreground mt-1">{user.trades} trades</p>
-              <Badge className="mt-3 bg-gold/10 text-gold">
+              <Badge className="mt-3 bg-primary/10 text-primary">
                 {user.emoji} {user.badge}
               </Badge>
             </CardContent>

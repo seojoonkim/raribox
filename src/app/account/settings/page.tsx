@@ -51,7 +51,7 @@ export default function SettingsPage() {
               onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
             />
           </div>
-          <Button onClick={handleSave} className="bg-gold text-black hover:bg-gold/90">
+          <Button onClick={handleSave} className="bg-primary hover:bg-indigo-500 text-white">
             Save Changes
           </Button>
         </CardContent>
