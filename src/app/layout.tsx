@@ -4,6 +4,7 @@ import './globals.css';
 import { Providers } from '@/components/providers';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navbar } from '@/components/layout/Navbar';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { Footer } from '@/components/layout/Footer';
 
 const inter = Inter({
@@ -34,6 +35,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Providers>
             <div className="flex min-h-screen flex-col">
+              <ScrollToTop />
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
