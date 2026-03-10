@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { SearchIcon, SlidersHorizontalIcon } from '@/components/ui/icons';
+import { SearchIcon, SlidersHorizontalIcon, ChevronDownIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { Separator } from '@/components/ui/separator';
 import { ItemCard } from '@/components/items/ItemCard';
 import { CONDITIONS, FRANCHISES } from '@/lib/constants';
 import type { Item } from '@/types';
@@ -52,102 +51,161 @@ function FilterPanel({
   maxPrice: string;
   setMaxPrice: (v: string) => void;
 }) {
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set(['franchise']));
+
+  const toggleSection = (key: string) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Franchise</h3>
-        <div className="space-y-2">
-          {FRANCHISES.map((f) => (
-            <div key={f.slug} className="flex items-center gap-2">
+    <div className="space-y-1">
+      {/* Franchise */}
+      <div className="py-2">
+        <button
+          onClick={() => toggleSection('franchise')}
+          className="flex items-center justify-between w-full group"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-rari-muted">Franchise</span>
+          <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('franchise') ? 'rotate-180' : ''}`} />
+        </button>
+        {openSections.has('franchise') && (
+          <div className="mt-2 space-y-1.5">
+            {FRANCHISES.map((f) => (
+              <div key={f.slug} className="flex items-center gap-2">
+                <Checkbox
+                  id={`fran-${f.slug}`}
+                  checked={selectedFranchises.includes(f.slug)}
+                  onCheckedChange={() => toggleFranchise(f.slug)}
+                />
+                <Label htmlFor={`fran-${f.slug}`} className="text-xs cursor-pointer text-rari-muted hover:text-rari-text transition-colors">
+                  {f.name}
+                </Label>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="border-t border-rari-border" />
+
+      {/* Category */}
+      <div className="py-2">
+        <button
+          onClick={() => toggleSection('category')}
+          className="flex items-center justify-between w-full group"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-rari-muted">Category</span>
+          <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('category') ? 'rotate-180' : ''}`} />
+        </button>
+        {openSections.has('category') && (
+          <div className="mt-2 space-y-1.5">
+            {CATEGORIES.map((cat) => (
+              <div key={cat.id} className="flex items-center gap-2">
+                <Checkbox
+                  id={`cat-${cat.id}`}
+                  checked={selectedCategories.includes(cat.id)}
+                  onCheckedChange={() => toggleCategory(cat.id)}
+                />
+                <Label htmlFor={`cat-${cat.id}`} className="text-xs cursor-pointer text-rari-muted hover:text-rari-text transition-colors">
+                  {cat.name}
+                </Label>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="border-t border-rari-border" />
+
+      {/* Condition */}
+      <div className="py-2">
+        <button
+          onClick={() => toggleSection('condition')}
+          className="flex items-center justify-between w-full group"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-rari-muted">Condition</span>
+          <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('condition') ? 'rotate-180' : ''}`} />
+        </button>
+        {openSections.has('condition') && (
+          <div className="mt-2 space-y-1.5">
+            {CONDITIONS.map((c) => (
+              <div key={c.value} className="flex items-center gap-2">
+                <Checkbox
+                  id={`cond-${c.value}`}
+                  checked={selectedConditions.includes(c.value)}
+                  onCheckedChange={() => toggleCondition(c.value)}
+                />
+                <Label htmlFor={`cond-${c.value}`} className="text-xs cursor-pointer text-rari-muted hover:text-rari-text transition-colors">
+                  {c.value} — {c.label}
+                </Label>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="border-t border-rari-border" />
+
+      {/* Graded Cards Only */}
+      <div className="py-2">
+        <button
+          onClick={() => toggleSection('graded')}
+          className="flex items-center justify-between w-full group"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-rari-muted">Graded Cards</span>
+          <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('graded') ? 'rotate-180' : ''}`} />
+        </button>
+        {openSections.has('graded') && (
+          <div className="mt-2">
+            <div className="flex items-center gap-2">
               <Checkbox
-                id={`fran-${f.slug}`}
-                checked={selectedFranchises.includes(f.slug)}
-                onCheckedChange={() => toggleFranchise(f.slug)}
+                id="graded-only"
+                checked={gradedOnly}
+                onCheckedChange={(v) => setGradedOnly(!!v)}
               />
-              <Label htmlFor={`fran-${f.slug}`} className="text-sm cursor-pointer">
-                {f.name}
+              <Label htmlFor="graded-only" className="text-xs font-semibold cursor-pointer text-rari-muted hover:text-rari-text transition-colors">
+                Graded Cards Only
               </Label>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
 
-      <Separator />
+      <div className="border-t border-rari-border" />
 
-      <div>
-        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Category</h3>
-        <div className="space-y-2">
-          {CATEGORIES.map((cat) => (
-            <div key={cat.id} className="flex items-center gap-2">
-              <Checkbox
-                id={`cat-${cat.id}`}
-                checked={selectedCategories.includes(cat.id)}
-                onCheckedChange={() => toggleCategory(cat.id)}
-              />
-              <Label htmlFor={`cat-${cat.id}`} className="text-sm cursor-pointer">
-                {cat.name}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Condition</h3>
-        <div className="space-y-2">
-          {CONDITIONS.map((c) => (
-            <div key={c.value} className="flex items-center gap-2">
-              <Checkbox
-                id={`cond-${c.value}`}
-                checked={selectedConditions.includes(c.value)}
-                onCheckedChange={() => toggleCondition(c.value)}
-              />
-              <Label htmlFor={`cond-${c.value}`} className="text-sm cursor-pointer">
-                {c.value} — {c.label}
-              </Label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <div className="flex items-center gap-2">
-          <Checkbox
-            id="graded-only"
-            checked={gradedOnly}
-            onCheckedChange={(v) => setGradedOnly(!!v)}
-          />
-          <Label htmlFor="graded-only" className="text-sm font-semibold cursor-pointer">
-            Graded Cards Only
-          </Label>
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <h3 className="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3">Price Range</h3>
-        <div className="flex items-center gap-2">
-          <Input
-            type="number"
-            placeholder="Min"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-            className="h-8"
-          />
-          <span className="text-muted-foreground">—</span>
-          <Input
-            type="number"
-            placeholder="Max"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-            className="h-8"
-          />
-        </div>
+      {/* Price Range */}
+      <div className="py-2">
+        <button
+          onClick={() => toggleSection('price')}
+          className="flex items-center justify-between w-full group"
+        >
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-rari-muted">Price Range</span>
+          <ChevronDownIcon className={`w-3 h-3 text-rari-muted transition-transform duration-200 ${openSections.has('price') ? 'rotate-180' : ''}`} />
+        </button>
+        {openSections.has('price') && (
+          <div className="mt-2 flex items-center gap-2">
+            <Input
+              type="number"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="h-7 text-xs"
+            />
+            <span className="text-rari-muted text-xs">—</span>
+            <Input
+              type="number"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="h-7 text-xs"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -293,11 +351,11 @@ export function BrowseClient({ items }: { items: Item[] }) {
       </div>
 
       <div className="flex gap-8">
-        <aside className="hidden lg:block w-64 shrink-0">
-          <div className="sticky top-32">
+        <aside className="hidden lg:block w-56 shrink-0">
+          <div className="sticky top-4 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2" style={{ scrollbarWidth: 'thin' }}>
             {filterPanel}
             {hasFilters && (
-              <Button variant="outline" size="sm" className="w-full mt-4" onClick={clearAll}>
+              <Button variant="outline" size="sm" className="w-full mt-3 text-xs border-rari-border" onClick={clearAll}>
                 Clear All Filters
               </Button>
             )}
