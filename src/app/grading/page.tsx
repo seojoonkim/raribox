@@ -113,9 +113,11 @@ export default function GradingPage() {
                   efficiently, transparently, and proudly under Emirati leadership.&rdquo;
                 </p>
                 <div className="mt-4 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary">
-                    DR
-                  </div>
+                  <img
+                    src="/rashed-al-farooq.jpg"
+                    alt="Dr. Rashed Al Farooq"
+                    className="h-10 w-10 rounded-full object-cover object-top border border-primary/20"
+                  />
                   <div>
                     <p className="text-sm font-semibold">Dr. Rashed Al Farooq</p>
                     <p className="text-xs text-muted-foreground">Co-Founder &amp; Chairman, Speedy Comics</p>
