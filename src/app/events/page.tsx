@@ -56,7 +56,7 @@ const events: EventData[] = [
     shortDesc: 'Bring your cards for bulk grading submission. Special discounted rates for RariBox members.',
     fullDesc: 'Monthly grading submission event in partnership with HiT GCC. Drop off your cards directly with our grading specialists on-site. RariBox members enjoy 10% off standard rates (55 AED → 49.5 AED per card). Our experts will do a quick pre-screening to identify high-value cards. Same-day receipt confirmation. 15 business day turnaround guaranteed.',
     location: 'RariBox Store · Times Square Center, Dubai',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=800&q=80',
     capacity: '50 cards max per person',
     price: 'From 49.5 AED',
     tag: 'Grading',
@@ -82,7 +82,7 @@ const events: EventData[] = [
     shortDesc: 'Learn how to identify fake cards, check centering, and understand grading standards.',
     fullDesc: 'A 2-hour hands-on workshop led by HiT GCC grading experts. Topics covered: How to spot fake Pokemon and One Piece cards, Understanding grading criteria (centering, corners, edges, surface), PSA vs CGC vs HiT grading comparison, How to maximize your card grade before submission, Q&A with professional graders. Includes workshop kit with tools. Limited to 20 participants.',
     location: 'RariBox Store · Times Square Center, Dubai',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b6f6e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=800&q=80',
     capacity: '20 participants',
     price: '75 AED',
     tag: 'Workshop',
@@ -227,7 +227,7 @@ export default function EventsPage() {
         {events.map((event) => (
           <Card
             key={event.id}
-            className="overflow-hidden rounded-xl bg-rari-card border-rari-border hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all cursor-pointer group"
+            className="overflow-hidden rounded-xl bg-rari-card border-rari-border hover:border-rari-accent/30 hover:shadow-lg hover:shadow-rari-accent/10 transition-all cursor-pointer group pt-0"
             onClick={() => setSelectedEvent(event)}
           >
             <div className="relative h-48 overflow-hidden">
