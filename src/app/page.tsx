@@ -32,26 +32,26 @@ export default async function HomePage() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/65" />
         {/* Content */}
-        <div className="relative z-10 w-full px-8 lg:px-16 xl:px-24 py-24">
+        <div className="relative z-10 w-full px-6 lg:px-12 xl:px-16 py-20 md:py-28">
           <div className="max-w-2xl">
-            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm">
+            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm text-sm px-3 py-1">
               Trusted by 10,000+ Collectors
             </Badge>
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
               Discover <span className="text-primary">Rare</span> Collectibles
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-lg">
               The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
               From Pokemon to One Piece, find your next treasure.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/browse">
-                <Button size="lg" className="bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-8 py-6">
+            <div className="mt-8 grid grid-cols-2 sm:flex sm:flex-wrap gap-3 max-w-xs sm:max-w-none">
+              <Link href="/browse" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full bg-primary hover:bg-indigo-500 text-white font-semibold text-base px-6 py-6">
                   Browse Marketplace
                 </Button>
               </Link>
-              <Link href="/auth/register">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm text-base px-8 py-6">
+              <Link href="/auth/register" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 backdrop-blur-sm text-base px-6 py-6">
                   Start Selling
                 </Button>
               </Link>
