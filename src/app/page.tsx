@@ -96,7 +96,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {featuredItems.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -113,7 +113,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {newArrivals.slice(0, 8).map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -132,7 +132,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {saleItems.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
