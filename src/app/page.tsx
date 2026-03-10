@@ -18,20 +18,29 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A0D14] via-[#1A1040] to-[#0A0D14]">
-        {/* HIT logo watermark */}
-        <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
-          <img src="/hit-logo.svg" alt="" className="w-[480px] opacity-[0.06]" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 md:py-28">
-          <div className="max-w-2xl relative z-10">
-            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20">
+      <section className="relative overflow-hidden min-h-[600px] flex items-center">
+        {/* Video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/65" />
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-24">
+          <div className="max-w-2xl">
+            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm">
               Trusted by 10,000+ Collectors
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
               Discover <span className="text-primary">Rare</span> Collectibles
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground max-w-lg">
+            <p className="mt-4 text-lg text-white/70 max-w-lg">
               The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
               From Pokemon to One Piece, find your next treasure.
             </p>
@@ -43,16 +52,13 @@ export default async function HomePage() {
                 </Button>
               </Link>
               <Link href="/auth/register">
-                <Button size="lg" variant="outline" className="border-white/[0.1] text-foreground hover:bg-white/[0.04]">
+                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm">
                   Start Selling
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-        {/* Glow effects */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/[0.06] blur-[120px]" />
-        <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-indigo-600/[0.04] blur-[80px]" />
       </section>
 
       {/* Franchise Quick Nav */}
