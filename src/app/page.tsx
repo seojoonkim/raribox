@@ -1,65 +1,156 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { ArrowRight, Shield, Truck, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { FRANCHISES } from '@/lib/constants';
+import { mockItems } from '@/lib/mock-data';
+import { ItemCard } from '@/components/items/ItemCard';
 
-export default function Home() {
+export default function HomePage() {
+  const featuredItems = mockItems.filter((i) => i.is_featured);
+  const saleItems = mockItems.filter((i) => i.is_sale);
+  const newArrivals = [...mockItems].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-gold/5">
+        <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
+          <div className="max-w-2xl">
+            <Badge className="mb-4 bg-gold/10 text-gold border-gold/20">
+              Trusted by 10,000+ Collectors
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+              Discover <span className="text-gold">Rare</span> Collectibles
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground max-w-lg">
+              The premier marketplace for trading cards, graded slabs, figures, and rare collectibles.
+              From Pokemon to One Piece, find your next treasure.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/browse">
+                <Button size="lg" className="bg-gold text-black hover:bg-gold/90 font-semibold">
+                  Browse Marketplace
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/auth/register">
+                <Button size="lg" variant="outline">
+                  Start Selling
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-gold/5 blur-3xl" />
+        <div className="absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-gold/3 blur-2xl" />
+      </section>
+
+      {/* Franchise Quick Nav */}
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <h2 className="text-2xl font-bold mb-6">Shop by Franchise</h2>
+        <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-3">
+          {FRANCHISES.map((f) => (
+            <Link key={f.slug} href={`/browse/${f.slug}`}>
+              <Card className="hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5 transition-all text-center group cursor-pointer">
+                <CardContent className="p-3 md:p-4">
+                  <span className="text-2xl md:text-3xl block group-hover:scale-110 transition-transform">
+                    {f.icon}
+                  </span>
+                  <span className="text-[10px] md:text-xs font-medium mt-1 block text-muted-foreground group-hover:text-foreground">
+                    {f.name}
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Featured Items */}
+      <section className="mx-auto max-w-7xl px-4 py-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">Featured</h2>
+          <Link href="/browse?featured=true" className="text-sm text-gold hover:underline flex items-center gap-1">
+            View All <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {featuredItems.map((item) => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </div>
+      </section>
+
+      {/* New Arrivals */}
+      <section className="mx-auto max-w-7xl px-4 py-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">New Arrivals</h2>
+          <Link href="/browse?sort=newest" className="text-sm text-gold hover:underline flex items-center gap-1">
+            View All <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {newArrivals.slice(0, 8).map((item) => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </div>
+      </section>
+
+      {/* Sale Section */}
+      {saleItems.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">
+              <span className="text-red-500">Sale</span> 🔥
+            </h2>
+            <Link href="/browse?sale=true" className="text-sm text-gold hover:underline flex items-center gap-1">
+              View All <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {saleItems.map((item) => (
+              <ItemCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Trust Badges */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <Shield className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <h3 className="font-semibold">Buyer Protection</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Every purchase is backed by our buyer protection guarantee.
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <Truck className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <h3 className="font-semibold">Worldwide Shipping</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Secure shipping to 100+ countries with tracking.
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="text-center">
+            <CardContent className="p-6">
+              <Star className="h-10 w-10 mx-auto mb-3 text-gold" />
+              <h3 className="font-semibold">Verified Sellers</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                All vendors are verified and rated by the community.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 }
