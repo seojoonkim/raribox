@@ -52,7 +52,7 @@ export function Navbar() {
               <SheetContent side="left" className="w-72 bg-[#0F1320] border-white/[0.06]">
                 <SheetTitle className="px-5 pt-5 pb-0">
                   <SheetClose render={<Link href="/" />}>
-                    <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain invert" />
+                    <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-[26px] w-auto object-contain invert" />
                   </SheetClose>
                 </SheetTitle>
                 <nav className="mt-6 flex flex-col gap-1 px-2">
@@ -83,7 +83,7 @@ export function Navbar() {
                 alt="RariBox"
                 width={140}
                 height={40}
-                className="h-8 w-auto object-contain invert"
+                className="h-[30px] w-auto object-contain invert"
                 priority
               />
             </Link>
