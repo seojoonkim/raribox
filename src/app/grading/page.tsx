@@ -118,15 +118,11 @@ export default function GradingPage() {
             </Card>
 
             {/* Quote */}
-            <Card className="rounded-xl border-l-4 border-l-primary bg-rari-card">
-              <CardContent className="p-6">
-                <p className="text-foreground leading-relaxed italic text-sm">
-                  &ldquo;This marks a pivotal moment for collectors in the Middle East. For the first time,
-                  collectors can access world-class grading and certification services within the region —
-                  efficiently, transparently, and proudly under Emirati leadership.&rdquo;
-                </p>
-              </CardContent>
-            </Card>
+            <p className="text-sm italic text-muted-foreground leading-relaxed px-1">
+              &ldquo;This marks a pivotal moment for collectors in the Middle East. For the first time,
+              collectors can access world-class grading and certification services within the region —
+              efficiently, transparently, and proudly under Emirati leadership.&rdquo;
+            </p>
           </div>
         </div>
       </section>
