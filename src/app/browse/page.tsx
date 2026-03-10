@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { SearchIcon, SlidersHorizontalIcon, XIcon } from '@/components/ui/icons';
+import { SearchIcon, SlidersHorizontalIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -17,6 +16,8 @@ import { CONDITIONS, FRANCHISES } from '@/lib/constants';
 type SortOption = 'newest' | 'price-asc' | 'price-desc' | 'popular';
 
 function FilterPanel({
+  selectedFranchises,
+  toggleFranchise,
   selectedCategories,
   toggleCategory,
   selectedConditions,
@@ -28,6 +29,8 @@ function FilterPanel({
   maxPrice,
   setMaxPrice,
 }: {
+  selectedFranchises: string[];
+  toggleFranchise: (slug: string) => void;
   selectedCategories: string[];
   toggleCategory: (id: string) => void;
   selectedConditions: string[];
@@ -41,6 +44,28 @@ function FilterPanel({
 }) {
   return (
     <div className="space-y-6">
+      {/* Franchise */}
+      <div>
+        <h3 className="font-semibold text-sm mb-3">Franchise</h3>
+        <div className="space-y-2">
+          {FRANCHISES.map((f) => (
+            <div key={f.slug} className="flex items-center gap-2">
+              <Checkbox
+                id={`fran-${f.slug}`}
+                checked={selectedFranchises.includes(f.slug)}
+                onCheckedChange={() => toggleFranchise(f.slug)}
+              />
+              <Label htmlFor={`fran-${f.slug}`} className="text-sm cursor-pointer">
+                {f.icon} {f.name}
+              </Label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
+
+      {/* Category */}
       <div>
         <h3 className="font-semibold text-sm mb-3">Category</h3>
         <div className="space-y-2">
@@ -61,6 +86,7 @@ function FilterPanel({
 
       <Separator />
 
+      {/* Condition */}
       <div>
         <h3 className="font-semibold text-sm mb-3">Condition</h3>
         <div className="space-y-2">
@@ -81,8 +107,9 @@ function FilterPanel({
 
       <Separator />
 
+      {/* Graded Only */}
       <div>
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2">
           <Checkbox
             id="graded-only"
             checked={gradedOnly}
@@ -96,6 +123,7 @@ function FilterPanel({
 
       <Separator />
 
+      {/* Price Range */}
       <div>
         <h3 className="font-semibold text-sm mb-3">Price Range</h3>
         <div className="flex items-center gap-2">
@@ -159,8 +187,7 @@ export default function BrowsePage() {
       items = items.filter((i) => i.category_id && selectedCategories.includes(i.category_id));
     if (selectedFranchises.length > 0)
       items = items.filter((i) => {
-        const franchise = FRANCHISES.find((f) => f.slug === i.franchise?.slug);
-        return franchise && selectedFranchises.includes(franchise.slug);
+        return i.franchise && selectedFranchises.includes(i.franchise.slug);
       });
     if (selectedConditions.length > 0)
       items = items.filter((i) => i.condition && selectedConditions.includes(i.condition));
@@ -203,6 +230,8 @@ export default function BrowsePage() {
 
   const filterPanel = (
     <FilterPanel
+      selectedFranchises={selectedFranchises}
+      toggleFranchise={toggleFranchise}
       selectedCategories={selectedCategories}
       toggleCategory={toggleCategory}
       selectedConditions={selectedConditions}
@@ -262,39 +291,17 @@ export default function BrowsePage() {
         </div>
       </div>
 
-      {/* Franchise quick-filter tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {FRANCHISES.map((f) => (
-          <button
-            key={f.slug}
-            onClick={() => toggleFranchise(f.slug)}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-              selectedFranchises.includes(f.slug)
-                ? 'bg-gold/10 border-gold/30 text-gold'
-                : 'bg-secondary/50 border-border text-muted-foreground hover:text-foreground hover:border-foreground/20'
-            }`}
-          >
-            <span>{f.icon}</span>
-            <span>{f.name}</span>
-            {selectedFranchises.includes(f.slug) && (
-              <XIcon className="h-3 w-3 ml-0.5" />
-            )}
-          </button>
-        ))}
-        {hasFilters && (
-          <button
-            onClick={clearAll}
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
-          >
-            Clear All
-          </button>
-        )}
-      </div>
-
       <div className="flex gap-8">
         {/* Desktop filter sidebar */}
         <aside className="hidden lg:block w-64 shrink-0">
-          <div className="sticky top-32">{filterPanel}</div>
+          <div className="sticky top-32">
+            {filterPanel}
+            {hasFilters && (
+              <Button variant="outline" size="sm" className="w-full mt-4" onClick={clearAll}>
+                Clear All Filters
+              </Button>
+            )}
+          </div>
         </aside>
 
         {/* Items grid */}

@@ -90,8 +90,9 @@ export const mockItems: Item[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     vendor: mockVendor,
+    franchise: mockFranchises[0],
     images: [
-      { id: 'img1', item_id: 'item1', url: '/placeholder-card.svg', alt_text: 'Charizard VMAX', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img1', item_id: 'item1', url: 'https://images.pokemontcg.io/swsh3/20_hires.png', alt_text: 'Charizard VMAX', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -124,8 +125,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 86400000).toISOString(),
     updated_at: new Date(Date.now() - 86400000).toISOString(),
     vendor: mockVendor,
+    franchise: mockFranchises[0],
     images: [
-      { id: 'img2', item_id: 'item2', url: '/placeholder-card.svg', alt_text: 'Pikachu VMAX', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img2', item_id: 'item2', url: 'https://images.pokemontcg.io/swsh4/44_hires.png', alt_text: 'Pikachu VMAX', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -158,8 +160,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 172800000).toISOString(),
     updated_at: new Date(Date.now() - 172800000).toISOString(),
     vendor: mockVendor2,
+    franchise: mockFranchises[1],
     images: [
-      { id: 'img3', item_id: 'item3', url: '/placeholder-card.svg', alt_text: 'Luffy Gear 5', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img3', item_id: 'item3', url: 'https://placehold.co/400x560/f02020/ffffff?text=Luffy+Gear+5', alt_text: 'Luffy Gear 5', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -192,8 +195,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 259200000).toISOString(),
     updated_at: new Date(Date.now() - 259200000).toISOString(),
     vendor: mockVendor2,
+    franchise: mockFranchises[2],
     images: [
-      { id: 'img4', item_id: 'item4', url: '/placeholder-card.svg', alt_text: 'Luka Doncic Prizm', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img4', item_id: 'item4', url: 'https://placehold.co/400x560/1a5276/ffffff?text=Luka+Prizm', alt_text: 'Luka Doncic Prizm', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -226,8 +230,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 345600000).toISOString(),
     updated_at: new Date(Date.now() - 345600000).toISOString(),
     vendor: mockVendor,
+    franchise: mockFranchises[5],
     images: [
-      { id: 'img5', item_id: 'item5', url: '/placeholder-card.svg', alt_text: 'Spider-Man Funko', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img5', item_id: 'item5', url: 'https://placehold.co/400x560/e74c3c/ffffff?text=Spider-Man+Funko', alt_text: 'Spider-Man Funko', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -260,8 +265,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 432000000).toISOString(),
     updated_at: new Date(Date.now() - 432000000).toISOString(),
     vendor: mockVendor2,
+    franchise: mockFranchises[0],
     images: [
-      { id: 'img6', item_id: 'item6', url: '/placeholder-card.svg', alt_text: 'Pokemon 151 Box', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img6', item_id: 'item6', url: 'https://placehold.co/400x560/ffcb05/1a1a2e?text=Pokemon+151+Box', alt_text: 'Pokemon 151 Box', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -294,8 +300,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 518400000).toISOString(),
     updated_at: new Date(Date.now() - 518400000).toISOString(),
     vendor: mockVendor,
+    franchise: mockFranchises[6],
     images: [
-      { id: 'img7', item_id: 'item7', url: '/placeholder-card.svg', alt_text: 'Goku Ultra Instinct', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img7', item_id: 'item7', url: 'https://placehold.co/400x560/f39c12/1a1a2e?text=Goku+UI+SCR', alt_text: 'Goku Ultra Instinct', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
   {
@@ -328,8 +335,9 @@ export const mockItems: Item[] = [
     created_at: new Date(Date.now() - 604800000).toISOString(),
     updated_at: new Date(Date.now() - 604800000).toISOString(),
     vendor: mockVendor2,
+    franchise: mockFranchises[7],
     images: [
-      { id: 'img8', item_id: 'item8', url: '/placeholder-card.svg', alt_text: 'Black Lotus', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
+      { id: 'img8', item_id: 'item8', url: 'https://placehold.co/400x560/2d3436/ffffff?text=Black+Lotus+MTG', alt_text: 'Black Lotus', sort_order: 0, is_primary: true, created_at: new Date().toISOString() },
     ],
   },
 ];

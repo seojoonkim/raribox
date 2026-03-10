@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeartIcon } from '@/components/ui/icons';
@@ -14,19 +15,30 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ item }: ItemCardProps) {
-  const primaryImage = item.images?.[0];
+  const primaryImage = item.images?.find((img) => img.is_primary) || item.images?.[0];
   const displayPrice = item.is_sale && item.sale_price ? item.sale_price : item.price;
+  const [imgError, setImgError] = useState(false);
 
   return (
     <Card className="group overflow-hidden border-border/50 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-gold/5">
       <Link href={`/item/${item.id}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-secondary/30">
-          <Image
-            src={primaryImage?.url || '/placeholder-card.svg'}
-            alt={primaryImage?.alt_text || item.title}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+          {primaryImage?.url && !imgError ? (
+            <Image
+              src={primaryImage.url}
+              alt={primaryImage.alt_text || item.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              onError={() => setImgError(true)}
+              unoptimized
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-secondary/50 to-secondary/30 flex items-center justify-center p-4">
+              <span className="text-sm font-medium text-muted-foreground text-center line-clamp-3">
+                {item.title}
+              </span>
+            </div>
+          )}
           {item.is_sale && (
             <Badge className="absolute top-2 left-2 bg-red-500 text-white border-none">
               SALE
