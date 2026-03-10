@@ -308,45 +308,85 @@ export function BrowseClient({ items }: { items: Item[] }) {
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <div>
-          <h1 className="text-2xl font-bold">Browse Collectibles</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            {filteredItems.length} items found
-          </p>
+      <div className="flex flex-col gap-3 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h1 className="text-2xl font-bold">Browse Collectibles</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              {filteredItems.length} items found
+            </p>
+          </div>
+          {/* Desktop: search inline */}
+          <div className="hidden sm:flex items-center gap-2">
+            <div className="relative w-64">
+              <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="Search items..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 h-9"
+              />
+            </div>
+            <Sheet>
+              <SheetTrigger
+                render={<Button variant="outline" size="sm" className="lg:hidden h-9" />}
+              >
+                <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80 overflow-y-auto">
+                <SheetTitle>Filters</SheetTitle>
+                <div className="mt-4">{filterPanel}</div>
+              </SheetContent>
+            </Sheet>
+            <Select value={sort} onValueChange={(v) => setSort(v as SortOption)}>
+              <SelectTrigger className="w-[160px] h-9">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">Newest First</SelectItem>
+                <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                <SelectItem value="popular">Most Popular</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="relative flex-1 sm:w-64">
+
+        {/* Mobile: search full-width, then filters+sort row */}
+        <div className="sm:hidden flex flex-col gap-2">
+          <div className="relative w-full">
             <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search items..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-9"
+              className="pl-10 h-9 w-full"
             />
           </div>
-          <Sheet>
-            <SheetTrigger
-              render={<Button variant="outline" size="sm" className="lg:hidden h-9" />}
-            >
-              <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
-            </SheetTrigger>
-            <SheetContent side="left" className="w-80 overflow-y-auto">
-              <SheetTitle>Filters</SheetTitle>
-              <div className="mt-4">{filterPanel}</div>
-            </SheetContent>
-          </Sheet>
-          <Select value={sort} onValueChange={(v) => setSort(v as SortOption)}>
-            <SelectTrigger className="w-[160px] h-9">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="newest">Newest First</SelectItem>
-              <SelectItem value="price-asc">Price: Low to High</SelectItem>
-              <SelectItem value="price-desc">Price: High to Low</SelectItem>
-              <SelectItem value="popular">Most Popular</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex gap-2">
+            <Sheet>
+              <SheetTrigger
+                render={<Button variant="outline" size="sm" className="h-9 flex-1" />}
+              >
+                <SlidersHorizontalIcon className="h-4 w-4 mr-2" /> Filters
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80 overflow-y-auto">
+                <SheetTitle>Filters</SheetTitle>
+                <div className="mt-4">{filterPanel}</div>
+              </SheetContent>
+            </Sheet>
+            <Select value={sort} onValueChange={(v) => setSort(v as SortOption)}>
+              <SelectTrigger className="flex-1 h-9">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">Newest First</SelectItem>
+                <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                <SelectItem value="popular">Most Popular</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 

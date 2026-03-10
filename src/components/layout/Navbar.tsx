@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet';
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuSeparator, DropdownMenuTrigger,
@@ -43,15 +43,17 @@ export function Navbar() {
             {/* Mobile menu */}
             <Sheet>
               <SheetTrigger
-                render={<Button variant="ghost" size="icon" className="md:hidden text-muted-foreground hover:text-foreground" />}
+                render={<Button variant="ghost" size="icon" className="md:hidden h-10 w-10 text-muted-foreground hover:text-foreground" />}
               >
-                <MenuIcon className="h-5 w-5" />
+                <MenuIcon className="h-6 w-6" />
               </SheetTrigger>
               <SheetContent side="left" className="w-72 bg-[#0F1320] border-white/[0.06]">
-                <SheetTitle>
-                  <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain invert" />
+                <SheetTitle className="px-5 pt-5 pb-0">
+                  <SheetClose render={<Link href="/" />}>
+                    <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-7 w-auto object-contain invert" />
+                  </SheetClose>
                 </SheetTitle>
-                <nav className="mt-6 flex flex-col gap-1">
+                <nav className="mt-6 flex flex-col gap-1 px-2">
                   {NAV_ITEMS.map((item) => (
                     <Link
                       key={item.href}
