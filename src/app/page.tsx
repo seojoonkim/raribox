@@ -19,6 +19,10 @@ export default async function HomePage() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0A0D14] via-[#1A1040] to-[#0A0D14]">
+        {/* HIT logo watermark */}
+        <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
+          <img src="/hit-logo.svg" alt="" className="w-[480px] opacity-[0.06]" />
+        </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 md:py-28">
           <div className="max-w-2xl relative z-10">
             <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20">
@@ -86,7 +90,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {featuredItems.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -103,7 +107,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {newArrivals.slice(0, 8).map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -122,7 +126,7 @@ export default async function HomePage() {
               View All <ArrowRightIcon className="h-3 w-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {saleItems.map((item) => (
               <ItemCard key={item.id} item={item} />
             ))}
