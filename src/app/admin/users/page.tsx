@@ -1,46 +1,63 @@
-'use client';
-
-import { useState } from 'react';
-import { BanIcon, CheckCircle2Icon } from '@/components/ui/icons';
-import { Button } from '@/components/ui/button';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { toast } from 'sonner';
+import UserActions from './user-actions';
 
-interface AdminUser {
+interface DisplayUser {
   id: string;
-  name: string;
   email: string;
+  name: string;
   role: string;
   status: string;
-  joined: string;
+  created_at: string;
 }
 
-export default function AdminUsers() {
-  const [users, setUsers] = useState<AdminUser[]>([
-    { id: '1', name: 'Ahmed K.', email: 'ahmed@example.com', role: 'buyer', status: 'active', joined: '2024-01-15' },
-    { id: '2', name: 'Sarah M.', email: 'sarah@example.com', role: 'buyer', status: 'active', joined: '2024-02-20' },
-    { id: '3', name: 'CardMaster Admin', email: 'card@master.ae', role: 'vendor', status: 'active', joined: '2024-01-10' },
-    { id: '4', name: 'Rarity Vault', email: 'info@rarityvault.com', role: 'vendor', status: 'active', joined: '2023-06-20' },
-    { id: '5', name: 'System Admin', email: 'admin@raribox.com', role: 'admin', status: 'active', joined: '2023-01-01' },
-  ]);
+async function getUsers(): Promise<DisplayUser[]> {
+  const supabase = createAdminClient();
 
-  const toggleStatus = (id: string) => {
-    setUsers(users.map((u) =>
-      u.id === id ? { ...u, status: u.status === 'active' ? 'suspended' : 'active' } : u
-    ));
-    toast.success('User status updated');
-  };
+  // Try public.users first
+  const { data: publicUsers, error } = await supabase
+    .from('users')
+    .select('*')
+    .order('created_at', { ascending: false });
 
-  const roleBadge = (role: string) => {
-    const colors: Record<string, string> = {
-      admin: 'bg-primary/10 text-primary',
-      vendor: 'bg-blue-500/10 text-blue-500',
-      buyer: 'bg-secondary text-muted-foreground',
-    };
-    return <Badge className={colors[role] || ''}>{role}</Badge>;
+  if (!error && publicUsers && publicUsers.length > 0) {
+    return publicUsers.map((u) => ({
+      id: u.id,
+      email: u.email ?? '',
+      name: u.name ?? u.email ?? '',
+      role: u.role ?? 'buyer',
+      status: u.status ?? 'active',
+      created_at: u.created_at,
+    }));
+  }
+
+  // Fallback to auth.users
+  const { data: authData } = await supabase.auth.admin.listUsers({ perPage: 100 });
+  if (!authData?.users) return [];
+
+  return authData.users.map((u) => ({
+    id: u.id,
+    email: u.email ?? '',
+    name: (u.user_metadata?.name as string) ?? u.email ?? '',
+    role: (u.user_metadata?.role as string) ?? 'buyer',
+    status: (u as unknown as { banned_at?: string }).banned_at ? 'banned' : 'active',
+    created_at: u.created_at,
+  }));
+}
+
+function roleBadge(role: string) {
+  const colors: Record<string, string> = {
+    admin: 'bg-primary/10 text-primary',
+    vendor: 'bg-blue-500/10 text-blue-500',
+    buyer: 'bg-secondary text-muted-foreground',
   };
+  return <Badge className={colors[role] || ''}>{role}</Badge>;
+}
+
+export default async function AdminUsers() {
+  const users = await getUsers();
 
   return (
     <div className="space-y-6">
@@ -59,33 +76,34 @@ export default function AdminUsers() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {users.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>
-                    <p className="font-medium text-sm">{user.name}</p>
-                    <p className="text-xs text-muted-foreground">{user.email}</p>
-                  </TableCell>
-                  <TableCell>{roleBadge(user.role)}</TableCell>
-                  <TableCell>
-                    <Badge className={user.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}>
-                      {user.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{user.joined}</TableCell>
-                  <TableCell className="text-right">
-                    {user.role !== 'admin' && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className={`h-8 w-8 ${user.status === 'active' ? 'text-red-500' : 'text-green-500'}`}
-                        onClick={() => toggleStatus(user.id)}
-                      >
-                        {user.status === 'active' ? <BanIcon className="h-4 w-4" /> : <CheckCircle2Icon className="h-4 w-4" />}
-                      </Button>
-                    )}
+              {users.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                    No users found
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                users.map((user) => (
+                  <TableRow key={user.id}>
+                    <TableCell>
+                      <p className="font-medium text-sm">{user.name}</p>
+                      <p className="text-xs text-muted-foreground">{user.email}</p>
+                    </TableCell>
+                    <TableCell>{roleBadge(user.role)}</TableCell>
+                    <TableCell>
+                      <Badge className={user.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}>
+                        {user.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-sm text-muted-foreground">
+                      {new Date(user.created_at).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <UserActions id={user.id} role={user.role} status={user.status} />
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

@@ -1,35 +1,35 @@
-'use client';
-
-import { useState } from 'react';
-import { CheckCircle2Icon, XCircleIcon, EyeIcon } from '@/components/ui/icons';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { mockItems } from '@/lib/mock-data';
 import { formatPrice } from '@/lib/constants';
-import { toast } from 'sonner';
+import ProductActions from './product-actions';
 
-export default function AdminProducts() {
-  const [products, setProducts] = useState(
-    mockItems.map((item) => ({ ...item }))
-  );
+async function getProducts() {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from('items')
+    .select('*, vendor:vendors(shop_name)')
+    .order('created_at', { ascending: false });
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
 
-  const toggleStatus = (id: string) => {
-    setProducts(
-      products.map((p) =>
-        p.id === id
-          ? { ...p, status: p.status === 'active' ? 'inactive' as const : 'active' as const }
-          : p
-      )
-    );
-    toast.success('Product status updated');
-  };
+export default async function AdminProducts() {
+  const products = await getProducts();
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold">Product Management ({products.length})</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold">Product Management ({products.length})</h2>
+        <Link
+          href="/admin/products/new"
+          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          Add Product
+        </Link>
+      </div>
 
       <Card>
         <CardContent className="p-0">
@@ -39,47 +39,39 @@ export default function AdminProducts() {
                 <TableHead>Product</TableHead>
                 <TableHead>Vendor</TableHead>
                 <TableHead>Price</TableHead>
+                <TableHead>Stock</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <p className="font-medium text-sm line-clamp-1">{product.title}</p>
-                    <p className="text-xs text-muted-foreground">{product.set_name}</p>
-                  </TableCell>
-                  <TableCell className="text-sm">{product.vendor?.shop_name}</TableCell>
-                  <TableCell className="font-medium">{formatPrice(product.price)}</TableCell>
-                  <TableCell>
-                    <Badge variant={product.status === 'active' ? 'default' : 'secondary'}>
-                      {product.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-1">
-                      <Link href={`/item/${product.id}`}>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <EyeIcon className="h-4 w-4" />
-                        </Button>
-                      </Link>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className={`h-8 w-8 ${product.status === 'active' ? 'text-red-500' : 'text-green-500'}`}
-                        onClick={() => toggleStatus(product.id)}
-                      >
-                        {product.status === 'active' ? (
-                          <XCircleIcon className="h-4 w-4" />
-                        ) : (
-                          <CheckCircle2Icon className="h-4 w-4" />
-                        )}
-                      </Button>
-                    </div>
+              {products.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
+                    No products found
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                products.map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell>
+                      <p className="font-medium text-sm line-clamp-1">{product.title}</p>
+                      <p className="text-xs text-muted-foreground">{product.set_name || '—'}</p>
+                    </TableCell>
+                    <TableCell className="text-sm">{product.vendor?.shop_name || '—'}</TableCell>
+                    <TableCell className="font-medium">{formatPrice(product.price, product.currency)}</TableCell>
+                    <TableCell>{product.stock}</TableCell>
+                    <TableCell>
+                      <Badge variant={product.status === 'active' ? 'default' : 'secondary'}>
+                        {product.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <ProductActions id={product.id} status={product.status} />
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

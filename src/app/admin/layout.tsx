@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboardIcon, UsersIcon, StoreIcon, PackageIcon, ShoppingCartIcon, ShieldIcon } from '@/components/ui/icons';
+import { adminLogout } from './actions';
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboardIcon },
@@ -15,11 +16,25 @@ const navItems = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-8">
-      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <ShieldIcon className="h-6 w-6 text-primary" /> Admin Panel
-      </h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <ShieldIcon className="h-6 w-6 text-primary" /> Admin Panel
+        </h1>
+        <form action={adminLogout}>
+          <button
+            type="submit"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Logout
+          </button>
+        </form>
+      </div>
 
       <div className="flex gap-8">
         <aside className="hidden md:block w-48 shrink-0">
