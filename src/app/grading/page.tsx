@@ -53,7 +53,7 @@ export default function GradingPage() {
           <div className="flex flex-col md:flex-row md:items-center gap-10">
             <div className="flex-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hit-logo.svg" alt="HiT GCC" className="h-12 mb-6" />
+              <img src="/hit-logo.svg" alt="HiT GCC" className="h-24 mb-6" />
               <h1 className="text-3xl md:text-4xl font-extrabold leading-tight mb-3">
                 The GCC&apos;s Own<br />
                 <span className="text-primary">Grading Authority</span>
