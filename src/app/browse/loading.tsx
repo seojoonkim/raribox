@@ -15,7 +15,7 @@ export default function BrowseLoading() {
         {/* Grid skeleton */}
         <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="rounded-xl overflow-hidden bg-[#131929] border border-white/[0.06] animate-pulse">
+            <div key={i} className="rounded-xl overflow-hidden bg-[#151B2B] border border-white/[0.06] animate-pulse">
               <div className="aspect-[3/4] bg-white/[0.06]" />
               <div className="p-3 space-y-2">
                 <div className="h-3 bg-white/[0.06] rounded w-3/4" />

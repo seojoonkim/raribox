@@ -168,21 +168,21 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
 
   // ── One Piece 15개 ────────────────────────────────────────────────────────
   const opCards = [
-    { title: 'Monkey D. Luffy OP01-001 NM', price: 80, card_number: 'OP01-001', condition: 'NM' },
-    { title: 'Roronoa Zoro Alt Art NM', price: 120, card_number: 'OP01-002', condition: 'NM' },
-    { title: 'Nami OP01-016 LP', price: 15, card_number: 'OP01-016', condition: 'LP' },
-    { title: 'Shanks Secret Rare NM', price: 200, card_number: 'OP01-118', condition: 'NM' },
-    { title: 'Trafalgar Law OP02-093 NM', price: 45, card_number: 'OP02-093', condition: 'NM' },
-    { title: 'Boa Hancock OP03-040 NM', price: 35, card_number: 'OP03-040', condition: 'NM' },
-    { title: 'Whitebeard OP02-115 NM', price: 90, card_number: 'OP02-115', condition: 'NM' },
-    { title: 'Portgas D. Ace OP04-018 NM', price: 55, card_number: 'OP04-018', condition: 'NM' },
-    { title: 'Yamato OP03-121 Alt Art NM', price: 150, card_number: 'OP03-121', condition: 'NM' },
-    { title: 'Kaido OP04-058 NM', price: 60, card_number: 'OP04-058', condition: 'NM' },
-    { title: 'Big Mom OP02-099 LP', price: 25, card_number: 'OP02-099', condition: 'LP' },
-    { title: 'Sanji OP01-013 NM', price: 20, card_number: 'OP01-013', condition: 'NM' },
-    { title: 'Chopper OP01-017 NM', price: 12, card_number: 'OP01-017', condition: 'NM' },
-    { title: 'Robin OP01-021 NM', price: 18, card_number: 'OP01-021', condition: 'NM' },
-    { title: 'Luffy Gear 5 OP05-119 NM', price: 180, card_number: 'OP05-119', condition: 'NM' },
+    { title: 'Monkey D. Luffy OP01-001 NM', price: 80, card_number: 'OP01-001', condition: 'NM', img: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=560&fit=crop&q=80' },
+    { title: 'Roronoa Zoro Alt Art NM', price: 120, card_number: 'OP01-002', condition: 'NM', img: 'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?w=400&h=560&fit=crop&q=80' },
+    { title: 'Nami OP01-016 LP', price: 15, card_number: 'OP01-016', condition: 'LP', img: 'https://images.unsplash.com/photo-1607604276583-3296e4183ab2?w=400&h=560&fit=crop&q=80' },
+    { title: 'Shanks Secret Rare NM', price: 200, card_number: 'OP01-118', condition: 'NM', img: 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?w=400&h=560&fit=crop&q=80' },
+    { title: 'Trafalgar Law OP02-093 NM', price: 45, card_number: 'OP02-093', condition: 'NM', img: 'https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?w=400&h=560&fit=crop&q=80' },
+    { title: 'Boa Hancock OP03-040 NM', price: 35, card_number: 'OP03-040', condition: 'NM', img: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=560&fit=crop&q=80' },
+    { title: 'Whitebeard OP02-115 NM', price: 90, card_number: 'OP02-115', condition: 'NM', img: 'https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=400&h=560&fit=crop&q=80' },
+    { title: 'Portgas D. Ace OP04-018 NM', price: 55, card_number: 'OP04-018', condition: 'NM', img: 'https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=400&h=560&fit=crop&q=80' },
+    { title: 'Yamato OP03-121 Alt Art NM', price: 150, card_number: 'OP03-121', condition: 'NM', img: 'https://images.unsplash.com/photo-1611457194403-d3f8c773a4c2?w=400&h=560&fit=crop&q=80' },
+    { title: 'Kaido OP04-058 NM', price: 60, card_number: 'OP04-058', condition: 'NM', img: 'https://images.unsplash.com/photo-1620336655055-088d06e36bf0?w=400&h=560&fit=crop&q=80' },
+    { title: 'Big Mom OP02-099 LP', price: 25, card_number: 'OP02-099', condition: 'LP', img: 'https://images.unsplash.com/photo-1606663889134-b1dedb5ed8b7?w=400&h=560&fit=crop&q=80' },
+    { title: 'Sanji OP01-013 NM', price: 20, card_number: 'OP01-013', condition: 'NM', img: 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&h=560&fit=crop&q=80' },
+    { title: 'Chopper OP01-017 NM', price: 12, card_number: 'OP01-017', condition: 'NM', img: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=560&fit=crop&q=80' },
+    { title: 'Robin OP01-021 NM', price: 18, card_number: 'OP01-021', condition: 'NM', img: 'https://images.unsplash.com/photo-1615672968435-95cb44e4a14a?w=400&h=560&fit=crop&q=80' },
+    { title: 'Luffy Gear 5 OP05-119 NM', price: 180, card_number: 'OP05-119', condition: 'NM', img: 'https://images.unsplash.com/photo-1609902726285-00668009f004?w=400&h=560&fit=crop&q=80' },
   ]
 
   opCards.forEach((c, i) => {
@@ -201,27 +201,27 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
       is_graded: false,
       status: 'active',
       stock: Math.floor(Math.random() * 3) + 1,
-      _img: `https://placehold.co/400x560/1a1a2e/ffffff?text=${encodeURIComponent(c.title.substring(0, 20))}`,
+      _img: c.img,
     })
   })
 
   // ── Sports Cards 15개 ─────────────────────────────────────────────────────
   const sportsCards = [
-    { title: 'LeBron James 2003 Topps Chrome Rookie PSA 9', price: 800, condition: 'NM', is_graded: true, grade_company: 'PSA', grade_score: 9 },
-    { title: 'Kobe Bryant 1996 Topps Chrome Rookie SP', price: 450, condition: 'LP' },
-    { title: 'Stephen Curry 2009 Panini Prizm NM', price: 90, condition: 'NM' },
-    { title: 'Michael Jordan 1986 Fleer Rookie NM', price: 1200, condition: 'NM' },
-    { title: 'Luka Doncic 2018 Panini Prizm Silver NM', price: 200, condition: 'NM' },
-    { title: 'Tom Brady 2000 Bowman Chrome Rookie LP', price: 350, condition: 'LP' },
-    { title: 'Patrick Mahomes 2017 Panini Prizm PSA 10', price: 500, condition: 'NM', is_graded: true, grade_company: 'PSA', grade_score: 10 },
-    { title: 'Shohei Ohtani 2018 Topps Chrome Rookie NM', price: 280, condition: 'NM' },
-    { title: 'Mike Trout 2011 Topps Update Rookie NM', price: 150, condition: 'NM' },
-    { title: 'Giannis Antetokounmpo 2013 Panini NM', price: 75, condition: 'NM' },
-    { title: 'Ja Morant 2019 Panini Prizm NM', price: 65, condition: 'NM' },
-    { title: 'Zion Williamson 2019 Panini Prizm NM', price: 55, condition: 'NM' },
-    { title: 'Wayne Gretzky 1979 OPC Rookie LP', price: 600, condition: 'LP' },
-    { title: 'Lionel Messi 2004 Panini Mega Cracks LP', price: 400, condition: 'LP' },
-    { title: 'Cristiano Ronaldo 2004 Panini NM', price: 350, condition: 'NM' },
+    { title: 'LeBron James 2003 Topps Chrome Rookie PSA 9', price: 800, condition: 'NM', is_graded: true, grade_company: 'PSA', grade_score: 9, img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=560&fit=crop&q=80' },
+    { title: 'Kobe Bryant 1996 Topps Chrome Rookie SP', price: 450, condition: 'LP', img: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=400&h=560&fit=crop&q=80' },
+    { title: 'Stephen Curry 2009 Panini Prizm NM', price: 90, condition: 'NM', img: 'https://images.unsplash.com/photo-1627627256672-027a4613d028?w=400&h=560&fit=crop&q=80' },
+    { title: 'Michael Jordan 1986 Fleer Rookie NM', price: 1200, condition: 'NM', img: 'https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=560&fit=crop&q=80' },
+    { title: 'Luka Doncic 2018 Panini Prizm Silver NM', price: 200, condition: 'NM', img: 'https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=400&h=560&fit=crop&q=80' },
+    { title: 'Tom Brady 2000 Bowman Chrome Rookie LP', price: 350, condition: 'LP', img: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=560&fit=crop&q=80' },
+    { title: 'Patrick Mahomes 2017 Panini Prizm PSA 10', price: 500, condition: 'NM', is_graded: true, grade_company: 'PSA', grade_score: 10, img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&h=560&fit=crop&q=80' },
+    { title: 'Shohei Ohtani 2018 Topps Chrome Rookie NM', price: 280, condition: 'NM', img: 'https://images.unsplash.com/photo-1578432156438-fb7c3b3b9e9e?w=400&h=560&fit=crop&q=80' },
+    { title: 'Mike Trout 2011 Topps Update Rookie NM', price: 150, condition: 'NM', img: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=560&fit=crop&q=80' },
+    { title: 'Giannis Antetokounmpo 2013 Panini NM', price: 75, condition: 'NM', img: 'https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=400&h=560&fit=crop&q=80' },
+    { title: 'Ja Morant 2019 Panini Prizm NM', price: 65, condition: 'NM', img: 'https://images.unsplash.com/photo-1559692048-79a3f837883d?w=400&h=560&fit=crop&q=80' },
+    { title: 'Zion Williamson 2019 Panini Prizm NM', price: 55, condition: 'NM', img: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=400&h=560&fit=crop&q=80' },
+    { title: 'Wayne Gretzky 1979 OPC Rookie LP', price: 600, condition: 'LP', img: 'https://images.unsplash.com/photo-1580748142767-f6118d898af1?w=400&h=560&fit=crop&q=80' },
+    { title: 'Lionel Messi 2004 Panini Mega Cracks LP', price: 400, condition: 'LP', img: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=560&fit=crop&q=80' },
+    { title: 'Cristiano Ronaldo 2004 Panini NM', price: 350, condition: 'NM', img: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=400&h=560&fit=crop&q=80' },
   ]
 
   sportsCards.forEach((c, i) => {
@@ -242,27 +242,27 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
       status: 'active',
       stock: 1,
       is_featured: i < 3,
-      _img: `https://placehold.co/400x560/0f4c75/ffffff?text=${encodeURIComponent(c.title.substring(0, 20))}`,
+      _img: c.img,
     })
   })
 
   // ── Funko Pop 15개 ────────────────────────────────────────────────────────
   const funkos = [
-    { title: 'Spider-Man #03 Funko Pop NM', price: 25 },
-    { title: 'Iron Man Metallic #66 NM', price: 45 },
-    { title: 'Venom Chase #363 NM', price: 80 },
-    { title: 'Thanos Infinity Gauntlet #289 NM', price: 35 },
-    { title: 'Batman Black Chrome #01 NM', price: 55 },
-    { title: 'Goku Super Saiyan #14 NM', price: 40 },
-    { title: 'Naruto Running #823 NM', price: 30 },
-    { title: 'Darth Vader #01 NM', price: 60 },
-    { title: 'Grogu The Child #369 NM', price: 20 },
-    { title: 'Captain America #07 NM', price: 28 },
-    { title: 'Deadpool with Unicorn #320 NM', price: 45 },
-    { title: 'Wolverine Retro #526 NM', price: 35 },
-    { title: 'Pikachu Sitting #553 NM', price: 22 },
-    { title: 'Luffy Gear 4 #1263 NM', price: 38 },
-    { title: 'Saitama One Punch #096 NM', price: 50 },
+    { title: 'Spider-Man #03 Funko Pop NM', price: 25, img: 'https://images.unsplash.com/photo-1608278047522-58806a6fd6a5?w=400&h=400&fit=crop&q=80' },
+    { title: 'Iron Man Metallic #66 NM', price: 45, img: 'https://images.unsplash.com/photo-1559535332-db9971090158?w=400&h=400&fit=crop&q=80' },
+    { title: 'Venom Chase #363 NM', price: 80, img: 'https://images.unsplash.com/photo-1611604548018-d56bbd85d681?w=400&h=400&fit=crop&q=80' },
+    { title: 'Thanos Infinity Gauntlet #289 NM', price: 35, img: 'https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=400&h=400&fit=crop&q=80' },
+    { title: 'Batman Black Chrome #01 NM', price: 55, img: 'https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=400&h=400&fit=crop&q=80' },
+    { title: 'Goku Super Saiyan #14 NM', price: 40, img: 'https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?w=400&h=400&fit=crop&q=80' },
+    { title: 'Naruto Running #823 NM', price: 30, img: 'https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=400&h=400&fit=crop&q=80' },
+    { title: 'Darth Vader #01 NM', price: 60, img: 'https://images.unsplash.com/photo-1608889825103-eb5ed706fc19?w=400&h=400&fit=crop&q=80' },
+    { title: 'Grogu The Child #369 NM', price: 20, img: 'https://images.unsplash.com/photo-1585083685977-2e2210d3c1ff?w=400&h=400&fit=crop&q=80' },
+    { title: 'Captain America #07 NM', price: 28, img: 'https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=400&h=400&fit=crop&q=80' },
+    { title: 'Deadpool with Unicorn #320 NM', price: 45, img: 'https://images.unsplash.com/photo-1620336655055-088d06e36bf0?w=400&h=400&fit=crop&q=80' },
+    { title: 'Wolverine Retro #526 NM', price: 35, img: 'https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=400&h=400&fit=crop&q=80' },
+    { title: 'Pikachu Sitting #553 NM', price: 22, img: 'https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?w=400&h=400&fit=crop&q=80' },
+    { title: 'Luffy Gear 4 #1263 NM', price: 38, img: 'https://images.unsplash.com/photo-1609902726285-00668009f004?w=400&h=400&fit=crop&q=80' },
+    { title: 'Saitama One Punch #096 NM', price: 50, img: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop&q=80' },
   ]
 
   funkos.forEach((c, i) => {
@@ -279,7 +279,7 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
       is_graded: false,
       status: 'active',
       stock: Math.floor(Math.random() * 5) + 1,
-      _img: `https://placehold.co/400x400/6a0572/ffffff?text=${encodeURIComponent(c.title.substring(0, 20))}`,
+      _img: c.img,
     })
   })
 
@@ -287,18 +287,18 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
   const gradedCards = [
     { title: 'Charizard Base Set CGC 8 Blue Label', price: 320, grade_company: 'CGC', grade_score: 8, franchise: pokemon, card_number: '4/102', img: 'https://images.pokemontcg.io/base1/4_hires.png' },
     { title: 'Pikachu Illustrator PSA 7', price: 2500, grade_company: 'PSA', grade_score: 7, franchise: pokemon, img: 'https://images.pokemontcg.io/base1/58_hires.png' },
-    { title: 'Black Lotus MTG PSA 6', price: 5000, grade_company: 'PSA', grade_score: 6, franchise: franchiseMap['mtg'] },
+    { title: 'Black Lotus MTG PSA 6', price: 5000, grade_company: 'PSA', grade_score: 6, franchise: franchiseMap['mtg'], img: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400&h=560&fit=crop&q=80' },
     { title: 'Charizard 1st Edition Base PSA 9', price: 1800, grade_company: 'PSA', grade_score: 9, franchise: pokemon, card_number: '4/102', img: 'https://images.pokemontcg.io/base1/4_hires.png' },
     { title: 'Umbreon 151 PSA 10', price: 280, grade_company: 'PSA', grade_score: 10, franchise: pokemon, img: 'https://images.pokemontcg.io/sv3pt5/95_hires.png' },
     { title: 'Charizard ex SV PSA 10', price: 120, grade_company: 'PSA', grade_score: 10, franchise: pokemon, img: 'https://images.pokemontcg.io/sv1/6_hires.png' },
-    { title: 'LeBron James Topps Chrome Rookie CGC 9', price: 700, grade_company: 'CGC', grade_score: 9, franchise: sports },
-    { title: 'Michael Jordan Fleer 86 CGC 8', price: 900, grade_company: 'CGC', grade_score: 8, franchise: sports },
-    { title: 'Luffy OP01-001 PSA 10', price: 350, grade_company: 'PSA', grade_score: 10, franchise: onePiece },
-    { title: 'Shanks OP01-118 PSA 9', price: 180, grade_company: 'PSA', grade_score: 9, franchise: onePiece },
+    { title: 'LeBron James Topps Chrome Rookie CGC 9', price: 700, grade_company: 'CGC', grade_score: 9, franchise: sports, img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=560&fit=crop&q=80' },
+    { title: 'Michael Jordan Fleer 86 CGC 8', price: 900, grade_company: 'CGC', grade_score: 8, franchise: sports, img: 'https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=560&fit=crop&q=80' },
+    { title: 'Luffy OP01-001 PSA 10', price: 350, grade_company: 'PSA', grade_score: 10, franchise: onePiece, img: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=560&fit=crop&q=80' },
+    { title: 'Shanks OP01-118 PSA 9', price: 180, grade_company: 'PSA', grade_score: 9, franchise: onePiece, img: 'https://images.unsplash.com/photo-1614583225154-5fcdda07019e?w=400&h=560&fit=crop&q=80' },
     { title: 'Mewtwo Base 2 CGC 9', price: 140, grade_company: 'CGC', grade_score: 9, franchise: pokemon, img: 'https://images.pokemontcg.io/base1/10_hires.png' },
     { title: 'Blastoise Shadowless PSA 8', price: 200, grade_company: 'PSA', grade_score: 8, franchise: pokemon, img: 'https://images.pokemontcg.io/base1/2_hires.png' },
-    { title: 'Tom Brady Bowman Rookie CGC 8.5', price: 280, grade_company: 'CGC', grade_score: 8.5, franchise: sports },
-    { title: 'Messi 2004 Panini CGC 7', price: 300, grade_company: 'CGC', grade_score: 7, franchise: sports },
+    { title: 'Tom Brady Bowman Rookie CGC 8.5', price: 280, grade_company: 'CGC', grade_score: 8.5, franchise: sports, img: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=560&fit=crop&q=80' },
+    { title: 'Messi 2004 Panini CGC 7', price: 300, grade_company: 'CGC', grade_score: 7, franchise: sports, img: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=560&fit=crop&q=80' },
     { title: 'Rayquaza Gold Star PSA 9', price: 650, grade_company: 'PSA', grade_score: 9, franchise: pokemon, img: 'https://images.pokemontcg.io/ex7/107_hires.png' },
   ]
 
@@ -320,27 +320,27 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
       status: 'active',
       stock: 1,
       is_featured: i < 4,
-      _img: c.img || `https://placehold.co/400x560/1a1a2e/ffffff?text=${encodeURIComponent(c.grade_company)}+${c.grade_score}`,
+      _img: c.img || `https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=400&h=560&fit=crop&q=80`,
     })
   })
 
   // ── Watches & Figures 15개 ────────────────────────────────────────────────
   const collectibles = [
-    { title: 'Rolex Submariner 116610LN 2020', price: 12000, category: watches },
-    { title: 'Rolex Datejust 41 126334 NM', price: 9500, category: watches },
-    { title: 'Audemars Piguet Royal Oak 15500ST', price: 35000, category: watches },
-    { title: 'Patek Philippe Nautilus 5711 LP', price: 80000, category: watches },
-    { title: 'IWC Pilot Mark XVIII NM', price: 3200, category: watches },
-    { title: 'Omega Speedmaster Professional Moonwatch', price: 4500, category: watches },
-    { title: 'Seiko Prospex Diver SBDC101 NM', price: 650, category: watches },
-    { title: 'G-Shock DW-5600 Black NM', price: 80, category: watches },
-    { title: 'MG Unicorn Gundam Ver Ka NM', price: 150, category: figures },
-    { title: 'PG Evangelion Unit-01 NM', price: 280, category: figures },
-    { title: 'S.H. Figuarts Goku Ultra Instinct NM', price: 95, category: figures },
-    { title: 'Nendoroid Rem Re:Zero NM', price: 65, category: figures },
-    { title: 'First 4 Figures Samus Aran Exclusive NM', price: 450, category: figures },
-    { title: 'Revoltech Amazing Yamaguchi Spider-Man NM', price: 75, category: figures },
-    { title: 'ARTFX+ Darth Vader 1/10 NM', price: 120, category: figures },
+    { title: 'Rolex Submariner 116610LN 2020', price: 12000, category: watches, img: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=400&fit=crop&q=80' },
+    { title: 'Rolex Datejust 41 126334 NM', price: 9500, category: watches, img: 'https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=400&h=400&fit=crop&q=80' },
+    { title: 'Audemars Piguet Royal Oak 15500ST', price: 35000, category: watches, img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&h=400&fit=crop&q=80' },
+    { title: 'Patek Philippe Nautilus 5711 LP', price: 80000, category: watches, img: 'https://images.unsplash.com/photo-1587925358603-c2eea5305bbc?w=400&h=400&fit=crop&q=80' },
+    { title: 'IWC Pilot Mark XVIII NM', price: 3200, category: watches, img: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=400&h=400&fit=crop&q=80' },
+    { title: 'Omega Speedmaster Professional Moonwatch', price: 4500, category: watches, img: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=400&h=400&fit=crop&q=80' },
+    { title: 'Seiko Prospex Diver SBDC101 NM', price: 650, category: watches, img: 'https://images.unsplash.com/photo-1509941943102-10c232535736?w=400&h=400&fit=crop&q=80' },
+    { title: 'G-Shock DW-5600 Black NM', price: 80, category: watches, img: 'https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400&h=400&fit=crop&q=80' },
+    { title: 'MG Unicorn Gundam Ver Ka NM', price: 150, category: figures, img: 'https://images.unsplash.com/photo-1608278047522-58806a6fd6a5?w=400&h=400&fit=crop&q=80' },
+    { title: 'PG Evangelion Unit-01 NM', price: 280, category: figures, img: 'https://images.unsplash.com/photo-1559535332-db9971090158?w=400&h=400&fit=crop&q=80' },
+    { title: 'S.H. Figuarts Goku Ultra Instinct NM', price: 95, category: figures, img: 'https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?w=400&h=400&fit=crop&q=80' },
+    { title: 'Nendoroid Rem Re:Zero NM', price: 65, category: figures, img: 'https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?w=400&h=400&fit=crop&q=80' },
+    { title: 'First 4 Figures Samus Aran Exclusive NM', price: 450, category: figures, img: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=400&fit=crop&q=80' },
+    { title: 'Revoltech Amazing Yamaguchi Spider-Man NM', price: 75, category: figures, img: 'https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=400&h=400&fit=crop&q=80' },
+    { title: 'ARTFX+ Darth Vader 1/10 NM', price: 120, category: figures, img: 'https://images.unsplash.com/photo-1608889825103-eb5ed706fc19?w=400&h=400&fit=crop&q=80' },
   ]
 
   collectibles.forEach((c, i) => {
@@ -357,7 +357,7 @@ function buildItems(vendorId, franchiseMap, categoryMap) {
       is_graded: false,
       status: 'active',
       stock: 1,
-      _img: `https://placehold.co/400x400/2d3436/ffffff?text=${encodeURIComponent(c.title.substring(0, 20))}`,
+      _img: c.img,
     })
   })
 

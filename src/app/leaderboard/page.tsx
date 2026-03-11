@@ -24,8 +24,8 @@ function getRankDisplay(rank: number) {
 
 function getTopCardStyle(rank: number) {
   if (rank === 1) return 'border-primary/40 bg-primary/5 shadow-lg shadow-primary/10';
-  if (rank === 2) return 'border-white/10 bg-[#131929]';
-  return 'border-white/10 bg-[#131929]';
+  if (rank === 2) return 'border-white/10 bg-[#151B2B]';
+  return 'border-white/10 bg-[#151B2B]';
 }
 
 export default function LeaderboardPage() {
@@ -42,7 +42,7 @@ export default function LeaderboardPage() {
 
 
       {/* Full table */}
-      <Card className="rounded-xl bg-[#131929] border-white/[0.06]">
+      <Card className="rounded-xl bg-[#151B2B] border-white/[0.06]">
         <CardContent className="p-0">
           <Table>
             <TableHeader>

@@ -139,7 +139,7 @@ export default function PacksPage() {
       {loading && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="rounded-xl bg-[#161B2E] overflow-hidden animate-pulse">
+            <div key={i} className="rounded-xl bg-[#181D30] overflow-hidden animate-pulse">
               <div className="aspect-square" />
               <div className="p-4 space-y-2">
                 <div className="h-4 bg-white/[0.06] rounded" />

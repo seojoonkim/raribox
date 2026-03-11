@@ -81,7 +81,7 @@ export function PriceChart({ basePrice }: PriceChartProps) {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#131929',
+                  backgroundColor: '#151B2B',
                   border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '8px',
                   fontSize: '12px',

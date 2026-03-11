@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <div className="sticky top-0 z-50">
       {/* Header */}
-      <header className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
+      <header className="border-b border-white/[0.06] bg-[#111622]/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-3 lg:px-12 xl:px-16">
           <div className="flex h-16 items-center justify-between">
             {/* Left: hamburger + logo */}
@@ -49,7 +49,7 @@ export function Navbar() {
               >
                 <MenuIcon className="h-7 w-7" />
               </SheetTrigger>
-              <SheetContent side="left" className="w-72 bg-[#0F1320] border-white/[0.06]">
+              <SheetContent side="left" className="w-72 bg-[#111622] border-white/[0.06]">
                 <SheetTitle className="px-5 pt-5 pb-0">
                   <SheetClose render={<Link href="/" />}>
                     <Image src="/logo.webp" alt="RariBox" width={120} height={34} className="h-[26px] w-auto object-contain invert" />
@@ -118,7 +118,7 @@ export function Navbar() {
                 >
                   <UserIcon className="h-4 w-4" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 bg-[#131929] border-white/[0.08]">
+                <DropdownMenuContent align="end" className="w-48 bg-[#151B2B] border-white/[0.08]">
                   <DropdownMenuItem render={<Link href="/auth/login" />}>
                     Sign In
                   </DropdownMenuItem>
@@ -164,7 +164,7 @@ export function Navbar() {
       </header>
 
       {/* Sub-navigation */}
-      <nav className="border-b border-white/[0.06] bg-[#0F1320]/90 backdrop-blur-xl">
+      <nav className="border-b border-white/[0.06] bg-[#111622]/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-3 lg:px-12 xl:px-16">
           <div className="hidden md:flex items-center gap-1 h-10">
             {NAV_ITEMS.map((item) => (

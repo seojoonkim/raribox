@@ -47,7 +47,7 @@ export default function GradingPage() {
     <div>
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0d1030] to-[#0A0D14] border-b border-white/[0.06]">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0F1230] to-[#0D1017] border-b border-white/[0.06]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(99,102,241,0.15)_0%,_transparent_65%)]" />
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16 relative z-10">
           <div className="flex flex-col md:flex-row md:items-center gap-10">
@@ -97,7 +97,7 @@ export default function GradingPage() {
                   alt="Dr. Rashed Al Farooq"
                   className="w-full object-cover"
                 />
-                <div className="bg-[#0F1320] p-4 border-t border-white/[0.06]">
+                <div className="bg-[#111622] p-4 border-t border-white/[0.06]">
                   <p className="font-bold text-sm">Dr. Rashed Al Farooq</p>
                   <p className="text-xs text-primary mt-0.5">Co-Founder & Chairman, Speedy Comics Group</p>
                   <p className="text-xs text-muted-foreground mt-2 italic leading-relaxed">
@@ -328,7 +328,7 @@ export default function GradingPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0D14] to-[#0d1030] border-t border-white/[0.06]">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0D1017] to-[#0F1230] border-t border-white/[0.06]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(99,102,241,0.12)_0%,_transparent_65%)]" />
         <div className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-20 text-center relative z-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Ready to Grade Your Cards?</h2>

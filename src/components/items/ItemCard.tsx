@@ -20,9 +20,9 @@ export function ItemCard({ item }: ItemCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <Card className="group overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 pt-0">
+    <Card className="group overflow-hidden rounded-xl bg-[#151B2B] border-white/[0.06] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 pt-0">
       <Link href={`/item/${item.id}`}>
-        <div className="relative aspect-[3/4] overflow-hidden bg-[#161B2E]">
+        <div className="relative aspect-[3/4] overflow-hidden bg-[#181D30]">
           {primaryImage?.url && !imgError ? (
             <Image
               src={primaryImage.url}
@@ -33,7 +33,7 @@ export function ItemCard({ item }: ItemCardProps) {
               unoptimized
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-[#161B2E] to-[#131929] flex items-center justify-center p-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-[#181D30] to-[#151B2B] flex items-center justify-center p-4">
               <span className="text-sm font-medium text-muted-foreground text-center line-clamp-3">
                 {item.title}
               </span>
@@ -102,8 +102,8 @@ export function ItemCard({ item }: ItemCardProps) {
 
 export function ItemCardSkeleton() {
   return (
-    <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06]">
-      <div className="aspect-[3/4] bg-[#161B2E] animate-pulse" />
+    <Card className="overflow-hidden rounded-xl bg-[#151B2B] border-white/[0.06]">
+      <div className="aspect-[3/4] bg-[#181D30] animate-pulse" />
       <CardContent className="p-3 space-y-2">
         <div className="h-4 bg-white/[0.06] rounded animate-pulse" />
         <div className="h-4 w-2/3 bg-white/[0.06] rounded animate-pulse" />

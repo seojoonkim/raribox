@@ -66,7 +66,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-3">
           {FRANCHISES.map((f) => (
             <Link key={f.slug} href={`/browse/${f.slug}`}>
-              <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
+              <Card className="overflow-hidden rounded-xl bg-[#151B2B] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
                 <div className="relative aspect-square overflow-hidden">
                   <Image
                     src={f.image}
@@ -155,7 +155,7 @@ export default async function HomePage() {
             { id: 3, tag: 'Grading', date: 'May 1, 2026', title: 'Grading Submission Drop-off Day', location: 'Times Square Center, Dubai', price: 'From 49.5 AED', image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=600&q=80' },
           ].map((ev) => (
             <Link key={ev.id} href="/events">
-              <Card className="overflow-hidden rounded-xl bg-[#131929] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
+              <Card className="overflow-hidden rounded-xl bg-[#151B2B] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
                 <div className="relative h-40 overflow-hidden">
                   <Image src={ev.image} alt={ev.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
                   <div className="absolute inset-0 bg-black/30" />
@@ -180,7 +180,7 @@ export default async function HomePage() {
       {/* Trust Badges */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 xl:px-16 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
+          <Card className="text-center rounded-xl bg-[#151B2B] border-white/[0.06]">
             <CardContent className="p-6">
               <ShieldIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Buyer Protection</h3>
@@ -189,7 +189,7 @@ export default async function HomePage() {
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
+          <Card className="text-center rounded-xl bg-[#151B2B] border-white/[0.06]">
             <CardContent className="p-6">
               <TruckIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Worldwide Shipping</h3>
@@ -198,7 +198,7 @@ export default async function HomePage() {
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center rounded-xl bg-[#131929] border-white/[0.06]">
+          <Card className="text-center rounded-xl bg-[#151B2B] border-white/[0.06]">
             <CardContent className="p-6">
               <StarIcon className="h-10 w-10 mx-auto mb-3 text-primary" />
               <h3 className="font-semibold">Verified Sellers</h3>
