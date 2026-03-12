@@ -65,7 +65,7 @@ export default async function HomePage() {
         <h2 className="text-2xl font-bold mb-6">Shop by Franchise</h2>
         <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-10 gap-3">
           {FRANCHISES.map((f) => (
-            <Link key={f.slug} href={`/browse/${f.slug}`}>
+            <Link key={f.slug} href={`/browse?franchise=${f.slug}`}>
               <Card className="overflow-hidden rounded-xl bg-[#151B2B] border-white/[0.06] hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all group cursor-pointer pt-0">
                 <div className="relative aspect-square overflow-hidden">
                   <Image

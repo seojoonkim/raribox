@@ -209,11 +209,13 @@ function FilterPanel({
   );
 }
 
-export function BrowseClient({ items }: { items: Item[] }) {
+export function BrowseClient({ items, initialFranchise }: { items: Item[]; initialFranchise?: string }) {
   const [sort, setSort] = useState<SortOption>('newest');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedFranchises, setSelectedFranchises] = useState<string[]>([]);
+  const [selectedFranchises, setSelectedFranchises] = useState<string[]>(
+    initialFranchise ? [initialFranchise] : []
+  );
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
   const [gradedOnly, setGradedOnly] = useState(false);
   const PRICE_MAX = 5000;
