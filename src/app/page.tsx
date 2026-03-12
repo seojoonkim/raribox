@@ -37,7 +37,7 @@ export default async function HomePage() {
             <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm text-sm px-3 py-3">
               Trusted by 10,000+ Collectors
             </Badge>
-            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-white via-white to-amber-300 bg-clip-text text-transparent">
               Discover <span className="text-amber-400">Rare</span> Collectibles
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-lg">
