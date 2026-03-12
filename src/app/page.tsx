@@ -34,7 +34,7 @@ export default async function HomePage() {
         {/* Content */}
         <div className="relative z-10 w-full px-6 lg:px-12 xl:px-16 py-20 md:py-28">
           <div className="max-w-2xl">
-            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm text-sm px-3 py-1">
+            <Badge className="mb-4 bg-primary/10 text-indigo-300 border border-primary/20 backdrop-blur-sm text-sm px-3 py-3">
               Trusted by 10,000+ Collectors
             </Badge>
             <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
